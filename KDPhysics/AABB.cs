@@ -20,5 +20,33 @@ namespace KDPhysics
         /// Represents the bottom right corner of the bounding rectangle.
         /// </summary>
         public Vect2 Max { get; set; }
+
+        /// <summary>
+        /// Gets the half width of the bounding box.
+        /// </summary>
+        public int HalfWidth => CalcHalfWidth();
+
+        /// <summary>
+        /// Gets the half height of the bounding box.
+        /// </summary>
+        public int HalfHeight => CalcHalfHeight();
+
+        /// <summary>
+        /// Calculates the half width of the bounding box.
+        /// </summary>
+        /// <returns>The width divided in half.</returns>
+        private int CalcHalfWidth()
+        {
+            return (Max.X - Min.X) / 2;
+        }
+
+        /// <summary>
+        /// Calculates the half height of the bounding box.
+        /// </summary>
+        /// <returns>The height divided in half.</returns>
+        private int CalcHalfHeight()
+        {
+            return (Max.Y - Min.Y) / 2;
+        }
     }
 }
