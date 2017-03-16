@@ -20,6 +20,7 @@ namespace KDPhysics
         /// Gets or sets the Y coordinate of the vector.
         /// </summary>
         public int Y { get; set; }
+
         public int Length
         {
             get
@@ -27,6 +28,13 @@ namespace KDPhysics
                 return (int)Math.Sqrt((X * X) + (Y * Y));
             }
         }
+
+        public Vect2 (int x, int y)
+        {
+            X = x;
+            Y = y;
+        }
+
         /// <summary>
         /// Calculates the dot product of the given vectors.
         /// </summary>
