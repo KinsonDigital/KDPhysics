@@ -7,12 +7,12 @@ namespace KDPhysicsTestGame
     /// <summary>
     /// This is the main type for your game.
     /// </summary>
-    public class Game1 : Game
+    public class TestGame : Game
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
-        public Game1()
+        public TestGame()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
