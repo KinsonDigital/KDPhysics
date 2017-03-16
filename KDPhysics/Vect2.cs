@@ -33,6 +33,9 @@ namespace KDPhysics
         /// </summary>
         public int Y { get; set; }
 
+        /// <summary>
+        /// Gets the length or magnitude of the vector.
+        /// </summary>
         public int Length
         {
             get
