@@ -12,6 +12,18 @@ namespace KDPhysics
     public struct Vect2
     {
         /// <summary>
+        /// Creates a new instance of Vect2.
+        /// </summary>
+        /// <param name="x">The default X value of the vector.</param>
+        /// <param name="y">The default Y value of the vector.</param>
+        public Vect2 (int x, int y)
+        {
+            X = x;
+            Y = y;
+        }
+
+
+        /// <summary>
         /// Gets or sets the X coordinate of the vector.
         /// </summary>
         public int X { get; set; }
@@ -27,12 +39,6 @@ namespace KDPhysics
             {
                 return (int)Math.Sqrt((X * X) + (Y * Y));
             }
-        }
-
-        public Vect2 (int x, int y)
-        {
-            X = x;
-            Y = y;
         }
 
         /// <summary>
