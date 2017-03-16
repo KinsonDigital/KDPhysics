@@ -40,7 +40,7 @@ namespace KDPhysics
         {
             get
             {
-                return (int)Math.Sqrt((X * X) + (Y * Y));
+                return Vect2.CalcLength(this);
             }
         }
 
