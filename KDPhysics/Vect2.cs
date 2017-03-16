@@ -56,5 +56,15 @@ namespace KDPhysics
 
             return (start.X * end.X) + (start.Y * end.Y);
         }
+
+        /// <summary>
+        /// Calculates the length or magnitude of the given vector.
+        /// </summary>
+        /// <param name="vector">The vector to calculate the length from.</param>
+        /// <returns>The length of the given vector.</returns>
+        public static int CalcLength(Vect2 vector)
+        {
+            return (int)Math.Sqrt((vector.X * vector.X) + (vector.Y * vector.Y));
+        }
     }
 }
