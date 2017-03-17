@@ -36,5 +36,19 @@ namespace KDPhysicsTest
             //Assert
             Assert.AreEqual(expected, actual);
         }
+
+        [TestMethod]
+        public void Valid_CalcLength_Result()
+        {
+            //Arrange
+            var vector = new Vect2(10, 20);
+            var expected = 22;
+
+            //Act
+            var actual = Vect2.CalcLength(vector);
+
+            //Assert
+            Assert.AreEqual(expected, actual);
+        }
     }
 }
