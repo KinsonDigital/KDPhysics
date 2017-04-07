@@ -20,5 +20,20 @@ namespace KDPhysicsTest
             //Assert
             Assert.AreEqual(expected, actual);
         }
+
+
+        [TestMethod]
+        public void Valid_CalcMagnitude_Result()
+        {
+            //Arrange
+            var vector1 = new Vect2(2, 5);
+            var expected = 5.3851648071345M;
+
+            //Act
+            var actual = PMath.CalcMagnitude(vector1);
+
+            //Assert
+            Assert.AreEqual(expected, actual);
+        }
     }
 }
