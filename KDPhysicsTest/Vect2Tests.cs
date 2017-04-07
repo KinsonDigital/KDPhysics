@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using KDPhysics;
+// ReSharper disable InconsistentNaming
 
 namespace KDPhysicsTest
 {
@@ -14,7 +15,7 @@ namespace KDPhysicsTest
             var start = new Vect2(41, 14);
             var end = new Vect2(63, 99);
             var actual = 0.0m;
-            var expected = 3969;
+            const int expected = 3969;
 
             //Act
             actual = Vect2.DotProduct(start, end);
@@ -28,7 +29,7 @@ namespace KDPhysicsTest
         {
             //Arrange
             var vector = new Vect2(10, 20);
-            var expected = 22;
+            const int expected = 22;
 
             //Act
             var actual = (int)vector.Length;
@@ -42,7 +43,7 @@ namespace KDPhysicsTest
         {
             //Arrange
             var vector = new Vect2(10, 20);
-            var expected = 22;
+            const int expected = 22;
 
             //Act
             var actual = (int)Vect2.CalcLength(vector);
