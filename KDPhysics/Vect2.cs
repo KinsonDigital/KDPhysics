@@ -16,7 +16,7 @@ namespace KDPhysics
         /// </summary>
         /// <param name="x">The default X value of the vector.</param>
         /// <param name="y">The default Y value of the vector.</param>
-        public Vect2 (int x, int y)
+        public Vect2 (decimal x, decimal y)
         {
             X = x;
             Y = y;
@@ -26,17 +26,17 @@ namespace KDPhysics
         /// <summary>
         /// Gets or sets the X coordinate of the vector.
         /// </summary>
-        public int X { get; set; }
+        public decimal X { get; set; }
 
         /// <summary>
         /// Gets or sets the Y coordinate of the vector.
         /// </summary>
-        public int Y { get; set; }
+        public decimal Y { get; set; }
 
         /// <summary>
         /// Gets the length or magnitude of the vector.
         /// </summary>
-        public int Length
+        public decimal Length
         {
             get
             {
@@ -50,7 +50,7 @@ namespace KDPhysics
         /// <param name="start">The starting vector.</param>
         /// <param name="end">The ending vector.</param>
         /// <returns>The scalar dot product value of the start and end vectors.</returns>
-        public static int DotProduct (Vect2 start, Vect2 end)
+        public static decimal DotProduct (Vect2 start, Vect2 end)
         {
             //Dot Product Ref: https://www.mathsisfun.com/algebra/vectors-dot-product.html
 
@@ -62,9 +62,9 @@ namespace KDPhysics
         /// </summary>
         /// <param name="vector">The vector to calculate the length from.</param>
         /// <returns>The length of the given vector.</returns>
-        public static int CalcLength(Vect2 vector)
+        public static decimal CalcLength(Vect2 vector)
         {
-            return (int)Math.Sqrt((vector.X * vector.X) + (vector.Y * vector.Y));
+            return (decimal)Math.Sqrt(((double)vector.X * (double)vector.X) + ((double)vector.Y * (double)vector.Y));
         }
     }
 }

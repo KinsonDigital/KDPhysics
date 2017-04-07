@@ -13,7 +13,7 @@ namespace KDPhysicsTest
             //Arrange
             var start = new Vect2(41, 14);
             var end = new Vect2(63, 99);
-            var actual = 0;
+            var actual = 0.0m;
             var expected = 3969;
 
             //Act

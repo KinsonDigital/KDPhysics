@@ -24,18 +24,18 @@ namespace KDPhysics
         /// <summary>
         /// Gets the half width of the bounding box.
         /// </summary>
-        public int HalfWidth => CalcHalfWidth();
+        public decimal HalfWidth => CalcHalfWidth();
 
         /// <summary>
         /// Gets the half height of the bounding box.
         /// </summary>
-        public int HalfHeight => CalcHalfHeight();
+        public decimal HalfHeight => CalcHalfHeight();
 
         /// <summary>
         /// Calculates the half width of the bounding box.
         /// </summary>
         /// <returns>The width divided in half.</returns>
-        private int CalcHalfWidth()
+        private decimal CalcHalfWidth()
         {
             return (Max.X - Min.X) / 2;
         }
@@ -44,7 +44,7 @@ namespace KDPhysics
         /// Calculates the half height of the bounding box.
         /// </summary>
         /// <returns>The height divided in half.</returns>
-        private int CalcHalfHeight()
+        private decimal CalcHalfHeight()
         {
             return (Max.Y - Min.Y) / 2;
         }
