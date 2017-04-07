@@ -59,7 +59,7 @@ namespace KDPhysics
         /// <returns>The length of the given vector.</returns>
         public static decimal CalcLength(Vect2 vector)
         {
-            return (decimal)Math.Sqrt(((double)vector.X * (double)vector.X) + ((double)vector.Y * (double)vector.Y));
+            return (decimal)Math.Sqrt((double)vector.X * (double)vector.X + (double)vector.Y * (double)vector.Y);
         }
     }
 }
