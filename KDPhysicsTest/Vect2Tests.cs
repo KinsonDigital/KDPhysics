@@ -14,11 +14,10 @@ namespace KDPhysicsTest
             //Arrange
             var start = new Vect2(41, 14);
             var end = new Vect2(63, 99);
-            var actual = 0.0m;
             const int expected = 3969;
 
             //Act
-            actual = Vect2.DotProduct(start, end);
+            var actual = Vect2.DotProduct(start, end);
 
             //Assert
             Assert.AreEqual(expected, actual);

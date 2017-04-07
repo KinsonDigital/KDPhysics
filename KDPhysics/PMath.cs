@@ -17,7 +17,7 @@ namespace KDPhysics
         /// <param name="v1">The first vector in the calculation.</param>
         /// <param name="v2">The second vector in the calculation.</param>
         /// <returns></returns>
-        public static decimal CalcDotProduct(Vect2 v1, Vect2 v2)
+        public static decimal DotProduct(Vect2 v1, Vect2 v2)
         {
             return (v1.X * v2.X) + (v1.Y * v2.Y);
         }
@@ -28,7 +28,7 @@ namespace KDPhysics
         /// </summary>
         /// <param name="vector">The vector to get the magnitude from.</param>
         /// <returns></returns>
-        public static decimal CalcMagnitude(Vect2 vector)
+        public static decimal Magnitude(Vect2 vector)
         {
             return (decimal)Math.Sqrt((double)(vector.X * vector.X) + (double)(vector.Y * vector.Y));
         }
@@ -39,7 +39,7 @@ namespace KDPhysics
         /// </summary>
         /// <param name="value">The value to get the square root of.</param>
         /// <returns></returns>
-        public static decimal CalcSqrt(double value)
+        public static decimal Sqrt(double value)
         {
             return (decimal)Math.Sqrt(value);
         }
@@ -50,7 +50,7 @@ namespace KDPhysics
         /// </summary>
         /// <param name="value">The value to get the square root of.</param>
         /// <returns></returns>
-        public static decimal CalcSqrt(decimal value)
+        public static decimal Sqrt(decimal value)
         {
             return (decimal)Math.Sqrt((double)value);
         }

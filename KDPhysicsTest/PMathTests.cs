@@ -17,7 +17,7 @@ namespace KDPhysicsTest
             var expected = 29;
 
             //Act
-            var actual = (int)PMath.CalcDotProduct(vector1, vector2);
+            var actual = (int)PMath.DotProduct(vector1, vector2);
 
             //Assert
             Assert.AreEqual(expected, actual);
@@ -32,7 +32,7 @@ namespace KDPhysicsTest
             var expected = 5.3851648071345M;
 
             //Act
-            var actual = PMath.CalcMagnitude(vector1);
+            var actual = PMath.Magnitude(vector1);
 
             //Assert
             Assert.AreEqual(expected, actual);
@@ -47,7 +47,7 @@ namespace KDPhysicsTest
             const decimal expected = 2.12132034355964M;
 
             //Act
-            var actual = PMath.CalcSqrt(value);
+            var actual = PMath.Sqrt(value);
 
             //Assert
             Assert.AreEqual(expected, actual);
@@ -62,7 +62,22 @@ namespace KDPhysicsTest
             const decimal expected = 2.12132034355964M;
 
             //Act
-            var actual = PMath.CalcSqrt(value);
+            var actual = PMath.Sqrt(value);
+
+            //Assert
+            Assert.AreEqual(expected, actual);
+        }
+
+
+        [TestMethod]
+        public void Valid_CalcSquare_Result()
+        {
+            //Arrange
+            const decimal value = 4M;
+            const decimal expected = 16M;
+
+            //Act
+            var actual = PMath.Square(value);
 
             //Assert
             Assert.AreEqual(expected, actual);
