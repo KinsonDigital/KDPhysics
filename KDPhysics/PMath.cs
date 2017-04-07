@@ -32,5 +32,16 @@ namespace KDPhysics
         {
             return (decimal)Math.Sqrt((double)(vector.X * vector.X) + (double)(vector.Y * vector.Y));
         }
+
+
+        /// <summary>
+        /// Calculates the square root of the given value.
+        /// </summary>
+        /// <param name="value">The value to get the square root of.</param>
+        /// <returns></returns>
+        public static decimal CalcSqrt(double value)
+        {
+            return (decimal)Math.Sqrt(value);
+        }
     }
 }

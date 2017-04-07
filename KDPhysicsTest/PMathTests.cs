@@ -1,5 +1,7 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using System;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using KDPhysics;
+// ReSharper disable InconsistentNaming
 
 namespace KDPhysicsTest
 {
@@ -31,6 +33,21 @@ namespace KDPhysicsTest
 
             //Act
             var actual = PMath.CalcMagnitude(vector1);
+
+            //Assert
+            Assert.AreEqual(expected, actual);
+        }
+
+
+        [TestMethod]
+        public void Valid_CalcSqrt_Decimal_Result()
+        {
+            //Arrange
+            const double value = 4.5;
+            const decimal expected = 2.12132034355964M;
+
+            //Act
+            var actual = PMath.CalcSqrt(value);
 
             //Assert
             Assert.AreEqual(expected, actual);
