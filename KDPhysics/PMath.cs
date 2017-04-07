@@ -43,5 +43,16 @@ namespace KDPhysics
         {
             return (decimal)Math.Sqrt(value);
         }
+
+
+        /// <summary>
+        /// Calculates the square root of the given value.
+        /// </summary>
+        /// <param name="value">The value to get the square root of.</param>
+        /// <returns></returns>
+        public static decimal CalcSqrt(decimal value)
+        {
+            return (decimal)Math.Sqrt((double)value);
+        }
     }
 }

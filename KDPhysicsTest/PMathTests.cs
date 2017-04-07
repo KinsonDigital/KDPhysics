@@ -52,5 +52,20 @@ namespace KDPhysicsTest
             //Assert
             Assert.AreEqual(expected, actual);
         }
+
+
+        [TestMethod]
+        public void Valid_CalcSqrt_Result_With_Decimal_Param()
+        {
+            //Arrange
+            const decimal value = 4.5M;
+            const decimal expected = 2.12132034355964M;
+
+            //Act
+            var actual = PMath.CalcSqrt(value);
+
+            //Assert
+            Assert.AreEqual(expected, actual);
+        }
     }
 }
