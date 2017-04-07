@@ -36,13 +36,8 @@ namespace KDPhysics
         /// <summary>
         /// Gets the length or magnitude of the vector.
         /// </summary>
-        public decimal Length
-        {
-            get
-            {
-                return Vect2.CalcLength(this);
-            }
-        }
+        public decimal Length => Vect2.CalcLength(this);
+
 
         /// <summary>
         /// Calculates the dot product of the given vectors.
