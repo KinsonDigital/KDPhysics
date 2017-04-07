@@ -31,7 +31,7 @@ namespace KDPhysicsTest
             var expected = 22;
 
             //Act
-            var actual = vector.Length;
+            var actual = (int)vector.Length;
 
             //Assert
             Assert.AreEqual(expected, actual);
@@ -45,7 +45,7 @@ namespace KDPhysicsTest
             var expected = 22;
 
             //Act
-            var actual = Vect2.CalcLength(vector);
+            var actual = (int)Vect2.CalcLength(vector);
 
             //Assert
             Assert.AreEqual(expected, actual);
