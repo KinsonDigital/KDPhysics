@@ -40,7 +40,7 @@ namespace KDPhysicsTest
 
 
         [TestMethod]
-        public void Valid_CalcSqrt_Decimal_Result()
+        public void Valid_CalcSqrt_Result_With_Double_Param()
         {
             //Arrange
             const double value = 4.5;
