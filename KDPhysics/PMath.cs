@@ -54,5 +54,14 @@ namespace KDPhysics
         {
             return (decimal)Math.Sqrt((double)value);
         }
+        /// <summary>
+        /// Squares the given value.
+        /// </summary>
+        /// <param name="value">The value to square.</param>
+        /// <returns></returns>
+        public static decimal Square(decimal value)
+        {
+            return value * value;
+        }
     }
 }
