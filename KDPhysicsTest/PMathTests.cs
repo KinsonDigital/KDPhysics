@@ -9,7 +9,7 @@ namespace KDPhysicsTest
     public class PMathTests
     {
         [TestMethod]
-        public void Valid_CalcDotProduct_Result()
+        public void DotProduct_Valid_Result()
         {
             //Arrange
             var vector1 = new Vect2(2, 3);
@@ -25,7 +25,7 @@ namespace KDPhysicsTest
 
 
         [TestMethod]
-        public void Valid_CalcMagnitude_Result()
+        public void Magnitude_Valid_Result()
         {
             //Arrange
             var vector1 = new Vect2(2, 5);
@@ -40,7 +40,7 @@ namespace KDPhysicsTest
 
 
         [TestMethod]
-        public void Valid_CalcSqrt_Result_With_Double_Param()
+        public void Sqrt_Valid_Result_With_Double_Param()
         {
             //Arrange
             const double value = 4.5;
@@ -55,7 +55,7 @@ namespace KDPhysicsTest
 
 
         [TestMethod]
-        public void Valid_CalcSqrt_Result_With_Decimal_Param()
+        public void Sqrt_Valid_Result_With_Decimal_Param()
         {
             //Arrange
             const decimal value = 4.5M;
@@ -70,7 +70,7 @@ namespace KDPhysicsTest
 
 
         [TestMethod]
-        public void Valid_CalcSquare_Result()
+        public void Square_Valid_Result()
         {
             //Arrange
             const decimal value = 4M;
