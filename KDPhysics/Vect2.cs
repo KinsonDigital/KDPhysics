@@ -36,7 +36,7 @@ namespace KDPhysics
         /// <summary>
         /// Gets the length or magnitude of the vector.
         /// </summary>
-        public decimal Length => Vect2.CalcLength(this);
+        public decimal Length => PMath.Magnitude(this);
 
 
         /// <summary>
@@ -49,17 +49,7 @@ namespace KDPhysics
         {
             //Dot Product Ref: https://www.mathsisfun.com/algebra/vectors-dot-product.html
 
-            return (start.X * end.X) + (start.Y * end.Y);
-        }
-
-        /// <summary>
-        /// Calculates the length or magnitude of the given vector.
-        /// </summary>
-        /// <param name="vector">The vector to calculate the length from.</param>
-        /// <returns>The length of the given vector.</returns>
-        public static decimal CalcLength(Vect2 vector)
-        {
-            return (decimal)Math.Sqrt((double)vector.X * (double)vector.X + (double)vector.Y * (double)vector.Y);
+            return PMath.DotProduct(start, end);
         }
     }
 }

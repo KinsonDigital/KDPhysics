@@ -12,9 +12,9 @@ namespace KDPhysicsTest
         public void Valid_DotProduct_Result()
         {
             //Arrange
-            var start = new Vect2(41, 14);
-            var end = new Vect2(63, 99);
-            const int expected = 3969;
+            var start = new Vect2(2, 0);
+            var end = new Vect2(2, 3);
+            const int expected = 6;
 
             //Act
             var actual = Vect2.DotProduct(start, end);
