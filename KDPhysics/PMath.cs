@@ -19,6 +19,8 @@ namespace KDPhysics
         /// <returns></returns>
         public static decimal DotProduct(Vect2 v1, Vect2 v2)
         {
+            //Dot Product Ref: https://www.mathsisfun.com/algebra/vectors-dot-product.html
+
             return (v1.X * v2.X) + (v1.Y * v2.Y);
         }
 
