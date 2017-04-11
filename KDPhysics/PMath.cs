@@ -69,7 +69,7 @@ namespace KDPhysics
         /// <returns></returns>
         public static double CalcAngle(Vect2 v1, Vect2 v2)
         {
-            return Math.Acos(DotProduct(v1, v2) / (v1.Length * v2.Length));
+            return RadianToDegree(Math.Acos(DotProduct(v1, v2) / (v1.Length * v2.Length)));
         }
 
 
