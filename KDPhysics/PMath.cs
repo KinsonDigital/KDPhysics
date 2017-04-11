@@ -11,6 +11,9 @@ namespace KDPhysics
     /// </summary>
     public static class PMath
     {
+        // ReSharper disable once InconsistentNaming
+        public static double PI = 3.1415926535897931;
+
         /// <summary>
         /// Calculates the dot product of the 2 given vectors.
         /// </summary>
@@ -67,6 +70,17 @@ namespace KDPhysics
         public static double CalcAngle(Vect2 v1, Vect2 v2)
         {
             return Math.Acos(DotProduct(v1, v2) / (v1.Length * v2.Length));
+        }
+
+
+        /// <summary>
+        /// Converts the given angle in degrees to radians.
+        /// </summary>
+        /// <param name="angle">The angle to convert.</param>
+        /// <returns></returns>
+        public static double DegreeToRadian(double angle)
+        {
+            return PI * angle / 180.0;
         }
     }
 }

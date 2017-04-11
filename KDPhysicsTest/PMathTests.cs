@@ -70,6 +70,20 @@ namespace KDPhysicsTest
 
 
         [TestMethod]
+        public void DegreeToRadian_Valid_Result()
+        {
+            //Arrange
+            const double expected = 0.52359877559829882;
+
+            //Act
+            var actual = PMath.DegreeToRadian(30);
+
+            //Assert
+            Assert.AreEqual(expected, actual);
+        }
+
+
+        [TestMethod]
         public void CalcAngle_Valid_Result()
         {
             //Arrange
