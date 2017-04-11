@@ -29,7 +29,7 @@ namespace KDPhysicsTest
         {
             //Arrange
             var vector1 = new Vect2(2, 5);
-            var expected = 5.3851648071345M;
+            const double expected = 5.3851648071345037;
 
             //Act
             var actual = PMath.Magnitude(vector1);
@@ -40,26 +40,11 @@ namespace KDPhysicsTest
 
 
         [TestMethod]
-        public void Sqrt_Valid_Result_With_Double_Param()
+        public void Sqrt_Valid_Result()
         {
             //Arrange
             const double value = 4.5;
-            const decimal expected = 2.12132034355964M;
-
-            //Act
-            var actual = PMath.Sqrt(value);
-
-            //Assert
-            Assert.AreEqual(expected, actual);
-        }
-
-
-        [TestMethod]
-        public void Sqrt_Valid_Result_With_Decimal_Param()
-        {
-            //Arrange
-            const decimal value = 4.5M;
-            const decimal expected = 2.12132034355964M;
+            const double expected = 2.1213203435596424;
 
             //Act
             var actual = PMath.Sqrt(value);
@@ -73,11 +58,27 @@ namespace KDPhysicsTest
         public void Square_Valid_Result()
         {
             //Arrange
-            const decimal value = 4M;
-            const decimal expected = 16M;
+            const double value = 4;
+            const double expected = 16;
 
             //Act
             var actual = PMath.Square(value);
+
+            //Assert
+            Assert.AreEqual(expected, actual);
+        }
+
+
+        [TestMethod]
+        public void CalcAngle_Valid_Result()
+        {
+            //Arrange
+            var v1 = new Vect2(2,3);
+            var v2 = new Vect2(0,3);
+            const double expected = 33.29;
+
+            //Act
+            var actual = PMath.CalcAngle(v1, v2);
 
             //Assert
             Assert.AreEqual(expected, actual);

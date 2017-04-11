@@ -16,7 +16,7 @@ namespace KDPhysics
         /// </summary>
         /// <param name="x">The default X value of the vector.</param>
         /// <param name="y">The default Y value of the vector.</param>
-        public Vect2 (decimal x, decimal y)
+        public Vect2 (double x, double y)
         {
             X = x;
             Y = y;
@@ -26,16 +26,16 @@ namespace KDPhysics
         /// <summary>
         /// Gets or sets the X coordinate of the vector.
         /// </summary>
-        public decimal X { get; set; }
+        public double X { get; set; }
 
         /// <summary>
         /// Gets or sets the Y coordinate of the vector.
         /// </summary>
-        public decimal Y { get; set; }
+        public double Y { get; set; }
 
         /// <summary>
         /// Gets the length or magnitude of the vector.
         /// </summary>
-        public decimal Length => PMath.Magnitude(this);
+        public double Length => PMath.Magnitude(this);
     }
 }
