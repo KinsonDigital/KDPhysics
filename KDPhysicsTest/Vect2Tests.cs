@@ -35,5 +35,21 @@ namespace KDPhysicsTest
             //Assert
             Assert.AreEqual(expected, actual);
         }
+
+
+        [TestMethod]
+        public void Valid_Mult_Operator_Result()
+        {
+            //Arrange
+            var vector = new Vect2(2, 3);
+            var expected = new Vect2(4,6);
+
+            //Act
+            var actual = vector * 2;
+
+            //Assert
+            Assert.AreEqual(expected.X, actual.X);//Assert x component
+            Assert.AreEqual(expected.Y, actual.Y);//Assert x component
+        }
     }
 }

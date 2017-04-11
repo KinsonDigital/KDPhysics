@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace KDPhysics
+﻿namespace KDPhysics
 {
     /// <summary>
     /// Represents direction and magnitude in 2D space.
@@ -37,5 +31,12 @@ namespace KDPhysics
         /// Gets the length or magnitude of the vector.
         /// </summary>
         public double Length => PMath.Magnitude(this);
+
+
+
+        public static Vect2 operator *(Vect2 vector, double scalar)
+        {
+            return new Vect2(vector.X * scalar, vector.Y * scalar);
+        }
     }
 }
