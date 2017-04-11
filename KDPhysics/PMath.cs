@@ -82,5 +82,16 @@ namespace KDPhysics
         {
             return PI * angle / 180.0;
         }
+
+
+        /// <summary>
+        /// Converts the given angle in radians to degrees.
+        /// </summary>
+        /// <param name="angle">The angle to convert.</param>
+        /// <returns></returns>
+        public static double RadianToDegree(double angle)
+        {
+            return angle * (180.0 / PI);
+        }
     }
 }
