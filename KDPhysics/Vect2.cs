@@ -43,5 +43,17 @@
         {
             return new Vect2(vector.X * scalar, vector.Y * scalar);
         }
+
+
+        /// <summary>
+        /// Multiplies a vector by a scalar.
+        /// </summary>
+        /// <param name="vector">The left operand scalar.</param>
+        /// <param name="scalar">The right operand vector.</param>
+        /// <returns></returns>
+        public static Vect2 operator *(double scalar, Vect2 vector)
+        {
+            return new Vect2(vector.X * scalar, vector.Y * scalar);
+        }
     }
 }
