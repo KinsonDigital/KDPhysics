@@ -33,7 +33,12 @@
         public double Length => PMath.Magnitude(this);
 
 
-
+        /// <summary>
+        /// Multiplies a vector by a scalar.
+        /// </summary>
+        /// <param name="vector">The left operand vector.</param>
+        /// <param name="scalar">The right operand scalar.</param>
+        /// <returns></returns>
         public static Vect2 operator *(Vect2 vector, double scalar)
         {
             return new Vect2(vector.X * scalar, vector.Y * scalar);
