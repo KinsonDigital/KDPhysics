@@ -93,5 +93,12 @@ namespace KDPhysics
         {
             return angle * (180.0 / PI);
         }
+
+
+
+        public static Vect2 ProjectVector(Vect2 v1, Vect2 v2)
+        {
+            return new Vect2(v2 * (DotProduct(v1, v2) / Math.Pow(Magnitude(v2), 2)));
+        }
     }
 }

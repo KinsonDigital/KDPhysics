@@ -111,5 +111,23 @@ namespace KDPhysicsTest
             //Assert
             Assert.AreEqual(expected, actual);
         }
+
+
+
+        [TestMethod]
+        public void ProjectVector()
+        {
+            //Arrange
+            var v1 = new Vect2(2,6);
+            var v2 = new Vect2(4,0);
+            var expected = new Vect2(2, 0);
+
+            //Act
+            var actual = PMath.ProjectVector(v1, v2);
+
+            //Assert
+            Assert.AreEqual(expected.X, actual.X);
+            Assert.AreEqual(expected.Y, actual.Y);
+        }
     }
 }
