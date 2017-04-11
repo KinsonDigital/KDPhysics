@@ -18,6 +18,17 @@
 
 
         /// <summary>
+        /// Creates a new instance of Vect2.
+        /// </summary>
+        /// <param name="vector">The vector to use to create this vector.</param>
+        public Vect2(Vect2 vector)
+        {
+            X = vector.X;
+            Y = vector.Y;
+        }
+
+
+        /// <summary>
         /// Gets or sets the X coordinate of the vector.
         /// </summary>
         public double X { get; set; }
