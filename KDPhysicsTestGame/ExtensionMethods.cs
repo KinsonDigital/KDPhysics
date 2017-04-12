@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using KDPhysics;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
@@ -20,6 +21,12 @@ namespace KDPhysicsTestGame
             }
 
             texture.SetData(colorData);
+        }
+
+
+        public static Vector2 ToVect2(this Vect2 vect2)
+        {
+            return new Vector2((float)vect2.X, (float)vect2.Y);
         }
     }
 }

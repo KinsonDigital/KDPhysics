@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using KDPhysics;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
@@ -15,10 +16,10 @@ namespace KDPhysicsTestGame
         private Texture2D _yAxis;
         private Texture2D _boxA;
         private Texture2D _boxB;
-        private Vector2 _xAxisLocation;
-        private Vector2 _yAxisLocation;
-        private Vector2 _boxALocation;
-        private Vector2 _boxBLocation;
+        private Vect2 _xAxisLocation;
+        private Vect2 _yAxisLocation;
+        private Vect2 _boxALocation;
+        private Vect2 _boxBLocation;
         private KeyboardState _currentKeyboardState;
         private KeyboardState _prevKeyboardState;
 
@@ -37,12 +38,12 @@ namespace KDPhysicsTestGame
         protected override void Initialize()
         {
             //Box Locations
-            _boxALocation = new Vector2(50, 50);
-            _boxBLocation = new Vector2(150, 150);
+            _boxALocation = new Vect2(50, 50);
+            _boxBLocation = new Vect2(150, 150);
 
             //Grid Axis Locations
-            _xAxisLocation = new Vector2(10, 10);
-            _yAxisLocation = new Vector2(10, 10);
+            _xAxisLocation = new Vect2(10, 10);
+            _yAxisLocation = new Vect2(10, 10);
 
             base.Initialize();
         }
@@ -121,11 +122,11 @@ namespace KDPhysicsTestGame
             _spriteBatch.Begin();
 
             //Draw the axis lines
-            _spriteBatch.Draw(_xAxis, _xAxisLocation, Color.White);
-            _spriteBatch.Draw(_yAxis, _yAxisLocation, Color.White);
+            _spriteBatch.Draw(_xAxis, _xAxisLocation.ToVect2(), Color.White);
+            _spriteBatch.Draw(_yAxis, _yAxisLocation.ToVect2(), Color.White);
 
-            _spriteBatch.Draw(_boxA, _boxALocation, Color.White);
-            _spriteBatch.Draw(_boxB, _boxBLocation, Color.White);
+            _spriteBatch.Draw(_boxA, _boxALocation.ToVect2(), Color.White);
+            _spriteBatch.Draw(_boxB, _boxBLocation.ToVect2(), Color.White);
 
             _spriteBatch.End();
 
