@@ -11,6 +11,13 @@ namespace KDPhysicsTestGame
 {
     public static class ExtensionMethods
     {
+        /// <summary>
+        /// Sets the Texture2D as a solid with the given width, height, and color.
+        /// </summary>
+        /// <param name="texture">The Texture2D to set as a solid.</param>
+        /// <param name="width">The width of the texture.</param>
+        /// <param name="height">The height of the texture.</param>
+        /// <param name="color">The color of the texture.</param>
         public static void SetAsSolid(this Texture2D texture, int width, int height, Color color)
         {
             var colorData = new Color[width * height];
@@ -24,9 +31,14 @@ namespace KDPhysicsTestGame
         }
 
 
+        /// <summary>
+        /// Converts the given Vect2 to a Vector2.
+        /// </summary>
+        /// <param name="vect2">The Vect2 type to convert.</param>
+        /// <returns></returns>
         public static Vector2 ToVect2(this Vect2 vect2)
         {
-            return new Vector2((float)vect2.X, (float)vect2.Y);
+            return new Vector2(vect2.X, vect2.Y);
         }
     }
 }
