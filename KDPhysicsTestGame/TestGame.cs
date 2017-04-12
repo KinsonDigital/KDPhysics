@@ -11,8 +11,12 @@ namespace KDPhysicsTestGame
     {
         private readonly GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
+        private Texture2D _xAxis;
+        private Texture2D _yAxis;
         private Texture2D _boxA;
         private Texture2D _boxB;
+        private Vector2 _xAxisLocation;
+        private Vector2 _yAxisLocation;
         private Vector2 _boxALocation;
         private Vector2 _boxBLocation;
         private KeyboardState _currentKeyboardState;
@@ -32,8 +36,13 @@ namespace KDPhysicsTestGame
         /// </summary>
         protected override void Initialize()
         {
+            //Box Locations
             _boxALocation = new Vector2(50, 50);
             _boxBLocation = new Vector2(150, 150);
+
+            //Grid Axis Locations
+            _xAxisLocation = new Vector2(10, 10);
+            _yAxisLocation = new Vector2(10, 10);
 
             base.Initialize();
         }
@@ -47,8 +56,14 @@ namespace KDPhysicsTestGame
             // Create a new SpriteBatch, which can be used to draw textures.
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
+            _xAxis = new Texture2D(_graphics.GraphicsDevice, _graphics.PreferredBackBufferWidth - 20, 2);
+            _yAxis = new Texture2D(_graphics.GraphicsDevice, 2, _graphics.PreferredBackBufferHeight - 20);
+
             _boxA = new Texture2D(_graphics.GraphicsDevice, 50, 50);
             _boxB = new Texture2D(_graphics.GraphicsDevice, 50, 50);
+
+            _xAxis.SetAsSolid(_graphics.PreferredBackBufferWidth - 20, 2, Color.Black);
+            _yAxis.SetAsSolid(2, _graphics.PreferredBackBufferHeight - 20, Color.Black);
 
             _boxA.SetAsSolid(50, 50, Color.DarkSeaGreen);
             _boxB.SetAsSolid(50, 50, Color.IndianRed);
@@ -104,6 +119,10 @@ namespace KDPhysicsTestGame
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             _spriteBatch.Begin();
+
+            //Draw the axis lines
+            _spriteBatch.Draw(_xAxis, _xAxisLocation, Color.White);
+            _spriteBatch.Draw(_yAxis, _yAxisLocation, Color.White);
 
             _spriteBatch.Draw(_boxA, _boxALocation, Color.White);
             _spriteBatch.Draw(_boxB, _boxBLocation, Color.White);
