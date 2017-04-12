@@ -70,5 +70,43 @@ namespace KDPhysicsTest
             Assert.AreEqual(expected.X, actual.X);
             Assert.AreEqual(expected.Y, actual.Y);
         }
+
+        [TestMethod]
+        public void HalfWidth_Valid_Result()
+        {
+            //Arrange
+            var aabb = new AABB
+            {
+                Min = new Vect2(0, 0),
+                Max = new Vect2(50, 100)
+            };
+
+            const int expected = 25;
+
+            //Act
+            var actual = aabb.HalfWidth;
+
+            //Assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void HalfHeight_Valid_Result()
+        {
+            //Arrange
+            var aabb = new AABB
+            {
+                Min = new Vect2(0, 0),
+                Max = new Vect2(50, 100)
+            };
+
+            const int expected = 50;
+
+            //Act
+            var actual = aabb.HalfHeight;
+
+            //Assert
+            Assert.AreEqual(expected, actual);
+        }
     }
 }
