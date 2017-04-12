@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Remoting.Messaging;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -20,6 +21,11 @@ namespace KDPhysics
         /// Represents the bottom right corner of the bounding rectangle.
         /// </summary>
         public Vect2 Max { get; set; }
+
+        /// <summary>
+        /// Represents the center location of the AABB rectangle.
+        /// </summary>
+        public Vect2 Center => new Vect2(Max.X - HalfWidth, Max.Y - HalfHeight);
 
         /// <summary>
         /// Gets the half width of the bounding box.

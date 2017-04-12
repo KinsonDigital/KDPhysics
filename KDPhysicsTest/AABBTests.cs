@@ -1,0 +1,34 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using KDPhysics;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+
+namespace KDPhysicsTest
+{
+    [TestClass]
+    public class AABBTests
+    {
+        [TestMethod]
+        public void Center_Valid_Result()
+        {
+            //Arrange
+            var aabb = new AABB
+            {
+                Min = new Vect2(0, 0),
+                Max = new Vect2(10, 10)
+            };
+            
+            var expected = new Vect2(5,5);
+
+            //Act
+            var actual = aabb.Center;
+
+            //Assert
+            Assert.AreEqual(expected.X, actual.X);
+            Assert.AreEqual(expected.Y, actual.Y);
+        }
+    }
+}

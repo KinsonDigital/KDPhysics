@@ -56,6 +56,7 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AABBTests.cs" />
     <Compile Include="PMathTests.cs" />
     <Compile Include="Vect2Tests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
