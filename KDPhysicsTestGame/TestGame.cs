@@ -9,12 +9,18 @@ namespace KDPhysicsTestGame
     /// </summary>
     public class TestGame : Game
     {
-        GraphicsDeviceManager graphics;
-        SpriteBatch spriteBatch;
+        private readonly GraphicsDeviceManager _graphics;
+        private SpriteBatch _spriteBatch;
+        private Texture2D _boxA;
+        private Texture2D _boxB;
+        private Vector2 _boxALocation;
+        private Vector2 _boxBLocation;
+        private KeyboardState _currentKeyboardState;
+        private KeyboardState _prevKeyboardState;
 
         public TestGame()
         {
-            graphics = new GraphicsDeviceManager(this);
+            _graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
         }
 
@@ -26,7 +32,8 @@ namespace KDPhysicsTestGame
         /// </summary>
         protected override void Initialize()
         {
-            // TODO: Add your initialization logic here
+            _boxALocation = new Vector2(50, 50);
+            _boxBLocation = new Vector2(150, 150);
 
             base.Initialize();
         }
@@ -38,9 +45,13 @@ namespace KDPhysicsTestGame
         protected override void LoadContent()
         {
             // Create a new SpriteBatch, which can be used to draw textures.
-            spriteBatch = new SpriteBatch(GraphicsDevice);
+            _spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            // TODO: use this.Content to load your game content here
+            _boxA = new Texture2D(_graphics.GraphicsDevice, 50, 50);
+            _boxB = new Texture2D(_graphics.GraphicsDevice, 50, 50);
+
+            _boxA.SetAsSolid(50, 50, Color.DarkSeaGreen);
+            _boxB.SetAsSolid(50, 50, Color.IndianRed);
         }
 
         /// <summary>
@@ -59,10 +70,27 @@ namespace KDPhysicsTestGame
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
-                Exit();
+            _currentKeyboardState = Keyboard.GetState();
 
-            // TODO: Add your update logic here
+            //If the left key has been pressed
+            if (_currentKeyboardState.IsKeyDown(Keys.Left))
+            {
+                _boxALocation.X -= 5;
+            }
+            else if(_currentKeyboardState.IsKeyDown(Keys.Right))
+            { 
+                _boxALocation.X += 5;
+            }
+            else if(_currentKeyboardState.IsKeyDown(Keys.Up))
+            {
+                _boxALocation.Y -= 5;
+            }
+            else if(_currentKeyboardState.IsKeyDown(Keys.Down))
+            {
+                _boxALocation.Y += 5;
+            }
+
+            _prevKeyboardState = _currentKeyboardState;
 
             base.Update(gameTime);
         }
@@ -75,7 +103,12 @@ namespace KDPhysicsTestGame
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            // TODO: Add your drawing code here
+            _spriteBatch.Begin();
+
+            _spriteBatch.Draw(_boxA, _boxALocation, Color.White);
+            _spriteBatch.Draw(_boxB, _boxBLocation, Color.White);
+
+            _spriteBatch.End();
 
             base.Draw(gameTime);
         }
