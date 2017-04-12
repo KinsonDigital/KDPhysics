@@ -41,7 +41,7 @@ namespace KDPhysicsTest
                 Max = new Vect2(22, 33)
             };
 
-            var expected = new Vect2(2, 2);
+            var expected = new Vect2(2, 3);
 
             //Act
             var actual = aabb.Min;

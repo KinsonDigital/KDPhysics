@@ -103,7 +103,7 @@ namespace KDPhysicsTest
             //Arrange
             var v1 = new Vect2(2,3);
             var v2 = new Vect2(0,3);
-            const float expected = 33.690067525979785f;
+            const float expected = 33.6900635f;
 
             //Act
             var actual = PMath.CalcAngle(v1, v2);
