@@ -29,7 +29,7 @@ namespace KDPhysicsTest
         {
             //Arrange
             var vector1 = new Vect2(2, 5);
-            const double expected = 5.3851648071345037;
+            const float expected = 5.3851648071345037f;
 
             //Act
             var actual = PMath.Magnitude(vector1);
@@ -43,8 +43,8 @@ namespace KDPhysicsTest
         public void Sqrt_Valid_Result()
         {
             //Arrange
-            const double value = 4.5;
-            const double expected = 2.1213203435596424;
+            const float value = 4.5f;
+            const float expected = 2.1213203435596424f;
 
             //Act
             var actual = PMath.Sqrt(value);
@@ -58,8 +58,8 @@ namespace KDPhysicsTest
         public void Square_Valid_Result()
         {
             //Arrange
-            const double value = 4;
-            const double expected = 16;
+            const float value = 4;
+            const float expected = 16;
 
             //Act
             var actual = PMath.Square(value);
@@ -73,7 +73,7 @@ namespace KDPhysicsTest
         public void DegreeToRadian_Valid_Result()
         {
             //Arrange
-            const double expected = 0.52359877559829882;
+            const float expected = 0.52359877559829882f;
 
             //Act
             var actual = PMath.DegreeToRadian(30);
@@ -87,10 +87,10 @@ namespace KDPhysicsTest
         public void RadianToDegree_Valid_Result()
         {
             //Arrange
-            const double expected = 29.999999999999996;
+            const float expected = 29.999999999999996f;
 
             //Act
-            var actual = PMath.RadianToDegree(0.52359877559829882);
+            var actual = PMath.RadianToDegree(0.52359877559829882f);
 
             //Assert
             Assert.AreEqual(expected, actual);
@@ -103,7 +103,7 @@ namespace KDPhysicsTest
             //Arrange
             var v1 = new Vect2(2,3);
             var v2 = new Vect2(0,3);
-            const double expected = 33.690067525979785;
+            const float expected = 33.690067525979785f;
 
             //Act
             var actual = PMath.CalcAngle(v1, v2);

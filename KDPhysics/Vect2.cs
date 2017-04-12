@@ -10,7 +10,7 @@
         /// </summary>
         /// <param name="x">The default X value of the vector.</param>
         /// <param name="y">The default Y value of the vector.</param>
-        public Vect2 (double x, double y)
+        public Vect2 (float x, float y)
         {
             X = x;
             Y = y;
@@ -31,19 +31,19 @@
         /// <summary>
         /// Gets or sets the X coordinate of the vector.
         /// </summary>
-        public double X { get; set; }
+        public float X { get; set; }
 
 
         /// <summary>
         /// Gets or sets the Y coordinate of the vector.
         /// </summary>
-        public double Y { get; set; }
+        public float Y { get; set; }
 
 
         /// <summary>
         /// Gets the length or magnitude of the vector.
         /// </summary>
-        public double Length => PMath.Magnitude(this);
+        public float Length => PMath.Magnitude(this);
 
         
         /// <summary>
@@ -52,7 +52,7 @@
         /// <param name="vector">The left operand vector.</param>
         /// <param name="scalar">The right operand scalar.</param>
         /// <returns></returns>
-        public static Vect2 operator *(Vect2 vector, double scalar)
+        public static Vect2 operator *(Vect2 vector, float scalar)
         {
             return new Vect2(vector.X * scalar, vector.Y * scalar);
         }
@@ -64,7 +64,7 @@
         /// <param name="vector">The left operand scalar.</param>
         /// <param name="scalar">The right operand vector.</param>
         /// <returns></returns>
-        public static Vect2 operator *(double scalar, Vect2 vector)
+        public static Vect2 operator *(float scalar, Vect2 vector)
         {
             return new Vect2(vector.X * scalar, vector.Y * scalar);
         }

@@ -12,7 +12,7 @@ namespace KDPhysics
     public static class PMath
     {
         // ReSharper disable once InconsistentNaming
-        public static double PI = 3.1415926535897931;
+        public static float PI = 3.1415926535897931f;
 
         /// <summary>
         /// Calculates the dot product of the 2 given vectors.
@@ -20,7 +20,7 @@ namespace KDPhysics
         /// <param name="v1">The first vector in the calculation.</param>
         /// <param name="v2">The second vector in the calculation.</param>
         /// <returns></returns>
-        public static double DotProduct(Vect2 v1, Vect2 v2)
+        public static float DotProduct(Vect2 v1, Vect2 v2)
         {
             //Dot Product Ref: https://www.mathsisfun.com/algebra/vectors-dot-product.html
 
@@ -33,9 +33,9 @@ namespace KDPhysics
         /// </summary>
         /// <param name="vector">The vector to get the magnitude from.</param>
         /// <returns></returns>
-        public static double Magnitude(Vect2 vector)
+        public static float Magnitude(Vect2 vector)
         {
-            return Math.Sqrt(vector.X * vector.X + vector.Y * vector.Y);
+            return (float)Math.Sqrt(vector.X * vector.X + vector.Y * vector.Y);
         }
 
 
@@ -44,9 +44,9 @@ namespace KDPhysics
         /// </summary>
         /// <param name="value">The value to get the square root of.</param>
         /// <returns></returns>
-        public static double Sqrt(double value)
+        public static float Sqrt(float value)
         {
-            return Math.Sqrt(value);
+            return (float)Math.Sqrt(value);
         }
 
 
@@ -55,7 +55,7 @@ namespace KDPhysics
         /// </summary>
         /// <param name="value">The value to square.</param>
         /// <returns></returns>
-        public static double Square(double value)
+        public static float Square(float value)
         {
             return value * value;
         }
@@ -67,9 +67,9 @@ namespace KDPhysics
         /// <param name="v1">The vector that shares a vertice with vector v2.</param>
         /// <param name="v2">The vector that shares a vertice with vector v1.</param>
         /// <returns></returns>
-        public static double CalcAngle(Vect2 v1, Vect2 v2)
+        public static float CalcAngle(Vect2 v1, Vect2 v2)
         {
-            return RadianToDegree(Math.Acos(DotProduct(v1, v2) / (v1.Length * v2.Length)));
+            return RadianToDegree((float)Math.Acos(DotProduct(v1, v2) / (v1.Length * v2.Length)));
         }
 
 
@@ -78,9 +78,9 @@ namespace KDPhysics
         /// </summary>
         /// <param name="angle">The angle to convert.</param>
         /// <returns></returns>
-        public static double DegreeToRadian(double angle)
+        public static float DegreeToRadian(float angle)
         {
-            return PI * angle / 180.0;
+            return PI * angle / 180.0f;
         }
 
 
@@ -89,16 +89,16 @@ namespace KDPhysics
         /// </summary>
         /// <param name="angle">The angle to convert.</param>
         /// <returns></returns>
-        public static double RadianToDegree(double angle)
+        public static float RadianToDegree(float angle)
         {
-            return angle * (180.0 / PI);
+            return angle * (180.0f / PI);
         }
 
 
 
         public static Vect2 ProjectVector(Vect2 v1, Vect2 v2)
         {
-            return new Vect2(v2 * (DotProduct(v1, v2) / Math.Pow(Magnitude(v2), 2)));
+            return new Vect2(v2 * (DotProduct(v1, v2) / (float)Math.Pow(Magnitude(v2), 2)));
         }
     }
 }
