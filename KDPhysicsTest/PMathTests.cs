@@ -113,14 +113,13 @@ namespace KDPhysicsTest
         }
 
 
-
         [TestMethod]
         public void ProjectVector()
         {
             //Arrange
-            var v1 = new Vect2(2,6);
-            var v2 = new Vect2(4,0);
-            var expected = new Vect2(2, 0);
+            var v1 = new Vect2(4, 4);
+            var v2 = new Vect2(10,0);
+            var expected = new Vect2(4, 0);
 
             //Act
             var actual = PMath.ProjectVector(v1, v2);
