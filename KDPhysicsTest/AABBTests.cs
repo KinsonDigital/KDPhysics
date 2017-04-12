@@ -30,5 +30,45 @@ namespace KDPhysicsTest
             Assert.AreEqual(expected.X, actual.X);
             Assert.AreEqual(expected.Y, actual.Y);
         }
+
+        [TestMethod]
+        public void Min_Valid_Result()
+        {
+            //Arrange
+            var aabb = new AABB
+            {
+                Min = new Vect2(2, 3),
+                Max = new Vect2(22, 33)
+            };
+
+            var expected = new Vect2(2, 2);
+
+            //Act
+            var actual = aabb.Min;
+
+            //Assert
+            Assert.AreEqual(expected.X, actual.X);
+            Assert.AreEqual(expected.Y, actual.Y);
+        }
+
+        [TestMethod]
+        public void Max_Valid_Result()
+        {
+            //Arrange
+            var aabb = new AABB
+            {
+                Min = new Vect2(5, 15),
+                Max = new Vect2(50, 150)
+            };
+
+            var expected = new Vect2(50, 150);
+
+            //Act
+            var actual = aabb.Max;
+
+            //Assert
+            Assert.AreEqual(expected.X, actual.X);
+            Assert.AreEqual(expected.Y, actual.Y);
+        }
     }
 }
