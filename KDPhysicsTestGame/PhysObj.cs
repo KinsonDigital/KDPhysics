@@ -15,9 +15,16 @@ namespace KDPhysicsTestGame
         private readonly Texture2D _texture;
         private VerticeTexture _vert1;
 
+
+
         /// <summary>
         /// Creates a new instance of PhysObj.
         /// </summary>
+        /// <param name="graphicsDevice">The graphics device to use to render the PhysObj.</param>
+        /// <param name="width">The width of the PhysObj.</param>
+        /// <param name="height">The height of the PhysObj.</param>
+        /// <param name="position">The position to render the PhysObj.</param>
+        /// <param name="color">The color to render the PhysObj.</param>
         public PhysObj(GraphicsDevice graphicsDevice, int width, int height, Vector2 position, Color color)
         {
             _aabb = new AABB(width, height, position.ToVect2());
