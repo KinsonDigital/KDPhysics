@@ -1,4 +1,5 @@
-﻿using KDPhysics;
+﻿using System;
+using KDPhysics;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -25,6 +26,7 @@ namespace KDPhysicsTestGame
         private Vect2 _rotationPoint;
         private KeyboardState _currentKeyboardState;
         private KeyboardState _prevKeyboardState;
+        private SpriteFont _font;
 
         public TestGame()
         {
@@ -59,6 +61,8 @@ namespace KDPhysicsTestGame
         /// </summary>
         protected override void LoadContent()
         {
+            _font = Content.Load<SpriteFont>("Fonts/arial-36");
+
             // Create a new SpriteBatch, which can be used to draw textures.
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
@@ -138,6 +142,8 @@ namespace KDPhysicsTestGame
 
             _spriteBatch.Begin();
             
+            _spriteBatch.DrawString(_font, "Hello World", new Vector2(200,200), Color.Black);
+
             //Draw the axis lines
             _spriteBatch.Draw(_xAxis, _xAxisLocation.ToVector2(), Color.White);
             _spriteBatch.Draw(_yAxis, _yAxisLocation.ToVector2(), Color.White);
