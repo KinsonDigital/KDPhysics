@@ -12,9 +12,11 @@ namespace KDPhysics
     /// </summary>
     public struct AABB
     {
+        private Vect2 _origin;
+
         public AABB(float width, float height, Vect2 origin)
         {
-            Origin = origin;
+            _origin = origin;
             Width = width;
             Height = height;
             var halfWidth = width / 2;
@@ -33,7 +35,21 @@ namespace KDPhysics
         /// <summary>
         /// Represents the center location of the AABB rectangle.
         /// </summary>
-        public Vect2 Origin { get; set; }
+        public Vect2 Origin
+        {
+            get => _origin;
+            set
+            {
+                _origin = value;
+
+                //TODO: THIS WILL NOT WORK WHEN ROTATING THE AABB.  
+                //Update the vertices
+                Vertices[0] = new Vect2(_origin.X - HalfWidth, _origin.Y - HalfHeight);
+                Vertices[1] = new Vect2(_origin.X + HalfWidth, _origin.Y - HalfHeight);
+                Vertices[2] = new Vect2(_origin.X + HalfWidth, _origin.Y + HalfHeight);
+                Vertices[3] = new Vect2(_origin.X - HalfWidth, _origin.Y + HalfHeight);
+            }
+        }
 
         public float Width { get; }
 

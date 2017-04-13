@@ -27,8 +27,7 @@ namespace KDPhysicsTestGame
             //Set the solid color of the texture
             _texture.SetAsSolid(width, height, color);
 
-            _vert1 = new Vertice(graphicsDevice);
-            _vert1.Position = _aabb.Vertices[0].ToVector2();
+            _vert1 = new Vertice(graphicsDevice) {Position = _aabb.Vertices[0].ToVector2()};
         }
 
         /// <summary>
@@ -37,7 +36,11 @@ namespace KDPhysicsTestGame
         public Vector2 Position
         {
             get => _aabb.Origin.ToVector2();
-            set => _aabb.Origin = value.ToVect2();
+            set
+            {
+                _aabb.Origin = value.ToVect2();
+                _vert1.Position = _aabb.Vertices[0].ToVector2();
+            }
         }
 
         /// <summary>

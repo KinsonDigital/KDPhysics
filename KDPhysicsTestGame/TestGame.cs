@@ -108,19 +108,19 @@ namespace KDPhysicsTestGame
             //If the left key has been pressed
             if (_currentKeyboardState.IsKeyDown(Keys.Left))
             {
-                _boxALocation.X -= 5;
+                _boxC.Position = new Vect2(_boxC.Position.X - 5, _boxC.Position.Y).ToVector2();
             }
             else if(_currentKeyboardState.IsKeyDown(Keys.Right))
-            { 
-                _boxALocation.X += 5;
+            {
+                _boxC.Position = new Vect2(_boxC.Position.X + 5, _boxC.Position.Y).ToVector2();
             }
             else if(_currentKeyboardState.IsKeyDown(Keys.Up))
             {
-                _boxALocation.Y -= 5;
+                _boxC.Position = new Vect2(_boxC.Position.X, _boxC.Position.Y - 5).ToVector2();
             }
             else if(_currentKeyboardState.IsKeyDown(Keys.Down))
             {
-                _boxALocation.Y += 5;
+                _boxC.Position = new Vect2(_boxC.Position.X, _boxC.Position.Y + 5).ToVector2();
             }
             else if (_currentKeyboardState.IsKeyDown(Keys.Space))
             {
