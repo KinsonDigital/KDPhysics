@@ -25,7 +25,18 @@ namespace KDPhysics
         /// <summary>
         /// Represents the center location of the AABB rectangle.
         /// </summary>
-        public Vect2 Center => new Vect2(Max.X - HalfWidth, Max.Y - HalfHeight);
+        public Vect2 Center
+        {
+            get => new Vect2(Max.X - HalfWidth, Max.Y - HalfHeight);
+            set
+            {
+                //Update the minimum vector
+                Min = new Vect2(value.X - HalfWidth, value.Y - HalfHeight);
+
+                //Update the maximum vector
+                Max = new Vect2(value.X + HalfWidth, value.Y + HalfHeight);
+            }
+        }
 
         /// <summary>
         /// Gets the half width of the bounding box.
