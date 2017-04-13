@@ -44,6 +44,19 @@ namespace KDPhysicsTestGame
         }
 
         /// <summary>
+        /// The angle to set the physics object to in degrees.
+        /// </summary>
+        public float Angle
+        {
+            get => PMath.RadianToDegree(_aabb.Angle);
+            set
+            {
+                _aabb.Angle = PMath.DegreeToRadian(value);
+                _vert1.Position = _aabb.Vertices[0].ToVector2();
+            }
+        }
+
+        /// <summary>
         /// Renders the physics object.
         /// </summary>
         /// <param name="spriteBatch">The sprite batch to render the object.</param>
@@ -53,7 +66,8 @@ namespace KDPhysicsTestGame
 
             var origin = new Vector2(_aabb.HalfWidth, _aabb.HalfHeight);
 
-            spriteBatch.Draw(_texture, _aabb.Origin.ToVector2(), srcRect, Color.White, 0.0f, origin, 1.0f, SpriteEffects.None, 1f);
+            spriteBatch.Draw(_texture, _aabb.Origin.ToVector2(), srcRect, Color.White, _aabb.Angle, origin, 1.0f, SpriteEffects.None, 1f);
+
             _vert1.Render(spriteBatch);
         }
     }
