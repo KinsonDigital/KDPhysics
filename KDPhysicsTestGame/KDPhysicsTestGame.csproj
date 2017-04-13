@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="ExtensionMethods.cs" />
     <Compile Include="PhysObj.cs" />
+    <Compile Include="Stats.cs" />
     <Compile Include="TestGame.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

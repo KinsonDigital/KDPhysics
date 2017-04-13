@@ -23,12 +23,13 @@ namespace KDPhysicsTestGame
         private KeyboardState _currentKeyboardState;
         private KeyboardState _prevKeyboardState;
         private SpriteFont _font;
+        private Stats _objStats;
 
         public TestGame()
         {
             _graphics = new GraphicsDeviceManager(this);
             _graphics.PreferredBackBufferWidth = 1200;
-            _graphics.PreferredBackBufferHeight = 1200;
+            _graphics.PreferredBackBufferHeight = 900;
             Content.RootDirectory = "Content";
         }
 
@@ -58,6 +59,7 @@ namespace KDPhysicsTestGame
         protected override void LoadContent()
         {
             _font = Content.Load<SpriteFont>("Font/arial-36");
+            _objStats = new Stats(Content, new Vector2(_graphics.PreferredBackBufferWidth - 220,50));
 
             // Create a new SpriteBatch, which can be used to draw textures.
             _spriteBatch = new SpriteBatch(GraphicsDevice);
@@ -72,6 +74,7 @@ namespace KDPhysicsTestGame
             _refBox.SetAsSolid(100, 100, Color.Red);
 
             _boxA = new PhysObj(_graphics.GraphicsDevice, 150, 50, new Vector2(200, 200), Color.MediumPurple);
+            _boxA.Name = "Box-A";
         }
 
         /// <summary>
@@ -97,15 +100,18 @@ namespace KDPhysicsTestGame
             {
                 _boxA.Position = new Vect2(_boxA.Position.X - 5, _boxA.Position.Y).ToVector2();
             }
-            else if(_currentKeyboardState.IsKeyDown(Keys.Right))
+
+            if (_currentKeyboardState.IsKeyDown(Keys.Right))
             {
                 _boxA.Position = new Vect2(_boxA.Position.X + 5, _boxA.Position.Y).ToVector2();
             }
-            else if(_currentKeyboardState.IsKeyDown(Keys.Up))
+
+            if (_currentKeyboardState.IsKeyDown(Keys.Up))
             {
                 _boxA.Position = new Vect2(_boxA.Position.X, _boxA.Position.Y - 5).ToVector2();
             }
-            else if(_currentKeyboardState.IsKeyDown(Keys.Down))
+
+            if (_currentKeyboardState.IsKeyDown(Keys.Down))
             {
                 _boxA.Position = new Vect2(_boxA.Position.X, _boxA.Position.Y + 5).ToVector2();
             }
@@ -140,6 +146,8 @@ namespace KDPhysicsTestGame
             _spriteBatch.Draw(_yAxis, _yAxisLocation.ToVector2(), Color.White);
 
             _boxA.Render(_spriteBatch);
+
+            _objStats.Render(_spriteBatch, new [] {_boxA}, new []{Color.Black});
 
             _spriteBatch.End();
 
