@@ -65,7 +65,7 @@ namespace KDPhysicsTestGame
             _xAxis.SetAsSolid(_graphics.PreferredBackBufferWidth - 20, 2, Color.Black);
             _yAxis.SetAsSolid(2, _graphics.PreferredBackBufferHeight - 20, Color.Black);
 
-            _boxA = new PhysObj(_graphics.GraphicsDevice, 50, 50, new Vector2(200, 200), Color.MediumPurple);
+            _boxA = new PhysObj(_graphics.GraphicsDevice, 150, 50, new Vector2(200, 200), Color.MediumPurple);
         }
 
         /// <summary>
