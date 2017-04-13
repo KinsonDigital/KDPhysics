@@ -15,7 +15,7 @@ namespace KDPhysicsTestGame
         private SpriteBatch _spriteBatch;
         private Texture2D _xAxis;
         private Texture2D _yAxis;
-        private PhysObj _boxC;
+        private PhysObj _boxA;
         private Vect2 _xAxisLocation;
         private Vect2 _yAxisLocation;
         private Vect2 _boxALocation;
@@ -71,7 +71,7 @@ namespace KDPhysicsTestGame
             _xAxis.SetAsSolid(_graphics.PreferredBackBufferWidth - 20, 2, Color.Black);
             _yAxis.SetAsSolid(2, _graphics.PreferredBackBufferHeight - 20, Color.Black);
 
-            _boxC = new PhysObj(_graphics.GraphicsDevice, 50, 50, new Vector2(200, 200), Color.MediumPurple);
+            _boxA = new PhysObj(_graphics.GraphicsDevice, 50, 50, new Vector2(200, 200), Color.MediumPurple);
         }
 
         /// <summary>
@@ -95,19 +95,19 @@ namespace KDPhysicsTestGame
             //If the left key has been pressed
             if (_currentKeyboardState.IsKeyDown(Keys.Left))
             {
-                _boxC.Position = new Vect2(_boxC.Position.X - 5, _boxC.Position.Y).ToVector2();
+                _boxA.Position = new Vect2(_boxA.Position.X - 5, _boxA.Position.Y).ToVector2();
             }
             else if(_currentKeyboardState.IsKeyDown(Keys.Right))
             {
-                _boxC.Position = new Vect2(_boxC.Position.X + 5, _boxC.Position.Y).ToVector2();
+                _boxA.Position = new Vect2(_boxA.Position.X + 5, _boxA.Position.Y).ToVector2();
             }
             else if(_currentKeyboardState.IsKeyDown(Keys.Up))
             {
-                _boxC.Position = new Vect2(_boxC.Position.X, _boxC.Position.Y - 5).ToVector2();
+                _boxA.Position = new Vect2(_boxA.Position.X, _boxA.Position.Y - 5).ToVector2();
             }
             else if(_currentKeyboardState.IsKeyDown(Keys.Down))
             {
-                _boxC.Position = new Vect2(_boxC.Position.X, _boxC.Position.Y + 5).ToVector2();
+                _boxA.Position = new Vect2(_boxA.Position.X, _boxA.Position.Y + 5).ToVector2();
             }
             else if (_currentKeyboardState.IsKeyDown(Keys.Space))
             {
@@ -135,7 +135,7 @@ namespace KDPhysicsTestGame
             _spriteBatch.Draw(_xAxis, _xAxisLocation.ToVector2(), Color.White);
             _spriteBatch.Draw(_yAxis, _yAxisLocation.ToVector2(), Color.White);
 
-            _boxC.Render(_spriteBatch);
+            _boxA.Render(_spriteBatch);
 
             _spriteBatch.End();
 
