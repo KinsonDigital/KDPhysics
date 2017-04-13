@@ -18,7 +18,7 @@ namespace KDPhysicsTestGame
         /// <summary>
         /// Creates a new instance of PhysObj.
         /// </summary>
-        public PhysObj(Texture2D texture, GraphicsDevice graphicsDevice, int width, int height, Color color)
+        public PhysObj(GraphicsDevice graphicsDevice, int width, int height, Color color)
         {
             _texture = new Texture2D(graphicsDevice, width, height);
 
@@ -42,7 +42,8 @@ namespace KDPhysicsTestGame
         /// <param name="spriteBatch">The sprite batch to render the object.</param>
         public void Render(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(_texture, _aabb.Center.ToVector2(), Color.White);
+            var renderPosition = new Vector2(_aabb.Min.X - _aabb.HalfWidth, _aabb.Min.Y - _aabb.HalfHeight);
+            spriteBatch.Draw(_texture, renderPosition, Color.White);
         }
     }
 }

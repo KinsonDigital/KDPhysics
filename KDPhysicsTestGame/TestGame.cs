@@ -16,6 +16,7 @@ namespace KDPhysicsTestGame
         private Texture2D _yAxis;
         private Texture2D _boxA;
         private Texture2D _boxB;
+        private PhysObj _boxC;
         private Texture2D _rotationDot;
         private Vect2 _xAxisLocation;
         private Vect2 _yAxisLocation;
@@ -76,6 +77,10 @@ namespace KDPhysicsTestGame
             _boxB.SetAsSolid(50, 50, Color.IndianRed);
 
             _rotationDot.SetAsSolid(5,5, Color.Red);
+
+
+            _boxC = new PhysObj(_graphics.GraphicsDevice, 50, 50, Color.MediumPurple);
+            _boxC.Position = new Vector2(50, 50);
         }
 
         /// <summary>
@@ -142,6 +147,8 @@ namespace KDPhysicsTestGame
 
             //Draw the rotation dot
             _spriteBatch.Draw(_rotationDot, _rotationPoint.ToVector2(), Color.White);
+
+            _boxC.Render(_spriteBatch);
 
             _spriteBatch.End();
 
