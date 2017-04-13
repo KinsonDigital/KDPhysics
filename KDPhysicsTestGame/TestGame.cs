@@ -144,7 +144,7 @@ namespace KDPhysicsTestGame
 
             _boxA.Render(_spriteBatch);
 
-            _objStats.Render(_spriteBatch, _boxA);
+            _objStats.Render(_spriteBatch, new [] {_boxA});
 
             _spriteBatch.End();
 

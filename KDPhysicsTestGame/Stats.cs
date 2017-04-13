@@ -47,5 +47,18 @@ namespace KDPhysicsTestGame
             
             spriteBatch.DrawString(_font, statsText, Position, Color.Black);
         }
+
+        /// <summary>
+        /// Renders the stats to the screen.
+        /// </summary>
+        /// <param name="spriteBatch">The sprite batch used to render the physObj.</param>
+        /// <param name="physObj">The array of physics objects with the stats to render.</param>
+        public void Render(SpriteBatch spriteBatch, PhysObj[] physObj)
+        {
+            foreach (var obj in physObj)
+            {
+                Render(spriteBatch, obj);
+            }
+        }
     }
 }
