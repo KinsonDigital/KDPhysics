@@ -28,7 +28,6 @@ namespace KDPhysics
             return (v1.X * v2.X) + (v1.Y * v2.Y);
         }
 
-
         /// <summary>
         /// Calculates the magnitue(length) of the given vector.
         /// </summary>
@@ -38,7 +37,6 @@ namespace KDPhysics
         {
             return (float)Math.Sqrt(vector.X * vector.X + vector.Y * vector.Y);
         }
-
 
         /// <summary>
         /// Calculates the square root of the given value.
@@ -50,7 +48,6 @@ namespace KDPhysics
             return (float)Math.Sqrt(value);
         }
 
-
         /// <summary>
         /// Squares the given value.
         /// </summary>
@@ -60,7 +57,6 @@ namespace KDPhysics
         {
             return value * value;
         }
-
 
         /// <summary>
         /// Calculates the angle between the given vectors.
@@ -73,7 +69,6 @@ namespace KDPhysics
             return RadianToDegree((float)Math.Acos(DotProduct(v1, v2) / (v1.Length * v2.Length)));
         }
 
-
         /// <summary>
         /// Converts the given angle in degrees to radians.
         /// </summary>
@@ -84,7 +79,6 @@ namespace KDPhysics
             return PI * angle / 180.0f;
         }
 
-
         /// <summary>
         /// Converts the given angle in radians to degrees.
         /// </summary>
@@ -94,7 +88,6 @@ namespace KDPhysics
         {
             return angle * (180.0f / PI);
         }
-
 
         /// <summary>
         /// Projects the vector v1 onto vector v2.
@@ -107,7 +100,16 @@ namespace KDPhysics
             return new Vect2(v2 * (DotProduct(v1, v2) / (float)Math.Pow(Magnitude(v2), 2)));
         }
 
-
+        /// <summary>
+        /// Translate vector v1 to the vector origin.
+        /// </summary>
+        /// <param name="vector">The vector to translate to the origin.</param>
+        /// <param name="origin">The origin vector to translate v1 to.</param>
+        /// <returns></returns>
+        public static Vect2 TranslateToOrigin(Vect2 vector, Vect2 origin)
+        {
+            return new Vect2(vector.X - origin.X, vector.Y - origin.Y);
+        }
 
         /// <summary>
         /// Rotates vector v1 around the given origin v2.
@@ -119,13 +121,11 @@ namespace KDPhysics
         /// <returns></returns>
         public static Vect2 RotateVectorAround(Vect2 v1, Vect2 v2, double radians)
         {
-            //Translate v1 to the origin
-            var translatedX = v1.X - v2.X;
-            var translatedY = v1.Y - v2.Y;
+            var translatedVector = TranslateToOrigin(v1, v2);
 
             //Apply rotation
-            var rotatedX = translatedX * (float)Math.Cos(radians) - translatedY * (float)Math.Sin(radians);
-            var rotatedY = translatedX * (float)Math.Sin(radians) + translatedY * (float)Math.Cos(radians);
+            var rotatedX = translatedVector.X * (float)Math.Cos(radians) - translatedVector.Y * (float)Math.Sin(radians);
+            var rotatedY = translatedVector.X * (float)Math.Sin(radians) + translatedVector.Y * (float)Math.Cos(radians);
 
             //Tanslate v1 back
             return new Vect2(rotatedX + v2.X, rotatedY + v2.Y);

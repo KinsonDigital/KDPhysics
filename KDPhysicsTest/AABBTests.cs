@@ -17,14 +17,13 @@ namespace KDPhysicsTest
             //Arrange
             var aabb = new AABB
             {
-                Min = new Vect2(0, 0),
-                Max = new Vect2(10, 10)
+                Origin = new Vect2(100, 100)
             };
-            
-            var expected = new Vect2(5,5);
+
+            var expected = new Vect2(100, 100);
 
             //Act
-            var actual = aabb.Center;
+            var actual = aabb.Origin;
 
             //Assert
             Assert.AreEqual(expected.X, actual.X);
@@ -32,56 +31,42 @@ namespace KDPhysicsTest
         }
 
         [TestMethod]
-        public void Min_Valid_Result()
+        public void Width_Valid_Result()
         {
             //Arrange
-            var aabb = new AABB
-            {
-                Min = new Vect2(2, 3),
-                Max = new Vect2(22, 33)
-            };
+            var aabb = new AABB(100, 100, new Vect2(100, 100));
 
-            var expected = new Vect2(2, 3);
+            const float expected = 100f;
 
             //Act
-            var actual = aabb.Min;
+            var actual = aabb.Width;
 
             //Assert
-            Assert.AreEqual(expected.X, actual.X);
-            Assert.AreEqual(expected.Y, actual.Y);
+            Assert.AreEqual(expected, actual);
         }
 
         [TestMethod]
-        public void Max_Valid_Result()
+        public void Height_Valid_Result()
         {
             //Arrange
-            var aabb = new AABB
-            {
-                Min = new Vect2(5, 15),
-                Max = new Vect2(50, 150)
-            };
+            var aabb = new AABB(100, 200, new Vect2(100, 100));
 
-            var expected = new Vect2(50, 150);
+            const float expected = 200f;
 
             //Act
-            var actual = aabb.Max;
+            var actual = aabb.Height;
 
             //Assert
-            Assert.AreEqual(expected.X, actual.X);
-            Assert.AreEqual(expected.Y, actual.Y);
+            Assert.AreEqual(expected, actual);
         }
 
         [TestMethod]
         public void HalfWidth_Valid_Result()
         {
             //Arrange
-            var aabb = new AABB
-            {
-                Min = new Vect2(0, 0),
-                Max = new Vect2(50, 100)
-            };
+            var aabb = new AABB(100, 100, new Vect2(100, 100));
 
-            const int expected = 25;
+            const float expected = 50f;
 
             //Act
             var actual = aabb.HalfWidth;
@@ -94,19 +79,38 @@ namespace KDPhysicsTest
         public void HalfHeight_Valid_Result()
         {
             //Arrange
-            var aabb = new AABB
-            {
-                Min = new Vect2(0, 0),
-                Max = new Vect2(50, 100)
-            };
+            var aabb = new AABB(100, 200, new Vect2(100, 100));
 
-            const int expected = 50;
+            const float expected = 100f;
 
             //Act
             var actual = aabb.HalfHeight;
 
             //Assert
             Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void Vertices_Valid_Result()
+        {
+            //Arrange
+            var aabb = new AABB(50, 50, new Vect2(100, 100));
+
+            var expected = new Vect2[4];
+
+            expected[0] = new Vect2(75,75);
+            expected[1] = new Vect2(125, 75);
+            expected[2] = new Vect2(125, 125);
+            expected[3] = new Vect2(75, 125);
+
+            //Act
+            var actual = aabb.Vertices;
+
+            //Assert
+            Assert.AreEqual(expected[0], actual[0]);
+            Assert.AreEqual(expected[1], actual[1]);
+            Assert.AreEqual(expected[2], actual[2]);
+            Assert.AreEqual(expected[3], actual[3]);
         }
     }
 }
