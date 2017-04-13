@@ -46,7 +46,7 @@ namespace KDPhysicsTestGame
         {
             //Box Locations
             _boxALocation = new Vect2(50, 50);
-            _boxBLocation = new Vect2(150, 150);
+            _boxBLocation = new Vect2(100, 100);
 
             //Grid Axis Locations
             _xAxisLocation = new Vect2(10, 10);
@@ -85,8 +85,8 @@ namespace KDPhysicsTestGame
             _rotationDot.SetAsSolid(5,5, Color.Red);
 
 
-            _boxC = new PhysObj(_graphics.GraphicsDevice, 50, 50, Color.MediumPurple);
-            _boxC.Position = new Vector2(50, 50);
+            _boxC = new PhysObj(_graphics.GraphicsDevice, 100, 50, Color.MediumPurple);
+            _boxC.Position = new Vector2(500, 500);
         }
 
         /// <summary>
