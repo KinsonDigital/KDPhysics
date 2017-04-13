@@ -36,7 +36,7 @@ namespace KDPhysicsTestGame
         /// </summary>
         /// <param name="vect2">The Vect2 type to convert.</param>
         /// <returns></returns>
-        public static Vector2 ToVect2(this Vect2 vect2)
+        public static Vector2 ToVector2(this Vect2 vect2)
         {
             return new Vector2(vect2.X, vect2.Y);
         }
