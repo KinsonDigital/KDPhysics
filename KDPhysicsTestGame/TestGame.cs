@@ -15,10 +15,7 @@ namespace KDPhysicsTestGame
         private SpriteBatch _spriteBatch;
         private Texture2D _xAxis;
         private Texture2D _yAxis;
-        private Texture2D _boxA;
-        private Texture2D _boxB;
         private PhysObj _boxC;
-        private Texture2D _rotationDot;
         private Vect2 _xAxisLocation;
         private Vect2 _yAxisLocation;
         private Vect2 _boxALocation;
@@ -71,18 +68,8 @@ namespace KDPhysicsTestGame
             _xAxis = new Texture2D(_graphics.GraphicsDevice, _graphics.PreferredBackBufferWidth - 20, 2);
             _yAxis = new Texture2D(_graphics.GraphicsDevice, 2, _graphics.PreferredBackBufferHeight - 20);
 
-            _boxA = new Texture2D(_graphics.GraphicsDevice, 50, 50);
-            _boxB = new Texture2D(_graphics.GraphicsDevice, 50, 50);
-
-            _rotationDot = new Texture2D(_graphics.GraphicsDevice, 5, 5);
-
             _xAxis.SetAsSolid(_graphics.PreferredBackBufferWidth - 20, 2, Color.Black);
             _yAxis.SetAsSolid(2, _graphics.PreferredBackBufferHeight - 20, Color.Black);
-
-            _boxA.SetAsSolid(50, 50, Color.DarkSeaGreen);
-            _boxB.SetAsSolid(50, 50, Color.IndianRed);
-
-            _rotationDot.SetAsSolid(5,5, Color.Red);
 
             _boxC = new PhysObj(_graphics.GraphicsDevice, 50, 50, new Vector2(200, 200), Color.MediumPurple);
         }
@@ -147,12 +134,6 @@ namespace KDPhysicsTestGame
             //Draw the axis lines
             _spriteBatch.Draw(_xAxis, _xAxisLocation.ToVector2(), Color.White);
             _spriteBatch.Draw(_yAxis, _yAxisLocation.ToVector2(), Color.White);
-
-            _spriteBatch.Draw(_boxA, _boxALocation.ToVector2(), Color.White);
-            _spriteBatch.Draw(_boxB, _boxBLocation.ToVector2(), Color.White);
-
-            //Draw the rotation dot
-            _spriteBatch.Draw(_rotationDot, _rotationPoint.ToVector2(), Color.White);
 
             _boxC.Render(_spriteBatch);
 
