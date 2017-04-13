@@ -60,6 +60,7 @@
   <ItemGroup>
     <MonoGameContentReference Include="Content\Content.mgcb" />
     <None Include="app.manifest" />
+    <None Include="Content\Font\arial-36.spritefont" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\KDPhysics\KDPhysics.csproj">
