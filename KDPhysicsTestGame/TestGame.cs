@@ -15,10 +15,11 @@ namespace KDPhysicsTestGame
         private SpriteBatch _spriteBatch;
         private Texture2D _xAxis;
         private Texture2D _yAxis;
+        private Texture2D _refBox;
         private PhysObj _boxA;
         private Vect2 _xAxisLocation;
         private Vect2 _yAxisLocation;
-        private Vect2 _rotationPoint;
+        private Vector2 _refBoxLocation;
         private KeyboardState _currentKeyboardState;
         private KeyboardState _prevKeyboardState;
         private SpriteFont _font;
@@ -43,7 +44,7 @@ namespace KDPhysicsTestGame
             _xAxisLocation = new Vect2(10, 10);
             _yAxisLocation = new Vect2(10, 10);
 
-            _rotationPoint = new Vect2(225, 120);
+            _refBoxLocation = new Vector2(400, 400);
 
             base.Initialize();
         }
@@ -64,6 +65,9 @@ namespace KDPhysicsTestGame
 
             _xAxis.SetAsSolid(_graphics.PreferredBackBufferWidth - 20, 2, Color.Black);
             _yAxis.SetAsSolid(2, _graphics.PreferredBackBufferHeight - 20, Color.Black);
+
+            _refBox = new Texture2D(_graphics.GraphicsDevice, 100, 100);
+            _refBox.SetAsSolid(100, 100, Color.Red);
 
             _boxA = new PhysObj(_graphics.GraphicsDevice, 150, 50, new Vector2(200, 200), Color.MediumPurple);
         }
@@ -105,7 +109,6 @@ namespace KDPhysicsTestGame
             }
             else if (_currentKeyboardState.IsKeyDown(Keys.Space))
             {
-                _rotationPoint = PMath.RotateVectorAround(_rotationPoint, new Vect2(175, 175), PMath.DegreeToRadian(1) * -1);
             }
 
             _prevKeyboardState = _currentKeyboardState;
@@ -124,6 +127,9 @@ namespace KDPhysicsTestGame
             _spriteBatch.Begin();
             
             _spriteBatch.DrawString(_font, "Hello World", new Vector2(200,200), Color.Black);
+
+            //Draw reference box
+            _spriteBatch.Draw(_refBox, _refBoxLocation, Color.White);
 
             //Draw the axis lines
             _spriteBatch.Draw(_xAxis, _xAxisLocation.ToVector2(), Color.White);
