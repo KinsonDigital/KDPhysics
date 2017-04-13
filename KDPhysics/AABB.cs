@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Remoting.Messaging;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -11,42 +12,57 @@ namespace KDPhysics
     /// </summary>
     public struct AABB
     {
-        /// <summary>
-        /// Represents the top left corner of the bounding rectangle.
-        /// </summary>
-        public Vect2 Min { get; set; }
+        private Vect2 _origin;
+
+        public AABB(float width, float height, Vect2 origin)
+        {
+            _origin = origin;
+            Width = width;
+            Height = height;
+            var halfWidth = width / 2;
+            var halfHeight = height / 2;
+
+            Vertices = new Vect2[4];
+
+            Vertices[0] = new Vect2(origin.X - halfWidth, origin.Y - halfHeight);
+            Vertices[1] = new Vect2(origin.X + halfWidth, origin.Y - halfHeight);
+            Vertices[2] = new Vect2(origin.X + halfWidth, origin.Y + halfHeight);
+            Vertices[3] = new Vect2(origin.X - halfWidth, origin.Y + halfHeight);
+        }
+
+        public Vect2[] Vertices { get; }
 
         /// <summary>
-        /// Represents the bottom right corner of the bounding rectangle.
+        /// Represents the center location of the AABB rectangle.
         /// </summary>
-        public Vect2 Max { get; set; }
+        public Vect2 Origin
+        {
+            get => _origin;
+            set
+            {
+                _origin = value;
+
+                //TODO: THIS WILL NOT WORK WHEN ROTATING THE AABB.  
+                //Update the vertices
+                Vertices[0] = new Vect2(_origin.X - HalfWidth, _origin.Y - HalfHeight);
+                Vertices[1] = new Vect2(_origin.X + HalfWidth, _origin.Y - HalfHeight);
+                Vertices[2] = new Vect2(_origin.X + HalfWidth, _origin.Y + HalfHeight);
+                Vertices[3] = new Vect2(_origin.X - HalfWidth, _origin.Y + HalfHeight);
+            }
+        }
+
+        public float Width { get; }
+
+        public float Height { get; }
 
         /// <summary>
         /// Gets the half width of the bounding box.
         /// </summary>
-        public decimal HalfWidth => CalcHalfWidth();
+        public float HalfWidth => Width / 2;
 
         /// <summary>
         /// Gets the half height of the bounding box.
         /// </summary>
-        public decimal HalfHeight => CalcHalfHeight();
-
-        /// <summary>
-        /// Calculates the half width of the bounding box.
-        /// </summary>
-        /// <returns>The width divided in half.</returns>
-        private decimal CalcHalfWidth()
-        {
-            return (Max.X - Min.X) / 2;
-        }
-
-        /// <summary>
-        /// Calculates the half height of the bounding box.
-        /// </summary>
-        /// <returns>The height divided in half.</returns>
-        private decimal CalcHalfHeight()
-        {
-            return (Max.Y - Min.Y) / 2;
-        }
+        public float HalfHeight => Height / 2;
     }
 }
