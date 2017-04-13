@@ -12,58 +12,41 @@ namespace KDPhysics
     /// </summary>
     public struct AABB
     {
-        /// <summary>
-        /// Represents the top left corner of the bounding rectangle.
-        /// </summary>
-        public Vect2 Min { get; set; }
+        public AABB(float width, float height, Vect2 origin)
+        {
+            Origin = origin;
+            Width = width;
+            Height = height;
+            var halfWidth = width / 2;
+            var halfHeight = height / 2;
 
-        /// <summary>
-        /// Represents the bottom right corner of the bounding rectangle.
-        /// </summary>
-        public Vect2 Max { get; set; }
+            Vertices = new Vect2[4];
+
+            Vertices[0] = new Vect2(origin.X - halfWidth, origin.Y - halfHeight);
+            Vertices[1] = new Vect2(origin.X + halfWidth, origin.Y - halfHeight);
+            Vertices[2] = new Vect2(origin.X + halfWidth, origin.Y + halfHeight);
+            Vertices[3] = new Vect2(origin.X - halfWidth, origin.Y + halfHeight);
+        }
+
+        public Vect2[] Vertices { get; }
 
         /// <summary>
         /// Represents the center location of the AABB rectangle.
         /// </summary>
-        public Vect2 Center
-        {
-            get => new Vect2(Max.X - HalfWidth, Max.Y - HalfHeight);
-            set
-            {
-                //Update the minimum vector
-                Min = new Vect2(value.X - HalfWidth * 2, value.Y - HalfHeight * 2);
+        public Vect2 Origin { get; set; }
 
-                //Update the maximum vector
-                Max = new Vect2(value.X + HalfWidth * 2, value.Y + HalfHeight * 2);
-            }
-        }
+        public float Width { get; }
+
+        public float Height { get; }
 
         /// <summary>
         /// Gets the half width of the bounding box.
         /// </summary>
-        public float HalfWidth => CalcHalfWidth();
+        public float HalfWidth => Width / 2;
 
         /// <summary>
         /// Gets the half height of the bounding box.
         /// </summary>
-        public float HalfHeight => CalcHalfHeight();
-
-        /// <summary>
-        /// Calculates the half width of the bounding box.
-        /// </summary>
-        /// <returns>The width divided in half.</returns>
-        private float CalcHalfWidth()
-        {
-            return (Max.X - Min.X) / 2;
-        }
-
-        /// <summary>
-        /// Calculates the half height of the bounding box.
-        /// </summary>
-        /// <returns>The height divided in half.</returns>
-        private float CalcHalfHeight()
-        {
-            return (Max.Y - Min.Y) / 2;
-        }
+        public float HalfHeight => Height / 2;
     }
 }
