@@ -31,10 +31,10 @@ namespace KDPhysics
             set
             {
                 //Update the minimum vector
-                Min = new Vect2(value.X - HalfWidth, value.Y - HalfHeight);
+                Min = new Vect2(value.X - HalfWidth * 2, value.Y - HalfHeight * 2);
 
                 //Update the maximum vector
-                Max = new Vect2(value.X + HalfWidth, value.Y + HalfHeight);
+                Max = new Vect2(value.X + HalfWidth * 2, value.Y + HalfHeight * 2);
             }
         }
 
