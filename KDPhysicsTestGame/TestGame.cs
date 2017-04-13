@@ -18,8 +18,6 @@ namespace KDPhysicsTestGame
         private PhysObj _boxA;
         private Vect2 _xAxisLocation;
         private Vect2 _yAxisLocation;
-        private Vect2 _boxALocation;
-        private Vect2 _boxBLocation;
         private Vect2 _rotationPoint;
         private KeyboardState _currentKeyboardState;
         private KeyboardState _prevKeyboardState;
@@ -41,10 +39,6 @@ namespace KDPhysicsTestGame
         /// </summary>
         protected override void Initialize()
         {
-            //Box Locations
-            _boxALocation = new Vect2(50, 50);
-            _boxBLocation = new Vect2(200, 200);
-
             //Grid Axis Locations
             _xAxisLocation = new Vect2(10, 10);
             _yAxisLocation = new Vect2(10, 10);
