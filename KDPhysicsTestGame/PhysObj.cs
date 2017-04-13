@@ -13,7 +13,7 @@ namespace KDPhysicsTestGame
     {
         private AABB _aabb;//The axis aligned bounding box of the physics object
         private readonly Texture2D _texture;
-        private Vertice _vert1;
+        private VerticeTexture _vert1;
 
         /// <summary>
         /// Creates a new instance of PhysObj.
@@ -27,8 +27,18 @@ namespace KDPhysicsTestGame
             //Set the solid color of the texture
             _texture.SetAsSolid(width, height, color);
 
-            _vert1 = new Vertice(graphicsDevice) {Position = _aabb.Vertices[0].ToVector2()};
+            Vertices = new VerticeTexture[4];
+
+            for (var i = 0; i < 4; i++)
+            {
+                Vertices[i] = new VerticeTexture(graphicsDevice) {Position = _aabb.Vertices[i].ToVector2()};
+            }
         }
+
+        /// <summary>
+        /// The four vertices of the physics object.
+        /// </summary>
+        public VerticeTexture[] Vertices { get; }
 
         /// <summary>
         /// The center position of the physics object.
@@ -39,7 +49,8 @@ namespace KDPhysicsTestGame
             set
             {
                 _aabb.Origin = value.ToVect2();
-                _vert1.Position = _aabb.Vertices[0].ToVector2();
+
+                UpdateVerticeTextures();
             }
         }
 
@@ -52,7 +63,7 @@ namespace KDPhysicsTestGame
             set
             {
                 _aabb.Angle = PMath.DegreeToRadian(value);
-                _vert1.Position = _aabb.Vertices[0].ToVector2();
+                UpdateVerticeTextures();
             }
         }
 
@@ -68,7 +79,21 @@ namespace KDPhysicsTestGame
 
             spriteBatch.Draw(_texture, _aabb.Origin.ToVector2(), srcRect, Color.White, _aabb.Angle, origin, 1.0f, SpriteEffects.None, 1f);
 
-            _vert1.Render(spriteBatch);
+            foreach (var vert in Vertices)
+            {
+                vert.Render(spriteBatch);
+            }
+        }
+
+        /// <summary>
+        /// Updates the positions of the vertice textures.
+        /// </summary>
+        private void UpdateVerticeTextures()
+        {
+            for (var i = 0; i < 4; i++)
+            {
+                Vertices[i].Position = _aabb.Vertices[i].ToVector2();
+            }
         }
     }
 }
