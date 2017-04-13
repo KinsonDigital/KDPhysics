@@ -40,6 +40,8 @@ namespace KDPhysicsTestGame
         /// </summary>
         protected override void Initialize()
         {
+            this.IsMouseVisible = true;
+
             //Grid Axis Locations
             _xAxisLocation = new Vect2(10, 10);
             _yAxisLocation = new Vect2(10, 10);
@@ -107,8 +109,10 @@ namespace KDPhysicsTestGame
             {
                 _boxA.Position = new Vect2(_boxA.Position.X, _boxA.Position.Y + 5).ToVector2();
             }
-            else if (_currentKeyboardState.IsKeyDown(Keys.Space))
+
+            if (_currentKeyboardState.IsKeyDown(Keys.Space))
             {
+                _boxA.Angle += 1;
             }
 
             _prevKeyboardState = _currentKeyboardState;
