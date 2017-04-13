@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.Remoting.Messaging;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace KDPhysics
+﻿namespace KDPhysics
 {
     /// <summary>
     /// Represents an Axis Aligned Bounding Box.  Main shape used to perform broad phase collision detection.
@@ -13,9 +6,11 @@ namespace KDPhysics
     public struct AABB
     {
         private Vect2 _origin;
+        private float _angle;
 
         public AABB(float width, float height, Vect2 origin)
         {
+            _angle = 0f;
             _origin = origin;
             Width = width;
             Height = height;
@@ -42,12 +37,7 @@ namespace KDPhysics
             {
                 _origin = value;
 
-                //TODO: THIS WILL NOT WORK WHEN ROTATING THE AABB.  
-                //Update the vertices
-                Vertices[0] = new Vect2(_origin.X - HalfWidth, _origin.Y - HalfHeight);
-                Vertices[1] = new Vect2(_origin.X + HalfWidth, _origin.Y - HalfHeight);
-                Vertices[2] = new Vect2(_origin.X + HalfWidth, _origin.Y + HalfHeight);
-                Vertices[3] = new Vect2(_origin.X - HalfWidth, _origin.Y + HalfHeight);
+                UpdateVertices();
             }
         }
 
@@ -64,5 +54,46 @@ namespace KDPhysics
         /// Gets the half height of the bounding box.
         /// </summary>
         public float HalfHeight => Height / 2;
+
+        /// <summary>
+        /// The angle of the AABB in radians.
+        /// </summary>
+        public float Angle
+        {
+            get
+            {
+                return _angle; 
+            }
+            set
+            {
+                //If the new angle is more then the current angle
+                if (value > _angle)
+                {
+                    for (var i = 0; i < Vertices.Length; i++)
+                    {
+                        Vertices[i] = PMath.RotateVectorAround(Vertices[i], Origin, value - _angle);
+                    }
+                }
+                else if(value < _angle)
+                {
+
+                }
+
+                _angle = value;
+            }
+        }
+
+        private void UpdateVertices()
+        {
+            Vertices[0] = new Vect2(Origin.X - HalfWidth, Origin.Y - HalfHeight);
+            Vertices[1] = new Vect2(Origin.X + HalfWidth, Origin.Y - HalfHeight);
+            Vertices[2] = new Vect2(Origin.X + HalfWidth, Origin.Y + HalfHeight);
+            Vertices[3] = new Vect2(Origin.X - HalfWidth, Origin.Y + HalfHeight);
+
+            for (var i = 0; i < Vertices.Length; i++)
+            {
+                Vertices[i] = PMath.RotateVectorAround(Vertices[i], Origin, _angle);
+            }
+        }
     }
 }
