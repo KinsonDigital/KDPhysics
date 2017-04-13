@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -104,6 +105,30 @@ namespace KDPhysics
         public static Vect2 ProjectVector(Vect2 v1, Vect2 v2)
         {
             return new Vect2(v2 * (DotProduct(v1, v2) / (float)Math.Pow(Magnitude(v2), 2)));
+        }
+
+
+
+        /// <summary>
+        /// Rotates vector v1 around the given origin v2.
+        /// </summary>
+        /// <param name="v1">The vector to rotate around v2.</param>
+        /// <param name="v2">The origin vector for v1 to rotate around.</param>
+        /// <param name="radians">The degrees to rotate v1 from its current location to its new location around v2.
+        /// Use positive number to rotate clockwise and negative number to rotate counter clockwise.</param>
+        /// <returns></returns>
+        public static Vect2 RotateVectorAround(Vect2 v1, Vect2 v2, double radians)
+        {
+            //Translate v1 to the origin
+            var translatedX = v1.X - v2.X;
+            var translatedY = v1.Y - v2.Y;
+
+            //Apply rotation
+            var rotatedX = translatedX * (float)Math.Cos(radians) - translatedY * (float)Math.Sin(radians);
+            var rotatedY = translatedX * (float)Math.Sin(radians) + translatedY * (float)Math.Cos(radians);
+
+            //Tanslate v1 back
+            return new Vect2(rotatedX + v2.X, rotatedY + v2.Y);
         }
     }
 }
