@@ -132,7 +132,7 @@ namespace KDPhysicsTestGame
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             _spriteBatch.Begin();
-
+            
             //Draw the axis lines
             _spriteBatch.Draw(_xAxis, _xAxisLocation.ToVector2(), Color.White);
             _spriteBatch.Draw(_yAxis, _yAxisLocation.ToVector2(), Color.White);
