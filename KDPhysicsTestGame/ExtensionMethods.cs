@@ -40,5 +40,16 @@ namespace KDPhysicsTestGame
         {
             return new Vector2(vect2.X, vect2.Y);
         }
+
+
+        /// <summary>
+        /// Converts the given Vector2 to a Vect2.
+        /// </summary>
+        /// <param name="vect2">The Vector2 type to convert.</param>
+        /// <returns></returns>
+        public static Vect2 ToVect2(this Vector2 vect2)
+        {
+            return new Vect2(vect2.X, vect2.Y);
+        }
     }
 }
