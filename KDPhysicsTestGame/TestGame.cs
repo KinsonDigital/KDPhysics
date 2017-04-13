@@ -29,7 +29,7 @@ namespace KDPhysicsTestGame
         {
             _graphics = new GraphicsDeviceManager(this);
             _graphics.PreferredBackBufferWidth = 1200;
-            _graphics.PreferredBackBufferHeight = 1200;
+            _graphics.PreferredBackBufferHeight = 900;
             Content.RootDirectory = "Content";
         }
 
@@ -100,15 +100,18 @@ namespace KDPhysicsTestGame
             {
                 _boxA.Position = new Vect2(_boxA.Position.X - 5, _boxA.Position.Y).ToVector2();
             }
-            else if(_currentKeyboardState.IsKeyDown(Keys.Right))
+
+            if (_currentKeyboardState.IsKeyDown(Keys.Right))
             {
                 _boxA.Position = new Vect2(_boxA.Position.X + 5, _boxA.Position.Y).ToVector2();
             }
-            else if(_currentKeyboardState.IsKeyDown(Keys.Up))
+
+            if (_currentKeyboardState.IsKeyDown(Keys.Up))
             {
                 _boxA.Position = new Vect2(_boxA.Position.X, _boxA.Position.Y - 5).ToVector2();
             }
-            else if(_currentKeyboardState.IsKeyDown(Keys.Down))
+
+            if (_currentKeyboardState.IsKeyDown(Keys.Down))
             {
                 _boxA.Position = new Vect2(_boxA.Position.X, _boxA.Position.Y + 5).ToVector2();
             }
