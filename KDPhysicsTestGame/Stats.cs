@@ -14,8 +14,13 @@ namespace KDPhysicsTestGame
     /// </summary>
     public class Stats
     {
-        private SpriteFont _font;
+        private readonly SpriteFont _font;
 
+        /// <summary>
+        /// Creates a new Stats object.
+        /// </summary>
+        /// <param name="content">The content manager to use to load the font content.</param>
+        /// <param name="position">The position to render the stats.</param>
         public Stats(ContentManager content, Vector2 position)
         {
             Position = position;
@@ -27,13 +32,13 @@ namespace KDPhysicsTestGame
         /// </summary>
         public Vector2 Position { get; set; }
 
-
         /// <summary>
         /// Renders the stats to the screen.
         /// </summary>
-        /// <param name="spriteBatch">The sprite batch used to render the physObj.</param>
+        /// <param name="spriteBatch">The sprite batch used to render the physObjects.</param>
         /// <param name="physObj">The physics object with the stats to render.</param>
-        public void Render(SpriteBatch spriteBatch, PhysObj physObj)
+        /// <param name="color">The color to render the text.</param>
+        public void Render(SpriteBatch spriteBatch, PhysObj physObj, Color color)
         {
             const string TAB = "   ";
             var statsText = new StringBuilder();
@@ -44,21 +49,36 @@ namespace KDPhysicsTestGame
             {
                 statsText.AppendLine($"{TAB}Vert 1: {vert.Position.X} , {vert.Position.Y}");
             }
-            
-            spriteBatch.DrawString(_font, statsText, Position, Color.Black);
+
+            RenderText(spriteBatch, statsText.ToString(), color);
         }
 
         /// <summary>
         /// Renders the stats to the screen.
         /// </summary>
-        /// <param name="spriteBatch">The sprite batch used to render the physObj.</param>
-        /// <param name="physObj">The array of physics objects with the stats to render.</param>
-        public void Render(SpriteBatch spriteBatch, PhysObj[] physObj)
+        /// <param name="spriteBatch">The sprite batch used to render the physObjects.</param>
+        /// <param name="physObjects">The array of physics objects with the stats to render.</param>
+        /// <param name="colors">The colors to render each object text. The array index matches the object array index.</param>
+        public void Render(SpriteBatch spriteBatch, PhysObj[] physObjects, Color[] colors)
         {
-            foreach (var obj in physObj)
+            if (physObjects.Length != colors.Length)
+                throw new Exception("The object array param must have the same number of elements as the colors array.");
+
+            for (var i = 0; i < physObjects.Length; i++)
             {
-                Render(spriteBatch, obj);
+                Render(spriteBatch, physObjects[i], colors[i]);
             }
+        }
+
+        /// <summary>
+        /// Renders the given text with the given color using the given sprite batch.
+        /// </summary>
+        /// <param name="spriteBatch">The sprite batch used to render the physObjects.</param>
+        /// <param name="text">The text to render.</param>
+        /// <param name="color">The color to render the text.</param>
+        private void RenderText(SpriteBatch spriteBatch, string text, Color color)
+        {
+            spriteBatch.DrawString(_font, text, Position, color);
         }
     }
 }
