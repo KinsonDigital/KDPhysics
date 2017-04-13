@@ -114,7 +114,7 @@ namespace KDPhysicsTest
 
 
         [TestMethod]
-        public void ProjectVector()
+        public void ProjectVector_Valid_Result()
         {
             //Arrange
             var v1 = new Vect2(4, 4);
@@ -125,6 +125,22 @@ namespace KDPhysicsTest
             var actual = PMath.ProjectVector(v1, v2);
 
             //Assert
+            Assert.AreEqual(expected.X, actual.X);
+            Assert.AreEqual(expected.Y, actual.Y);
+        }
+
+
+        [TestMethod]
+        public void RotateVectorAround_Valid_Result()
+        {
+            //Arrange
+            var vector = new Vect2(3, 4);
+            var origin = new Vect2(0, 0);
+            var expected = new Vect2(0.598076165f, 4.964102f);
+
+            //Act
+            var actual = PMath.RotateVectorAround(vector, origin, PMath.DegreeToRadian(30));
+          
             Assert.AreEqual(expected.X, actual.X);
             Assert.AreEqual(expected.Y, actual.Y);
         }
