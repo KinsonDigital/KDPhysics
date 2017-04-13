@@ -144,5 +144,20 @@ namespace KDPhysicsTest
             Assert.AreEqual(expected.X, actual.X);
             Assert.AreEqual(expected.Y, actual.Y);
         }
+
+        [TestMethod]
+        public void TranslateToOrigin_Valid_Result()
+        {
+            //Arrange
+            var vector = new Vect2(150, 150);
+            var origin = new Vect2(100, 100);
+            var expected = new Vect2(50, 50);
+
+            //Act
+            var actual = PMath.TranslateToOrigin(vector, origin);
+
+            Assert.AreEqual(expected.X, actual.X);
+            Assert.AreEqual(expected.Y, actual.Y);
+        }
     }
 }
