@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Remoting.Messaging;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -22,20 +23,25 @@ namespace KDPhysics
         public Vect2 Max { get; set; }
 
         /// <summary>
+        /// Represents the center location of the AABB rectangle.
+        /// </summary>
+        public Vect2 Center => new Vect2(Max.X - HalfWidth, Max.Y - HalfHeight);
+
+        /// <summary>
         /// Gets the half width of the bounding box.
         /// </summary>
-        public decimal HalfWidth => CalcHalfWidth();
+        public float HalfWidth => CalcHalfWidth();
 
         /// <summary>
         /// Gets the half height of the bounding box.
         /// </summary>
-        public decimal HalfHeight => CalcHalfHeight();
+        public float HalfHeight => CalcHalfHeight();
 
         /// <summary>
         /// Calculates the half width of the bounding box.
         /// </summary>
         /// <returns>The width divided in half.</returns>
-        private decimal CalcHalfWidth()
+        private float CalcHalfWidth()
         {
             return (Max.X - Min.X) / 2;
         }
@@ -44,7 +50,7 @@ namespace KDPhysics
         /// Calculates the half height of the bounding box.
         /// </summary>
         /// <returns>The height divided in half.</returns>
-        private decimal CalcHalfHeight()
+        private float CalcHalfHeight()
         {
             return (Max.Y - Min.Y) / 2;
         }

@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using KDPhysics;
+// ReSharper disable InconsistentNaming
 
 namespace KDPhysicsTest
 {
@@ -8,30 +9,14 @@ namespace KDPhysicsTest
     public class Vect2Tests
     {
         [TestMethod]
-        public void Valid_DotProduct_Result()
-        {
-            //Arrange
-            var start = new Vect2(41, 14);
-            var end = new Vect2(63, 99);
-            var actual = 0.0m;
-            var expected = 3969;
-
-            //Act
-            actual = Vect2.DotProduct(start, end);
-
-            //Assert
-            Assert.AreEqual(expected, actual);
-        }
-
-        [TestMethod]
         public void Valid_Length_Result()
         {
             //Arrange
             var vector = new Vect2(10, 20);
-            var expected = 22;
+            const int expected = 22;
 
             //Act
-            var actual = vector.Length;
+            var actual = (int)vector.Length;
 
             //Assert
             Assert.AreEqual(expected, actual);
@@ -42,13 +27,34 @@ namespace KDPhysicsTest
         {
             //Arrange
             var vector = new Vect2(10, 20);
-            var expected = 22;
+            const int expected = 22;
 
             //Act
-            var actual = Vect2.CalcLength(vector);
+            var actual = (int)vector.Length;
 
             //Assert
             Assert.AreEqual(expected, actual);
+        }
+
+
+        [TestMethod]
+        public void Valid_Mult_Operator_Result()
+        {
+            //Arrange
+            var vector = new Vect2(2, 3);
+            var expected = new Vect2(4,6);
+
+            //Act
+            var actualVectorLeftHand = vector * 2;
+            var actualVectorRightHand = 2 *vector;
+
+            //Left Hand Assert
+            Assert.AreEqual(expected.X, actualVectorLeftHand.X);//Assert x component
+            Assert.AreEqual(expected.Y, actualVectorLeftHand.Y);//Assert x component
+
+            //Right Hand Assert
+            Assert.AreEqual(expected.X, actualVectorRightHand.X);//Assert x component
+            Assert.AreEqual(expected.Y, actualVectorRightHand.Y);//Assert x component
         }
     }
 }

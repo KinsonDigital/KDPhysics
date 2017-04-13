@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using KDPhysics;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
@@ -9,12 +10,24 @@ namespace KDPhysicsTestGame
     /// </summary>
     public class TestGame : Game
     {
-        GraphicsDeviceManager graphics;
-        SpriteBatch spriteBatch;
+        private readonly GraphicsDeviceManager _graphics;
+        private SpriteBatch _spriteBatch;
+        private Texture2D _xAxis;
+        private Texture2D _yAxis;
+        private Texture2D _boxA;
+        private Texture2D _boxB;
+        private Texture2D _rotationDot;
+        private Vect2 _xAxisLocation;
+        private Vect2 _yAxisLocation;
+        private Vect2 _boxALocation;
+        private Vect2 _boxBLocation;
+        private Vect2 _rotationPoint;
+        private KeyboardState _currentKeyboardState;
+        private KeyboardState _prevKeyboardState;
 
         public TestGame()
         {
-            graphics = new GraphicsDeviceManager(this);
+            _graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
         }
 
@@ -26,7 +39,15 @@ namespace KDPhysicsTestGame
         /// </summary>
         protected override void Initialize()
         {
-            // TODO: Add your initialization logic here
+            //Box Locations
+            _boxALocation = new Vect2(50, 50);
+            _boxBLocation = new Vect2(150, 150);
+
+            //Grid Axis Locations
+            _xAxisLocation = new Vect2(10, 10);
+            _yAxisLocation = new Vect2(10, 10);
+
+            _rotationPoint = new Vect2(225, 120);
 
             base.Initialize();
         }
@@ -38,9 +59,23 @@ namespace KDPhysicsTestGame
         protected override void LoadContent()
         {
             // Create a new SpriteBatch, which can be used to draw textures.
-            spriteBatch = new SpriteBatch(GraphicsDevice);
+            _spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            // TODO: use this.Content to load your game content here
+            _xAxis = new Texture2D(_graphics.GraphicsDevice, _graphics.PreferredBackBufferWidth - 20, 2);
+            _yAxis = new Texture2D(_graphics.GraphicsDevice, 2, _graphics.PreferredBackBufferHeight - 20);
+
+            _boxA = new Texture2D(_graphics.GraphicsDevice, 50, 50);
+            _boxB = new Texture2D(_graphics.GraphicsDevice, 50, 50);
+
+            _rotationDot = new Texture2D(_graphics.GraphicsDevice, 5, 5);
+
+            _xAxis.SetAsSolid(_graphics.PreferredBackBufferWidth - 20, 2, Color.Black);
+            _yAxis.SetAsSolid(2, _graphics.PreferredBackBufferHeight - 20, Color.Black);
+
+            _boxA.SetAsSolid(50, 50, Color.DarkSeaGreen);
+            _boxB.SetAsSolid(50, 50, Color.IndianRed);
+
+            _rotationDot.SetAsSolid(5,5, Color.Red);
         }
 
         /// <summary>
@@ -59,10 +94,31 @@ namespace KDPhysicsTestGame
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
-                Exit();
+            _currentKeyboardState = Keyboard.GetState();
 
-            // TODO: Add your update logic here
+            //If the left key has been pressed
+            if (_currentKeyboardState.IsKeyDown(Keys.Left))
+            {
+                _boxALocation.X -= 5;
+            }
+            else if(_currentKeyboardState.IsKeyDown(Keys.Right))
+            { 
+                _boxALocation.X += 5;
+            }
+            else if(_currentKeyboardState.IsKeyDown(Keys.Up))
+            {
+                _boxALocation.Y -= 5;
+            }
+            else if(_currentKeyboardState.IsKeyDown(Keys.Down))
+            {
+                _boxALocation.Y += 5;
+            }
+            else if (_currentKeyboardState.IsKeyDown(Keys.Space))
+            {
+                _rotationPoint = PMath.RotateVectorAround(_rotationPoint, new Vect2(175, 175), PMath.DegreeToRadian(1) * -1);
+            }
+
+            _prevKeyboardState = _currentKeyboardState;
 
             base.Update(gameTime);
         }
@@ -75,7 +131,19 @@ namespace KDPhysicsTestGame
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            // TODO: Add your drawing code here
+            _spriteBatch.Begin();
+
+            //Draw the axis lines
+            _spriteBatch.Draw(_xAxis, _xAxisLocation.ToVector2(), Color.White);
+            _spriteBatch.Draw(_yAxis, _yAxisLocation.ToVector2(), Color.White);
+
+            _spriteBatch.Draw(_boxA, _boxALocation.ToVector2(), Color.White);
+            _spriteBatch.Draw(_boxB, _boxBLocation.ToVector2(), Color.White);
+
+            //Draw the rotation dot
+            _spriteBatch.Draw(_rotationDot, _rotationPoint.ToVector2(), Color.White);
+
+            _spriteBatch.End();
 
             base.Draw(gameTime);
         }
