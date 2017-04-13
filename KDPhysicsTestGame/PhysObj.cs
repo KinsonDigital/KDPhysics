@@ -35,6 +35,12 @@ namespace KDPhysicsTestGame
             }
         }
 
+
+        /// <summary>
+        /// The name to assign to the physics object.
+        /// </summary>
+        public string Name { get; set; }
+
         /// <summary>
         /// The four vertices of the physics object.
         /// </summary>
