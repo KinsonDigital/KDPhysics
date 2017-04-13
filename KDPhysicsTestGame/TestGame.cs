@@ -31,6 +31,8 @@ namespace KDPhysicsTestGame
         public TestGame()
         {
             _graphics = new GraphicsDeviceManager(this);
+            _graphics.PreferredBackBufferWidth = 1200;
+            _graphics.PreferredBackBufferHeight = 1200;
             Content.RootDirectory = "Content";
         }
 
