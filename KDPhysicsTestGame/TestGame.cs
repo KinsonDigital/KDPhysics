@@ -16,10 +16,12 @@ namespace KDPhysicsTestGame
         private Texture2D _yAxis;
         private Texture2D _boxA;
         private Texture2D _boxB;
+        private Texture2D _rotationDot;
         private Vect2 _xAxisLocation;
         private Vect2 _yAxisLocation;
         private Vect2 _boxALocation;
         private Vect2 _boxBLocation;
+        private Vect2 _rotationPoint;
         private KeyboardState _currentKeyboardState;
         private KeyboardState _prevKeyboardState;
 
@@ -45,6 +47,8 @@ namespace KDPhysicsTestGame
             _xAxisLocation = new Vect2(10, 10);
             _yAxisLocation = new Vect2(10, 10);
 
+            _rotationPoint = new Vect2(225, 120);
+
             base.Initialize();
         }
 
@@ -63,11 +67,15 @@ namespace KDPhysicsTestGame
             _boxA = new Texture2D(_graphics.GraphicsDevice, 50, 50);
             _boxB = new Texture2D(_graphics.GraphicsDevice, 50, 50);
 
+            _rotationDot = new Texture2D(_graphics.GraphicsDevice, 5, 5);
+
             _xAxis.SetAsSolid(_graphics.PreferredBackBufferWidth - 20, 2, Color.Black);
             _yAxis.SetAsSolid(2, _graphics.PreferredBackBufferHeight - 20, Color.Black);
 
             _boxA.SetAsSolid(50, 50, Color.DarkSeaGreen);
             _boxB.SetAsSolid(50, 50, Color.IndianRed);
+
+            _rotationDot.SetAsSolid(5,5, Color.Red);
         }
 
         /// <summary>
@@ -105,6 +113,10 @@ namespace KDPhysicsTestGame
             {
                 _boxALocation.Y += 5;
             }
+            else if (_currentKeyboardState.IsKeyDown(Keys.Space))
+            {
+                _rotationPoint = PMath.RotateVectorAround(_rotationPoint, new Vect2(175, 175), PMath.DegreeToRadian(1) * -1);
+            }
 
             _prevKeyboardState = _currentKeyboardState;
 
@@ -122,11 +134,14 @@ namespace KDPhysicsTestGame
             _spriteBatch.Begin();
 
             //Draw the axis lines
-            _spriteBatch.Draw(_xAxis, _xAxisLocation.ToVect2(), Color.White);
-            _spriteBatch.Draw(_yAxis, _yAxisLocation.ToVect2(), Color.White);
+            _spriteBatch.Draw(_xAxis, _xAxisLocation.ToVector2(), Color.White);
+            _spriteBatch.Draw(_yAxis, _yAxisLocation.ToVector2(), Color.White);
 
-            _spriteBatch.Draw(_boxA, _boxALocation.ToVect2(), Color.White);
-            _spriteBatch.Draw(_boxB, _boxBLocation.ToVect2(), Color.White);
+            _spriteBatch.Draw(_boxA, _boxALocation.ToVector2(), Color.White);
+            _spriteBatch.Draw(_boxB, _boxBLocation.ToVector2(), Color.White);
+
+            //Draw the rotation dot
+            _spriteBatch.Draw(_rotationDot, _rotationPoint.ToVector2(), Color.White);
 
             _spriteBatch.End();
 
