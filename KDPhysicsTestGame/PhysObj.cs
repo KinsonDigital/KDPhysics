@@ -49,9 +49,11 @@ namespace KDPhysicsTestGame
         /// <param name="spriteBatch">The sprite batch to render the object.</param>
         public void Render(SpriteBatch spriteBatch)
         {
-            var renderPosition = new Vector2(_aabb.Origin.X - _aabb.HalfWidth, _aabb.Origin.Y - _aabb.HalfHeight);
+            var srcRect = new Rectangle(0, 0, (int)_aabb.Width, (int)_aabb.Height);
 
-            spriteBatch.Draw(_texture, renderPosition, Color.White);
+            var origin = new Vector2(_aabb.HalfWidth, _aabb.HalfHeight);
+
+            spriteBatch.Draw(_texture, _aabb.Origin.ToVector2(), srcRect, Color.White, 0.0f, origin, 1.0f, SpriteEffects.None, 1f);
             _vert1.Render(spriteBatch);
         }
     }
