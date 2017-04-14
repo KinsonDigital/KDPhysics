@@ -64,8 +64,10 @@ namespace KDPhysicsTestGame
             _refBox = new Texture2D(_graphics.GraphicsDevice, 100, 100);
             _refBox.SetAsSolid(100, 100, Color.Red);
 
-            _boxA = new PhysObj(_graphics.GraphicsDevice, 150, 50, new Vector2(200, 200), Color.MediumPurple);
-            _boxA.Name = "Box-A";
+            _boxA = new PhysObj(_graphics.GraphicsDevice, 150, 50, new Vector2(200, 200), Color.MediumPurple)
+            {
+                Name = "Box-A"
+            };
 
             _xAxis = new Axis(_graphics.GraphicsDevice, Content, AxisType.XAxis, new Vector2(60, _graphics.PreferredBackBufferHeight - 40), _graphics.PreferredBackBufferWidth - 70, "X Axis", Color.Black, Color.Black);
             _yAxis = new Axis(_graphics.GraphicsDevice, Content, AxisType.YAxis, new Vector2(60, 20), _graphics.PreferredBackBufferHeight - 60, "Y Axis", Color.Black, Color.Black);
