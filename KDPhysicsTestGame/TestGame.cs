@@ -15,6 +15,7 @@ namespace KDPhysicsTestGame
         private SpriteBatch _spriteBatch;
         private Texture2D _refBox;
         private PhysObj _boxA;
+        private Axis _xAxis;
         private Vector2 _refBoxLocation;
         private KeyboardState _currentKeyboardState;
         private KeyboardState _prevKeyboardState;
@@ -61,6 +62,8 @@ namespace KDPhysicsTestGame
 
             _boxA = new PhysObj(_graphics.GraphicsDevice, 150, 50, new Vector2(200, 200), Color.MediumPurple);
             _boxA.Name = "Box-A";
+
+            _xAxis = new Axis(_graphics.GraphicsDevice, Content, AxisType.XAxis, new Vector2(20, _graphics.PreferredBackBufferHeight - 40), _graphics.PreferredBackBufferWidth - 40, "Hello", Color.Red, Color.Black);
         }
 
         /// <summary>
@@ -128,6 +131,7 @@ namespace KDPhysicsTestGame
             _spriteBatch.Draw(_refBox, _refBoxLocation, Color.White);
 
             //Draw the axis lines
+            _xAxis.Render(_spriteBatch);
 
             _boxA.Render(_spriteBatch);
 
