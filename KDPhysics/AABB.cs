@@ -63,6 +63,14 @@
             get => _angle;
             set
             {
+                var degrees = PMath.RadianToDegree(value);
+
+                //If the value to set the angle is greater then 360 degrees, set it back to 0.
+                if (degrees > 360)
+                {
+                    value = PMath.DegreeToRadian(degrees - 360);
+                }
+
                 _angle = value;
                 UpdateVertices();
             }
