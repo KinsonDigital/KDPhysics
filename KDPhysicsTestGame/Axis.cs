@@ -15,8 +15,6 @@ namespace KDPhysicsTestGame
     {
         private Texture2D _texture;
 
-
-
         /// <summary>
         /// Creates a new instance of Axis.
         /// </summary>
@@ -81,7 +79,7 @@ namespace KDPhysicsTestGame
         public void Render(SpriteBatch spriteBatch)
         {
             //Render the axis
-            spriteBatch.Draw(_texture, Position, Color.White);
+            spriteBatch.Draw(_texture, Position, AxisColor);
         }
     }
 }
