@@ -60,26 +60,11 @@
         /// </summary>
         public float Angle
         {
-            get
-            {
-                return _angle; 
-            }
+            get => _angle;
             set
             {
-                //If the new angle is more then the current angle
-                if (value > _angle)
-                {
-                    for (var i = 0; i < Vertices.Length; i++)
-                    {
-                        Vertices[i] = PMath.RotateVectorAround(Vertices[i], Origin, value - _angle);
-                    }
-                }
-                else if(value < _angle)
-                {
-
-                }
-
                 _angle = value;
+                UpdateVertices();
             }
         }
 
