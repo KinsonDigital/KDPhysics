@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using KDPhysics;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
@@ -44,6 +45,7 @@ namespace KDPhysicsTestGame
             var statsText = new StringBuilder();
 
             statsText.AppendLine($"Obj Name: {physObj.Name}");
+            statsText.AppendLine($"{TAB}Angle: {physObj.Angle}");
 
             foreach (var vert in physObj.Vertices)
             {
