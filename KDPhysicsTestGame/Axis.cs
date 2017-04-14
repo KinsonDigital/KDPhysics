@@ -45,6 +45,7 @@ namespace KDPhysicsTestGame
                 case AxisType.YAxis:
                     _texture = new Texture2D(graphicsDevice, 2, length);
                     _texture.SetAsSolid(2, length, axisColor);
+                    _labelPosition = new Vector2(position.X - (_font.MeasureString(label).X + 5), length / 2 + position.Y - _font.MeasureString(label).Y / 2);
                     break;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(type), type, null);
