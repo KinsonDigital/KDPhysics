@@ -112,5 +112,23 @@ namespace KDPhysicsTest
             Assert.AreEqual(expected[2], actual[2]);
             Assert.AreEqual(expected[3], actual[3]);
         }
+
+        [TestMethod]
+        public void Angle_Valid_Result()
+        {
+            //Arrange
+            var aabb = new AABB(50, 50, new Vect2(100, 100))
+            {
+                Angle = 0.523599f
+            };
+
+            const float expected = 0.523599f;
+
+            //Act
+            var actual = aabb.Angle;
+
+            //Assert
+            Assert.AreEqual(expected, actual);
+        }
     }
 }
