@@ -24,9 +24,12 @@ namespace KDPhysicsTestGame
 
         public TestGame()
         {
-            _graphics = new GraphicsDeviceManager(this);
-            _graphics.PreferredBackBufferWidth = 1200;
-            _graphics.PreferredBackBufferHeight = 900;
+            _graphics = new GraphicsDeviceManager(this)
+            {
+                PreferredBackBufferWidth = 1200,
+                PreferredBackBufferHeight = 900
+            };
+
             Content.RootDirectory = "Content";
         }
 
@@ -38,7 +41,7 @@ namespace KDPhysicsTestGame
         /// </summary>
         protected override void Initialize()
         {
-            this.IsMouseVisible = true;
+            IsMouseVisible = true;
 
             _refBoxLocation = new Vector2(400, 400);
 

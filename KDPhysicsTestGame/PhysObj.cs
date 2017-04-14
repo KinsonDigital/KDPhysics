@@ -13,9 +13,6 @@ namespace KDPhysicsTestGame
     {
         private AABB _aabb;//The axis aligned bounding box of the physics object
         private readonly Texture2D _texture;
-        private VerticeTexture _vert1;
-
-
 
         /// <summary>
         /// Creates a new instance of PhysObj.
