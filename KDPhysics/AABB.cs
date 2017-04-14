@@ -25,7 +25,7 @@
             Vertices[3] = new Vect2(origin.X - halfWidth, origin.Y + halfHeight);
         }
 
-        public Vect2[] Vertices { get; }
+        public Vect2[] Vertices { get; private set; }
 
         /// <summary>
         /// Represents the center location of the AABB rectangle.
@@ -85,6 +85,7 @@
 
         private void UpdateVertices()
         {
+            Vertices = new Vect2[4];
             Vertices[0] = new Vect2(Origin.X - HalfWidth, Origin.Y - HalfHeight);
             Vertices[1] = new Vect2(Origin.X + HalfWidth, Origin.Y - HalfHeight);
             Vertices[2] = new Vect2(Origin.X + HalfWidth, Origin.Y + HalfHeight);
