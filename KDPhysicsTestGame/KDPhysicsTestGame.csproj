@@ -45,6 +45,7 @@
     <Compile Include="Enums.cs" />
     <Compile Include="ExtensionMethods.cs" />
     <Compile Include="PhysObj.cs" />
+    <Compile Include="Primitives2D.cs" />
     <Compile Include="Stats.cs" />
     <Compile Include="TestGame.cs" />
     <Compile Include="Program.cs" />
