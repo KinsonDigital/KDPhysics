@@ -13,12 +13,8 @@ namespace KDPhysicsTestGame
     {
         private readonly GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
-        private Texture2D _xAxis;
-        private Texture2D _yAxis;
         private Texture2D _refBox;
         private PhysObj _boxA;
-        private Vect2 _xAxisLocation;
-        private Vect2 _yAxisLocation;
         private Vector2 _refBoxLocation;
         private KeyboardState _currentKeyboardState;
         private KeyboardState _prevKeyboardState;
@@ -43,10 +39,6 @@ namespace KDPhysicsTestGame
         {
             this.IsMouseVisible = true;
 
-            //Grid Axis Locations
-            _xAxisLocation = new Vect2(10, 10);
-            _yAxisLocation = new Vect2(10, 10);
-
             _refBoxLocation = new Vector2(400, 400);
 
             base.Initialize();
@@ -63,12 +55,6 @@ namespace KDPhysicsTestGame
 
             // Create a new SpriteBatch, which can be used to draw textures.
             _spriteBatch = new SpriteBatch(GraphicsDevice);
-
-            _xAxis = new Texture2D(_graphics.GraphicsDevice, _graphics.PreferredBackBufferWidth - 20, 2);
-            _yAxis = new Texture2D(_graphics.GraphicsDevice, 2, _graphics.PreferredBackBufferHeight - 20);
-
-            _xAxis.SetAsSolid(_graphics.PreferredBackBufferWidth - 20, 2, Color.Black);
-            _yAxis.SetAsSolid(2, _graphics.PreferredBackBufferHeight - 20, Color.Black);
 
             _refBox = new Texture2D(_graphics.GraphicsDevice, 100, 100);
             _refBox.SetAsSolid(100, 100, Color.Red);
@@ -142,8 +128,6 @@ namespace KDPhysicsTestGame
             _spriteBatch.Draw(_refBox, _refBoxLocation, Color.White);
 
             //Draw the axis lines
-            _spriteBatch.Draw(_xAxis, _xAxisLocation.ToVector2(), Color.White);
-            _spriteBatch.Draw(_yAxis, _yAxisLocation.ToVector2(), Color.White);
 
             _boxA.Render(_spriteBatch);
 
