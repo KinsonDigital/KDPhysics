@@ -41,8 +41,14 @@
             }
         }
 
+        /// <summary>
+        /// The width of the AABB.
+        /// </summary>
         public float Width { get; }
 
+        /// <summary>
+        /// The height of the AABB.
+        /// </summary>
         public float Height { get; }
 
         /// <summary>
