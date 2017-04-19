@@ -16,7 +16,6 @@
             Y = y;
         }
 
-
         /// <summary>
         /// Creates a new instance of Vect2.
         /// </summary>
@@ -33,18 +32,15 @@
         /// </summary>
         public float X { get; set; }
 
-
         /// <summary>
         /// Gets or sets the Y coordinate of the vector.
         /// </summary>
         public float Y { get; set; }
 
-
         /// <summary>
         /// Gets the length or magnitude of the vector.
         /// </summary>
         public float Length => PMath.Magnitude(this);
-
         
         /// <summary>
         /// Multiplies a vector by a scalar.
@@ -56,7 +52,6 @@
         {
             return new Vect2(vector.X * scalar, vector.Y * scalar);
         }
-
 
         /// <summary>
         /// Multiplies a vector by a scalar.
