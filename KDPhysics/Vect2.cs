@@ -71,5 +71,18 @@
         {
             return new Vect2(vector.X * scalar, vector.Y * scalar);
         }
+
+
+        /// <summary>
+        /// Returns the string representation of the Vect2.
+        /// </summary>
+        /// <returns></returns>
+        public override string ToString()
+        {
+            const char LEFT_BRACE = '{';
+            const char RIGHT_BRACE = '}';
+
+            return $"{Name}: {LEFT_BRACE} X: {X} : Y: {Y} {RIGHT_BRACE}";
+        }
     }
 }
