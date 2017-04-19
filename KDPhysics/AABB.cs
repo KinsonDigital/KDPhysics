@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 // ReSharper disable InconsistentNaming
 
 namespace KDPhysics
@@ -116,6 +117,12 @@ namespace KDPhysics
 
         private void UpdateVertices()
         {
+            var names = new List<string>();
+            names.Add(Vertices[0].Name);
+            names.Add(Vertices[1].Name);
+            names.Add(Vertices[2].Name);
+            names.Add(Vertices[3].Name);
+
             Vertices = new Vect2[4];
             Vertices[0] = new Vect2(Origin.X - HalfWidth, Origin.Y - HalfHeight);
             Vertices[1] = new Vect2(Origin.X + HalfWidth, Origin.Y - HalfHeight);
@@ -126,6 +133,11 @@ namespace KDPhysics
             {
                 Vertices[i] = PMath.RotateVectorAround(Vertices[i], Origin, _angle);
             }
+
+            Vertices[0].Name = names[0];
+            Vertices[1].Name = names[1];
+            Vertices[2].Name = names[2];
+            Vertices[3].Name = names[3];
         }
     }
 }
