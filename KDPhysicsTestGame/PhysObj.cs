@@ -33,9 +33,19 @@ namespace KDPhysicsTestGame
 
             Vertices = new VerticeTexture[4];
 
+            var colors = new Color[4];
+
+            colors[0] = Color.Red;
+            colors[1] = Color.LimeGreen;
+            colors[2] = Color.White;
+            colors[3] = Color.Black;
+
             for (var i = 0; i < 4; i++)
             {
-                Vertices[i] = new VerticeTexture(graphicsDevice) {Position = _aabb.Vertices[i].ToVector2()};
+                Vertices[i] = new VerticeTexture(graphicsDevice, colors[i])
+                {
+                    Position = _aabb.Vertices[i].ToVector2(),
+                };
             }
         }
 

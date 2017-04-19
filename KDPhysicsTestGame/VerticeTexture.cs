@@ -26,8 +26,6 @@ namespace KDPhysicsTestGame
             _texture.SetAsSolid(6, 6, Color.Black);
         }
 
-
-
         /// <summary>
         /// Creates a new instance of Vertice.
         /// </summary>
