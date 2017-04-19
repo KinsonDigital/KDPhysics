@@ -1,4 +1,6 @@
-﻿namespace KDPhysics
+﻿using System.Linq;
+
+namespace KDPhysics
 {
     /// <summary>
     /// Represents an Axis Aligned Bounding Box.  Main shape used to perform broad phase collision detection.
@@ -50,6 +52,35 @@
         /// The height of the AABB.
         /// </summary>
         public float Height { get; }
+
+
+        /// <summary>
+        /// Gets the vertice that is farthest to the right then the rest of the vertices.
+        /// </summary>
+        public Vect2 FarthestRightVertice
+        {
+            get
+            {
+                var maxX = Vertices.Max(v => v.X);
+
+                return Vertices.Where(v => v.X <= maxX).First();
+            }
+        }
+
+
+        /// <summary>
+        /// Gets the vertice that is farthest to the left then the rest of the vertices.
+        /// </summary>
+        public Vect2 FarthestLeftVertice
+        {
+            get
+            {
+                var minX = Vertices.Min(v => v.X);
+
+                return Vertices.Where(v => v.X <= minX).First();
+            }
+        }
+
 
         /// <summary>
         /// Gets the half width of the bounding box.
