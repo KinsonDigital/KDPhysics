@@ -26,6 +26,20 @@ namespace KDPhysicsTestGame
             _texture.SetAsSolid(6, 6, Color.Black);
         }
 
+
+
+        /// <summary>
+        /// Creates a new instance of Vertice.
+        /// </summary>
+        /// <param name="graphicsDevice">The graphics device for rendering the vertice.</param>
+        /// <param name="color">The color of the vertice.</param>
+        public VerticeTexture(GraphicsDevice graphicsDevice, Color color)
+        {
+            //Create the vertice
+            _texture = new Texture2D(graphicsDevice, 6, 6);
+            _texture.SetAsSolid(6, 6, color);
+        }
+
         /// <summary>
         /// The position of the center of the vertice texture.
         /// </summary>
