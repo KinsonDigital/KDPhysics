@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+// ReSharper disable InconsistentNaming
 
 namespace KDPhysics
 {
