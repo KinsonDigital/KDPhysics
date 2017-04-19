@@ -47,6 +47,12 @@ namespace KDPhysicsTestGame
                     Position = _aabb.Vertices[i].ToVector2(),
                 };
             }
+
+            //Override the names of the private _aabb vertice members
+            _aabb.Vertices[0].Name = "Red Vertice 1";
+            _aabb.Vertices[1].Name = "Green Vertice 2";
+            _aabb.Vertices[2].Name = "White Vertice 3";
+            _aabb.Vertices[3].Name = "Black Vertice 4";
         }
 
         /// <summary>

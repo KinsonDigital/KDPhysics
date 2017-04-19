@@ -14,6 +14,8 @@
         {
             X = x;
             Y = y;
+
+            Name = "";
         }
 
         /// <summary>
@@ -24,6 +26,8 @@
         {
             X = vector.X;
             Y = vector.Y;
+
+            Name = "";
         }
 
         /// <summary>
