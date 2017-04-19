@@ -26,6 +26,10 @@
             Y = vector.Y;
         }
 
+        /// <summary>
+        /// Gets or sets a name to the vector.
+        /// </summary>
+        public string Name { get; set; }
 
         /// <summary>
         /// Gets or sets the X coordinate of the vector.
