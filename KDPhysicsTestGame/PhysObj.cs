@@ -121,6 +121,16 @@ namespace KDPhysicsTestGame
         }
 
         /// <summary>
+        /// Gets the ToString() representation of the vertice with the given index.
+        /// </summary>
+        /// <param name="index">The index of the vertice to get.</param>
+        /// <returns></returns>
+        public string GetVerticeToString(int index)
+        {
+            return _aabb.Vertices[index].ToString();
+        }
+
+        /// <summary>
         /// Updates the positions of the vertice textures.
         /// </summary>
         private void UpdateVerticeTextures()
