@@ -132,8 +132,6 @@ namespace KDPhysicsTestGame
 
             _spriteBatch.Begin();
             
-            _spriteBatch.DrawString(_font, "Hello World", new Vector2(200,200), Color.Black);
-
             //Draw reference box
             _spriteBatch.Draw(_refBox, _refBoxLocation, Color.White);
 
