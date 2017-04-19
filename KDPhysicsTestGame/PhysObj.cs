@@ -39,7 +39,6 @@ namespace KDPhysicsTestGame
             }
         }
 
-
         /// <summary>
         /// The name to assign to the physics object.
         /// </summary>
@@ -49,6 +48,16 @@ namespace KDPhysicsTestGame
         /// The four vertices of the physics object.
         /// </summary>
         public VerticeTexture[] Vertices { get; }
+
+        /// <summary>
+        /// Gets the vertice that is farthest to the right then the rest of the vertices.
+        /// </summary>
+        public Vector2 FarthestRightVertice => _aabb.FarthestRightVertice.ToVector2();
+
+        /// <summary>
+        /// Gets the vertice that is farthest to the left then the rest of the vertices.
+        /// </summary>
+        public Vector2 FarthestLeftVertice => _aabb.FarthestLeftVertice.ToVector2();
 
         /// <summary>
         /// The center position of the physics object.
