@@ -22,10 +22,10 @@ namespace KDPhysics
 
             Vertices = new Vect2[4];
 
-            Vertices[0] = new Vect2(origin.X - halfWidth, origin.Y - halfHeight);
-            Vertices[1] = new Vect2(origin.X + halfWidth, origin.Y - halfHeight);
-            Vertices[2] = new Vect2(origin.X + halfWidth, origin.Y + halfHeight);
-            Vertices[3] = new Vect2(origin.X - halfWidth, origin.Y + halfHeight);
+            Vertices[0] = new Vect2(origin.X - halfWidth, origin.Y - halfHeight) {Name = "V1"};
+            Vertices[1] = new Vect2(origin.X + halfWidth, origin.Y - halfHeight) { Name = "V2" };
+            Vertices[2] = new Vect2(origin.X + halfWidth, origin.Y + halfHeight) { Name = "V3" };
+            Vertices[3] = new Vect2(origin.X - halfWidth, origin.Y + halfHeight) { Name = "V4" };
         }
 
         public Vect2[] Vertices { get; private set; }
