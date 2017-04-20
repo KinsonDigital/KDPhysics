@@ -36,9 +36,9 @@ namespace KDPhysicsTestGame
             var colors = new Color[4];
 
             colors[0] = Color.Red;
-            colors[1] = Color.LimeGreen;
+            colors[1] = Color.Green;
             colors[2] = Color.White;
-            colors[3] = Color.Black;
+            colors[3] = Color.Yellow;
 
             for (var i = 0; i < 4; i++)
             {
