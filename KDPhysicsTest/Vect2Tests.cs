@@ -56,5 +56,21 @@ namespace KDPhysicsTest
             Assert.AreEqual(expected.X, actualVectorRightHand.X);//Assert x component
             Assert.AreEqual(expected.Y, actualVectorRightHand.Y);//Assert x component
         }
+
+        [TestMethod]
+        public void Valid_Subtract_Operator_Result()
+        {
+            //Arrange
+            var vector1 = new Vect2(6, 6);
+            var vector2 = new Vect2(2, 2);
+            var expected = new Vect2(4, 4);
+
+            //Act
+            var actual = vector1 - vector2;
+
+            //Assert
+            Assert.AreEqual(expected.X, actual.X);//Assert x component
+            Assert.AreEqual(expected.Y, actual.Y);//Assert y component
+        }
     }
 }
