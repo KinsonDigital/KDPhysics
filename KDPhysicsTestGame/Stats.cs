@@ -70,11 +70,6 @@ namespace KDPhysicsTestGame
             _lines.Add(new Line($"Far Left Vertice: {physObj.FarthestLeftVertice.ConvertToString()}", Color.Black));
             _lines.Add(new Line($"Far Right Vertice: {physObj.FarthestRightVertice.ConvertToString()}", Color.Black));
 
-            foreach (var vert in physObj.Vertices)
-            {
-                _lines.Add(new Line($"{TAB}Vert 1: {vert.Position.ConvertToString()}", Color.Black));
-            }
-
             RenderLines(spriteBatch);
         }
 
