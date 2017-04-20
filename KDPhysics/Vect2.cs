@@ -1,4 +1,6 @@
-﻿namespace KDPhysics
+﻿using System;
+
+namespace KDPhysics
 {
     /// <summary>
     /// Represents direction and magnitude in 2D space.
@@ -82,7 +84,7 @@
             const char LEFT_BRACE = '{';
             const char RIGHT_BRACE = '}';
 
-            return $"{Name}: {LEFT_BRACE} X: {X} : Y: {Y} {RIGHT_BRACE}";
+            return $"{Name}: {LEFT_BRACE} X: {Math.Round(X, 1)} : Y: {Math.Round(Y, 1)} {RIGHT_BRACE}";
         }
     }
 }
