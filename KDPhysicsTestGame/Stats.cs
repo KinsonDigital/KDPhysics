@@ -16,6 +16,19 @@ namespace KDPhysicsTestGame
     public class Stats
     {
         private readonly SpriteFont _font;
+        private List<Line> _lines = new List<Line>();
+
+        private struct Line
+        {
+            public string Text;
+            public Color TextColor;
+
+            public Line(string text, Color textColor)
+            {
+                Text = text;
+                TextColor = textColor;
+            }
+        }
 
         /// <summary>
         /// Creates a new Stats object.
@@ -46,19 +59,23 @@ namespace KDPhysicsTestGame
 
             statsText.AppendLine($"Obj Name: {physObj.Name}");
             statsText.AppendLine($"{TAB}Angle: {physObj.Angle}");
-            statsText.AppendLine(physObj.GetVerticeToString(0));
-            statsText.AppendLine(physObj.GetVerticeToString(1));
-            statsText.AppendLine(physObj.GetVerticeToString(2));
-            statsText.AppendLine(physObj.GetVerticeToString(3));
-            statsText.AppendLine($"Far Left Vertice: {physObj.FarthestLeftVertice}");
-            statsText.AppendLine($"Far Right Vertice: {physObj.FarthestRightVertice}");
+
+            _lines.Clear();
+
+            _lines.Add(new Line(physObj.GetVerticeToString(0), Color.Red));
+            _lines.Add(new Line(physObj.GetVerticeToString(1), Color.Green));
+            _lines.Add(new Line(physObj.GetVerticeToString(2), Color.White));
+            _lines.Add(new Line(physObj.GetVerticeToString(3), Color.Yellow));
+
+            _lines.Add(new Line($"Far Left Vertice: {physObj.FarthestLeftVertice.ConvertToString()}", Color.Black));
+            _lines.Add(new Line($"Far Right Vertice: {physObj.FarthestRightVertice.ConvertToString()}", Color.Black));
 
             foreach (var vert in physObj.Vertices)
             {
-                statsText.AppendLine($"{TAB}Vert 1: {vert.Position.X} , {vert.Position.Y}");
+                _lines.Add(new Line($"{TAB}Vert 1: {vert.Position.ConvertToString()}", Color.Black));
             }
 
-            RenderText(spriteBatch, statsText.ToString(), color);
+            RenderLines(spriteBatch);
         }
 
         /// <summary>
@@ -84,9 +101,24 @@ namespace KDPhysicsTestGame
         /// <param name="spriteBatch">The sprite batch used to render the physObjects.</param>
         /// <param name="text">The text to render.</param>
         /// <param name="color">The color to render the text.</param>
-        private void RenderText(SpriteBatch spriteBatch, string text, Color color)
+        private void RenderText(SpriteBatch spriteBatch, Vector2 pos, string text, Color color)
         {
-            spriteBatch.DrawString(_font, text, Position, color);
+            spriteBatch.DrawString(_font, text, pos, color);
+        }
+
+        private void RenderLines(SpriteBatch spriteBatch)
+        {
+            var position = Position;
+
+            for (var i = 0; i < _lines.Count; i++)
+            {
+                if (i > 0)
+                {
+                    position.Y += _font.MeasureString(_lines[i].Text).Y;
+                }
+
+                RenderText(spriteBatch, position, _lines[i].Text, _lines[i].TextColor);
+            }
         }
     }
 }
