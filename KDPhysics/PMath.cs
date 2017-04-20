@@ -130,5 +130,15 @@ namespace KDPhysics
             //Tanslate v1 back
             return new Vect2(rotatedX + v2.X, rotatedY + v2.Y);
         }
+
+        /// <summary>
+        /// Calculates the normal of the given vector.
+        /// </summary>
+        /// <param name="vector">The vector to calculate the normal from.</param>
+        /// <returns></returns>
+        public static Vect2 CalcNormal(Vect2 vector)
+        {
+            return new Vect2(vector.Y, vector.X * -1);
+        }
     }
 }

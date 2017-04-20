@@ -159,5 +159,19 @@ namespace KDPhysicsTest
             Assert.AreEqual(expected.X, actual.X);
             Assert.AreEqual(expected.Y, actual.Y);
         }
+
+        [TestMethod]
+        public void CalcNormal_Valid_Result()
+        {
+            //Arrange
+            var vector = new Vect2(2, 6);
+            var expected = new Vect2(6, -2);
+
+            //Act
+            var actual = PMath.CalcNormal(vector);
+
+            Assert.AreEqual(expected.X, actual.X);
+            Assert.AreEqual(expected.Y, actual.Y);
+        }
     }
 }
