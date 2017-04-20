@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using KDPhysics;
@@ -30,7 +31,6 @@ namespace KDPhysicsTestGame
             texture.SetData(colorData);
         }
 
-
         /// <summary>
         /// Converts the given Vect2 to a Vector2.
         /// </summary>
@@ -41,7 +41,6 @@ namespace KDPhysicsTestGame
             return new Vector2(vect2.X, vect2.Y);
         }
 
-
         /// <summary>
         /// Converts the given Vector2 to a Vect2.
         /// </summary>
@@ -50,6 +49,32 @@ namespace KDPhysicsTestGame
         public static Vect2 ToVect2(this Vector2 vect2)
         {
             return new Vect2(vect2.X, vect2.Y);
+        }
+
+        /// <summary>
+        /// Renders the string to the screen using the given sprite batch, font, position, and color.
+        /// </summary>
+        /// <param name="thisString">The string being rendered.</param>
+        /// <param name="spriteBatch">The sprite batch rendering the text.</param>
+        /// <param name="font">The font of the string.</param>
+        /// <param name="position">The position to render the text.</param>
+        /// <param name="color">The color of the text.</param>
+        public static void Render(this string thisString, SpriteBatch spriteBatch, SpriteFont font, Vector2 position, Color color)
+        {
+            spriteBatch.DrawString(font, thisString, position, color);
+        }
+
+        /// <summary>
+        /// Returns the string representation of the Vector2.
+        /// </summary>
+        /// <param name="vector">The vector to represent.</param>
+        /// <returns></returns>
+        public static string ConvertToString(this Vector2 vector)
+        {
+            const char LEFT_BRACE = '{';
+            const char RIGHT_BRACE = '}';
+
+            return $"{LEFT_BRACE} X: {Math.Round(vector.X, 1)} : Y: {Math.Round(vector.Y, 1)} {RIGHT_BRACE}";
         }
     }
 }

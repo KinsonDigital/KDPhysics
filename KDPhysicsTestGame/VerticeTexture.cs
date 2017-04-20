@@ -11,7 +11,7 @@ namespace KDPhysicsTestGame
     /// <summary>
     /// Represents a vertice to be drawn on the screen.
     /// </summary>
-    public class Vertice
+    public class VerticeTexture
     {
         private readonly Texture2D _texture;
 
@@ -19,11 +19,23 @@ namespace KDPhysicsTestGame
         /// Creates a new instance of Vertice.
         /// </summary>
         /// <param name="graphicsDevice">The graphics device for rendering the vertice.</param>
-        public Vertice(GraphicsDevice graphicsDevice)
+        public VerticeTexture(GraphicsDevice graphicsDevice)
         {
             //Create the vertice
             _texture = new Texture2D(graphicsDevice, 6, 6);
             _texture.SetAsSolid(6, 6, Color.Black);
+        }
+
+        /// <summary>
+        /// Creates a new instance of Vertice.
+        /// </summary>
+        /// <param name="graphicsDevice">The graphics device for rendering the vertice.</param>
+        /// <param name="color">The color of the vertice.</param>
+        public VerticeTexture(GraphicsDevice graphicsDevice, Color color)
+        {
+            //Create the vertice
+            _texture = new Texture2D(graphicsDevice, 6, 6);
+            _texture.SetAsSolid(6, 6, color);
         }
 
         /// <summary>

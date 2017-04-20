@@ -1,4 +1,6 @@
-﻿namespace KDPhysics
+﻿using System;
+
+namespace KDPhysics
 {
     /// <summary>
     /// Represents direction and magnitude in 2D space.
@@ -14,8 +16,9 @@
         {
             X = x;
             Y = y;
-        }
 
+            Name = "";
+        }
 
         /// <summary>
         /// Creates a new instance of Vect2.
@@ -25,26 +28,29 @@
         {
             X = vector.X;
             Y = vector.Y;
+
+            Name = "";
         }
 
+        /// <summary>
+        /// Gets or sets a name to the vector.
+        /// </summary>
+        public string Name { get; set; }
 
         /// <summary>
         /// Gets or sets the X coordinate of the vector.
         /// </summary>
         public float X { get; set; }
 
-
         /// <summary>
         /// Gets or sets the Y coordinate of the vector.
         /// </summary>
         public float Y { get; set; }
 
-
         /// <summary>
         /// Gets the length or magnitude of the vector.
         /// </summary>
         public float Length => PMath.Magnitude(this);
-
         
         /// <summary>
         /// Multiplies a vector by a scalar.
@@ -57,7 +63,6 @@
             return new Vect2(vector.X * scalar, vector.Y * scalar);
         }
 
-
         /// <summary>
         /// Multiplies a vector by a scalar.
         /// </summary>
@@ -67,6 +72,19 @@
         public static Vect2 operator *(float scalar, Vect2 vector)
         {
             return new Vect2(vector.X * scalar, vector.Y * scalar);
+        }
+
+
+        /// <summary>
+        /// Returns the string representation of the Vect2.
+        /// </summary>
+        /// <returns></returns>
+        public override string ToString()
+        {
+            const char LEFT_BRACE = '{';
+            const char RIGHT_BRACE = '}';
+
+            return $"{Name}: {LEFT_BRACE} X: {Math.Round(X, 1)} : Y: {Math.Round(Y, 1)} {RIGHT_BRACE}";
         }
     }
 }

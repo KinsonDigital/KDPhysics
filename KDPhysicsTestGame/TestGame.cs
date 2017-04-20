@@ -13,21 +13,24 @@ namespace KDPhysicsTestGame
     {
         private readonly GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
-        private Texture2D _xAxis;
-        private Texture2D _yAxis;
+        private Texture2D _refBox;
         private PhysObj _boxA;
-        private Vect2 _xAxisLocation;
-        private Vect2 _yAxisLocation;
-        private Vect2 _rotationPoint;
+        private Axis _xAxis;
+        private Axis _yAxis;
+        private Vector2 _refBoxLocation;
         private KeyboardState _currentKeyboardState;
         private KeyboardState _prevKeyboardState;
         private SpriteFont _font;
+        private Stats _objStats;
 
         public TestGame()
         {
-            _graphics = new GraphicsDeviceManager(this);
-            _graphics.PreferredBackBufferWidth = 1200;
-            _graphics.PreferredBackBufferHeight = 1200;
+            _graphics = new GraphicsDeviceManager(this)
+            {
+                PreferredBackBufferWidth = 1200,
+                PreferredBackBufferHeight = 900
+            };
+
             Content.RootDirectory = "Content";
         }
 
@@ -39,11 +42,9 @@ namespace KDPhysicsTestGame
         /// </summary>
         protected override void Initialize()
         {
-            //Grid Axis Locations
-            _xAxisLocation = new Vect2(10, 10);
-            _yAxisLocation = new Vect2(10, 10);
+            IsMouseVisible = true;
 
-            _rotationPoint = new Vect2(225, 120);
+            _refBoxLocation = new Vector2(400, 400);
 
             base.Initialize();
         }
@@ -55,17 +56,21 @@ namespace KDPhysicsTestGame
         protected override void LoadContent()
         {
             _font = Content.Load<SpriteFont>("Font/arial-36");
+            _objStats = new Stats(Content, new Vector2(_graphics.PreferredBackBufferWidth - 300,50));
 
             // Create a new SpriteBatch, which can be used to draw textures.
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            _xAxis = new Texture2D(_graphics.GraphicsDevice, _graphics.PreferredBackBufferWidth - 20, 2);
-            _yAxis = new Texture2D(_graphics.GraphicsDevice, 2, _graphics.PreferredBackBufferHeight - 20);
+            _refBox = new Texture2D(_graphics.GraphicsDevice, 100, 100);
+            _refBox.SetAsSolid(100, 100, Color.Red);
 
-            _xAxis.SetAsSolid(_graphics.PreferredBackBufferWidth - 20, 2, Color.Black);
-            _yAxis.SetAsSolid(2, _graphics.PreferredBackBufferHeight - 20, Color.Black);
+            _boxA = new PhysObj(_graphics.GraphicsDevice, 150, 50, new Vector2(200, 200), Color.Gray)
+            {
+                Name = "Box-A"
+            };
 
-            _boxA = new PhysObj(_graphics.GraphicsDevice, 50, 50, new Vector2(200, 200), Color.MediumPurple);
+            _xAxis = new Axis(_graphics.GraphicsDevice, Content, AxisType.XAxis, new Vector2(60, _graphics.PreferredBackBufferHeight - 40), _graphics.PreferredBackBufferWidth - 70, "X Axis", Color.Black, Color.Black);
+            _yAxis = new Axis(_graphics.GraphicsDevice, Content, AxisType.YAxis, new Vector2(60, 20), _graphics.PreferredBackBufferHeight - 60, "Y Axis", Color.Black, Color.Black);
         }
 
         /// <summary>
@@ -91,21 +96,25 @@ namespace KDPhysicsTestGame
             {
                 _boxA.Position = new Vect2(_boxA.Position.X - 5, _boxA.Position.Y).ToVector2();
             }
-            else if(_currentKeyboardState.IsKeyDown(Keys.Right))
+
+            if (_currentKeyboardState.IsKeyDown(Keys.Right))
             {
                 _boxA.Position = new Vect2(_boxA.Position.X + 5, _boxA.Position.Y).ToVector2();
             }
-            else if(_currentKeyboardState.IsKeyDown(Keys.Up))
+
+            if (_currentKeyboardState.IsKeyDown(Keys.Up))
             {
                 _boxA.Position = new Vect2(_boxA.Position.X, _boxA.Position.Y - 5).ToVector2();
             }
-            else if(_currentKeyboardState.IsKeyDown(Keys.Down))
+
+            if (_currentKeyboardState.IsKeyDown(Keys.Down))
             {
                 _boxA.Position = new Vect2(_boxA.Position.X, _boxA.Position.Y + 5).ToVector2();
             }
-            else if (_currentKeyboardState.IsKeyDown(Keys.Space))
+
+            if (_currentKeyboardState.IsKeyDown(Keys.Space))
             {
-                _rotationPoint = PMath.RotateVectorAround(_rotationPoint, new Vect2(175, 175), PMath.DegreeToRadian(1) * -1);
+                _boxA.Angle += 1;
             }
 
             _prevKeyboardState = _currentKeyboardState;
@@ -123,13 +132,16 @@ namespace KDPhysicsTestGame
 
             _spriteBatch.Begin();
             
-            _spriteBatch.DrawString(_font, "Hello World", new Vector2(200,200), Color.Black);
+            //Draw reference box
+            _spriteBatch.Draw(_refBox, _refBoxLocation, Color.White);
 
             //Draw the axis lines
-            _spriteBatch.Draw(_xAxis, _xAxisLocation.ToVector2(), Color.White);
-            _spriteBatch.Draw(_yAxis, _yAxisLocation.ToVector2(), Color.White);
+            _xAxis.Render(_spriteBatch);
+            _yAxis.Render(_spriteBatch);
 
             _boxA.Render(_spriteBatch);
+
+            _objStats.Render(_spriteBatch, new [] {_boxA}, new []{Color.Black});
 
             _spriteBatch.End();
 
