@@ -74,6 +74,10 @@ namespace KDPhysics
             return new Vect2(vector.X * scalar, vector.Y * scalar);
         }
 
+        public static Vect2 operator -(Vect2 v1, Vect2 v2)
+        {
+            return new Vect2(v1.X - v2.X, v1.Y - v2.Y);
+        }
 
         /// <summary>
         /// Returns the string representation of the Vect2.
