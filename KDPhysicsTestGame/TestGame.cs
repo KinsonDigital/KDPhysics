@@ -56,7 +56,7 @@ namespace KDPhysicsTestGame
         protected override void LoadContent()
         {
             _font = Content.Load<SpriteFont>("Font/arial-36");
-            _objStats = new Stats(Content, new Vector2(_graphics.PreferredBackBufferWidth - 250,50));
+            _objStats = new Stats(Content, new Vector2(_graphics.PreferredBackBufferWidth - 300,50));
 
             // Create a new SpriteBatch, which can be used to draw textures.
             _spriteBatch = new SpriteBatch(GraphicsDevice);
@@ -64,7 +64,7 @@ namespace KDPhysicsTestGame
             _refBox = new Texture2D(_graphics.GraphicsDevice, 100, 100);
             _refBox.SetAsSolid(100, 100, Color.Red);
 
-            _boxA = new PhysObj(_graphics.GraphicsDevice, 150, 50, new Vector2(200, 200), Color.MediumPurple)
+            _boxA = new PhysObj(_graphics.GraphicsDevice, 150, 50, new Vector2(200, 200), Color.Gray)
             {
                 Name = "Box-A"
             };
