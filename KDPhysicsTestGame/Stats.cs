@@ -55,12 +55,11 @@ namespace KDPhysicsTestGame
         public void Render(SpriteBatch spriteBatch, PhysObj physObj, Color color)
         {
             const string TAB = "   ";
-            var statsText = new StringBuilder();
-
-            statsText.AppendLine($"Obj Name: {physObj.Name}");
-            statsText.AppendLine($"{TAB}Angle: {physObj.Angle}");
 
             _lines.Clear();
+
+            _lines.Add(new Line($"Obj Name: {physObj.Name}", Color.Black));
+            _lines.Add(new Line($"{TAB}Angle: {physObj.Angle}", Color.Black));
 
             _lines.Add(new Line(physObj.GetVerticeToString(0), Color.Red));
             _lines.Add(new Line(physObj.GetVerticeToString(1), Color.Green));
