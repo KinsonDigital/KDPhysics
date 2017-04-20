@@ -65,7 +65,8 @@ namespace KDPhysics
             {
                 var maxX = Vertices.Max(v => v.X);
 
-                return Vertices.Where(v => v.X <= maxX).First();
+                // ReSharper disable once CompareOfFloatsByEqualityOperator
+                return Vertices.Where(v => v.X == maxX).First();
             }
         }
 
@@ -79,7 +80,8 @@ namespace KDPhysics
             {
                 var minX = Vertices.Min(v => v.X);
 
-                return Vertices.Where(v => v.X <= minX).First();
+                // ReSharper disable once CompareOfFloatsByEqualityOperator
+                return Vertices.Where(v => v.X == minX).First();
             }
         }
 
