@@ -46,6 +46,10 @@ namespace KDPhysicsTestGame
 
             statsText.AppendLine($"Obj Name: {physObj.Name}");
             statsText.AppendLine($"{TAB}Angle: {physObj.Angle}");
+            statsText.AppendLine(physObj.GetVerticeToString(0));
+            statsText.AppendLine(physObj.GetVerticeToString(1));
+            statsText.AppendLine(physObj.GetVerticeToString(2));
+            statsText.AppendLine(physObj.GetVerticeToString(3));
             statsText.AppendLine($"Far Left Vertice: {physObj.FarthestLeftVertice}");
             statsText.AppendLine($"Far Right Vertice: {physObj.FarthestRightVertice}");
 
