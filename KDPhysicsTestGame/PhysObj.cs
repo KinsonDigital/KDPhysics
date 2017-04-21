@@ -118,6 +118,9 @@ namespace KDPhysicsTestGame
             {
                 vert.Render(spriteBatch);
             }
+
+            //Render the line from the origin to the farthest right vertice
+            spriteBatch.DrawLine(_aabb.Origin.ToVector2(), _aabb.FarthestRightVertice.ToVector2(), Color.Black);
         }
 
         /// <summary>
