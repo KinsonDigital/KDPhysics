@@ -74,9 +74,26 @@ namespace KDPhysics
             return new Vect2(vector.X * scalar, vector.Y * scalar);
         }
 
+        /// <summary>
+        /// Subtracts the left and right vector operands.
+        /// </summary>
+        /// <param name="v1">The first vector to subtract.</param>
+        /// <param name="v2">The second vector to subtract.</param>
+        /// <returns></returns>
         public static Vect2 operator -(Vect2 v1, Vect2 v2)
         {
             return new Vect2(v1.X - v2.X, v1.Y - v2.Y);
+        }
+
+        /// <summary>
+        /// Adds the left and right vector operands.
+        /// </summary>
+        /// <param name="v1">The first vector to add.</param>
+        /// <param name="v2">The second vector to add.</param>
+        /// <returns></returns>
+        public static Vect2 operator +(Vect2 v1, Vect2 v2)
+        {
+            return new Vect2(v1.X + v2.X, v1.Y + v2.Y);
         }
 
         /// <summary>

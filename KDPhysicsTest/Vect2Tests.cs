@@ -72,5 +72,21 @@ namespace KDPhysicsTest
             Assert.AreEqual(expected.X, actual.X);//Assert x component
             Assert.AreEqual(expected.Y, actual.Y);//Assert y component
         }
+
+        [TestMethod]
+        public void Valid_Add_Operator_Result()
+        {
+            //Arrange
+            var vector1 = new Vect2(6, 6);
+            var vector2 = new Vect2(2, 2);
+            var expected = new Vect2(8, 8);
+
+            //Act
+            var actual = vector1 + vector2;
+
+            //Assert
+            Assert.AreEqual(expected.X, actual.X);//Assert x component
+            Assert.AreEqual(expected.Y, actual.Y);//Assert y component
+        }
     }
 }
