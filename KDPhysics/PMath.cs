@@ -140,5 +140,12 @@ namespace KDPhysics
         {
             return new Vect2(vector.Y, vector.X * -1);
         }
+
+        public static Vect2 Normalize(Vect2 vector)
+        {
+            var mag = (float)Math.Pow(Magnitude(vector), 2);
+
+            return new Vect2(vector.X / mag, vector.Y / mag);
+        }
     }
 }

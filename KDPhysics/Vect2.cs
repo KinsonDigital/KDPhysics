@@ -105,7 +105,7 @@ namespace KDPhysics
             const char LEFT_BRACE = '{';
             const char RIGHT_BRACE = '}';
 
-            return $"{Name}: {LEFT_BRACE} X: {Math.Round(X, 1)} : Y: {Math.Round(Y, 1)} {RIGHT_BRACE}";
+            return $"{Name}{(string.IsNullOrEmpty(Name) ? "" : ":")} {LEFT_BRACE} X: {Math.Round(X, 1)} : Y: {Math.Round(Y, 1)} {RIGHT_BRACE}";
         }
     }
 }

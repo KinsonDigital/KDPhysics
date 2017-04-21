@@ -173,5 +173,21 @@ namespace KDPhysicsTest
             Assert.AreEqual(expected.X, actual.X);
             Assert.AreEqual(expected.Y, actual.Y);
         }
+
+        [TestMethod]
+        public void Normalize_Valid_Result()
+        {
+            //Arrange
+            var vector = new Vect2(1, 1);
+            var expected = new Vect2(6, -2);
+
+            //Act
+            var actual = PMath.Normalize(vector);
+
+            var actualLen = actual.Length;
+
+            Assert.AreEqual(expected.X, actual.X);
+            Assert.AreEqual(expected.Y, actual.Y);
+        }
     }
 }
