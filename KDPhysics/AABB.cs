@@ -27,9 +27,30 @@ namespace KDPhysics
             Vertices[1] = new Vect2(origin.X + halfWidth, origin.Y - halfHeight) { Name = "V2" };
             Vertices[2] = new Vect2(origin.X + halfWidth, origin.Y + halfHeight) { Name = "V3" };
             Vertices[3] = new Vect2(origin.X - halfWidth, origin.Y + halfHeight) { Name = "V4" };
+
+            var edges = new List<Vect2>();
+
+            for (var i = 0; i < Vertices.Length; i++)
+            {
+                var p1 = Vertices[i];
+
+                var p2 = i + 1 >= Vertices.Length ? Vertices[0] : Vertices[i + 1];
+
+                edges.Add(p2 - p1);
+            }
+
+            Edges = edges.ToArray();
         }
 
+        /// <summary>
+        /// Represents all of the points where the edges/sides of the AAABB intersect.
+        /// </summary>
         public Vect2[] Vertices { get; private set; }
+
+        /// <summary>
+        /// Represents all of the edges/sides of the AABB.
+        /// </summary>
+        public Vect2[] Edges { get; private set; }
 
         /// <summary>
         /// Represents the center location of the AABB rectangle.
