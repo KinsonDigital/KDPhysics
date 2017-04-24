@@ -23,7 +23,6 @@ namespace KDPhysicsTest
             Assert.AreEqual(expected, actual);
         }
 
-
         [TestMethod]
         public void Magnitude_Valid_Result()
         {
@@ -37,7 +36,6 @@ namespace KDPhysicsTest
             //Assert
             Assert.AreEqual(expected, actual);
         }
-
 
         [TestMethod]
         public void Sqrt_Valid_Result()
@@ -53,7 +51,6 @@ namespace KDPhysicsTest
             Assert.AreEqual(expected, actual);
         }
 
-
         [TestMethod]
         public void Square_Valid_Result()
         {
@@ -68,7 +65,6 @@ namespace KDPhysicsTest
             Assert.AreEqual(expected, actual);
         }
 
-
         [TestMethod]
         public void DegreeToRadian_Valid_Result()
         {
@@ -82,7 +78,6 @@ namespace KDPhysicsTest
             Assert.AreEqual(expected, actual);
         }
 
-
         [TestMethod]
         public void RadianToDegree_Valid_Result()
         {
@@ -95,7 +90,6 @@ namespace KDPhysicsTest
             //Assert
             Assert.AreEqual(expected, actual);
         }
-
 
         [TestMethod]
         public void CalcAngle_Valid_Result()
@@ -112,7 +106,6 @@ namespace KDPhysicsTest
             Assert.AreEqual(expected, actual);
         }
 
-
         [TestMethod]
         public void ProjectVector_Valid_Result()
         {
@@ -128,7 +121,6 @@ namespace KDPhysicsTest
             Assert.AreEqual(expected.X, actual.X);
             Assert.AreEqual(expected.Y, actual.Y);
         }
-
 
         [TestMethod]
         public void RotateVectorAround_Valid_Result()
