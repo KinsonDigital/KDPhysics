@@ -90,14 +90,31 @@ namespace KDPhysics
         }
 
         /// <summary>
-        /// Projects the vector v1 onto vector v2.
+        /// Returns the scalar projection of vector v1 onto vector v2.
         /// </summary>
         /// <param name="v1">The vector to project.</param>
         /// <param name="v2">The vector to project v1 onto.</param>
         /// <returns></returns>
-        public static Vect2 ProjectVector(Vect2 v1, Vect2 v2)
+        public static float ScalarProjection(Vect2 v1, Vect2 v2)
         {
-            return new Vect2(v2 * (DotProduct(v1, v2) / (float)Math.Pow(Magnitude(v2), 2)));
+            return DotProduct(v1, v2) / Magnitude(v2);
+        }
+
+        /// <summary>
+        /// Returns the vector projection of vector v1 onto vector v2.
+        /// </summary>
+        /// <param name="v1">The vector to project.</param>
+        /// <param name="v2">The vector to project v1 onto.</param>
+        /// <returns></returns>
+        public static Vect2 VectorProjection(Vect2 v1, Vect2 v2)
+        {
+            var dotProduct = DotProduct(v1, v2);
+            var magnitude = Magnitude(v2);
+            var multiplier = dotProduct / magnitude;
+
+            var scalarResult = ScalarProjection(v1, v2);
+
+            return new Vect2(v2.X * scalarResult, v2.Y * scalarResult);
         }
 
         /// <summary>
