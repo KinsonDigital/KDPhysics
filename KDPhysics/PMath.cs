@@ -143,7 +143,7 @@ namespace KDPhysics
 
         public static Vect2 Normalize(Vect2 vector)
         {
-            var mag = (float)Math.Pow(Magnitude(vector), 2);
+            var mag = Magnitude(vector);
 
             return new Vect2(vector.X / mag, vector.Y / mag);
         }
