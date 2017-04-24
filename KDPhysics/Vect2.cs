@@ -86,6 +86,16 @@ namespace KDPhysics
         }
 
         /// <summary>
+        /// Returns the vector as a negative of both components.
+        /// </summary>
+        /// <param name="v1">The first vector to subtract.</param>
+        /// <returns></returns>
+        public static Vect2 operator -(Vect2 v1)
+        {
+            return new Vect2(-v1.X, -v1.Y);
+        }
+
+        /// <summary>
         /// Adds the left and right vector operands.
         /// </summary>
         /// <param name="v1">The first vector to add.</param>
