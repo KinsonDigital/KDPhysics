@@ -108,10 +108,6 @@ namespace KDPhysics
         /// <returns></returns>
         public static Vect2 VectorProjection(Vect2 v1, Vect2 v2)
         {
-            var dotProduct = DotProduct(v1, v2);
-            var magnitude = Magnitude(v2);
-            var multiplier = dotProduct / magnitude;
-
             var scalarResult = ScalarProjection(v1, v2);
 
             return new Vect2(v2.X * scalarResult, v2.Y * scalarResult);
