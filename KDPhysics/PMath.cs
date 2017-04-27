@@ -97,7 +97,7 @@ namespace KDPhysics
         /// <returns></returns>
         public static float ScalarProjection(Vect2 v1, Vect2 v2)
         {
-            return DotProduct(v1, v2) / Magnitude(v2);
+            return DotProduct(v1, v2) / Magnitude(v1);
         }
 
         /// <summary>
@@ -110,7 +110,7 @@ namespace KDPhysics
         {
             var scalarResult = ScalarProjection(v1, v2);
 
-            return new Vect2(v2.X * scalarResult, v2.Y * scalarResult);
+            return new Vect2(v1.X * scalarResult, v1.Y * scalarResult);
         }
 
         /// <summary>
