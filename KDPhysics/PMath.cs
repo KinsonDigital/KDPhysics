@@ -97,7 +97,7 @@ namespace KDPhysics
         /// <returns></returns>
         public static float ScalarProjection(Vect2 v1, Vect2 v2)
         {
-            return DotProduct(v1, v2) / Magnitude(v2);
+            return DotProduct(v1, v2) / Magnitude(v1);
         }
 
         /// <summary>
