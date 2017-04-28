@@ -117,9 +117,9 @@ namespace KDPhysicsTest
         public void ScalarProjection_Valid_Result()
         {
             //Arrange
-            var v1 = new Vect2(4, 4);
+            var v1 = new Vect2(5, 5);
             var v2 = new Vect2(10,0);
-            const float expected = 4f;
+            const float expected = 7.071068f;
 
             //Act
             var actual = PMath.ScalarProjection(v1, v2);
@@ -133,9 +133,9 @@ namespace KDPhysicsTest
         public void VectorProjection_Valid_Result()
         {
             //Arrange
-            var v1 = new Vect2(4, -2);
-            var v2 = new Vect2(1, 3);
-            var expected = new Vect2(-0.6324555f, -1.89736652f);
+            var v1 = new Vect2(5, 5);
+            var v2 = new Vect2(10, 0);
+            var expected = new Vect2(5, 0);
 
             //Act
             var actual = PMath.VectorProjection(v1, v2);
