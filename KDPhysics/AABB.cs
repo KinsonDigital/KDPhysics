@@ -76,7 +76,6 @@ namespace KDPhysics
         /// </summary>
         public float Height { get; }
 
-
         /// <summary>
         /// Gets the vertice that is farthest to the right then the rest of the vertices.
         /// </summary>
@@ -91,7 +90,6 @@ namespace KDPhysics
             }
         }
 
-
         /// <summary>
         /// Gets the vertice that is farthest to the left then the rest of the vertices.
         /// </summary>
@@ -105,7 +103,6 @@ namespace KDPhysics
                 return Vertices.Where(v => v.X == minX).First();
             }
         }
-
 
         /// <summary>
         /// Gets the half width of the bounding box.
