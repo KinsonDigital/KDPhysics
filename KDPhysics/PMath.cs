@@ -108,11 +108,17 @@ namespace KDPhysics
         /// <returns></returns>
         public static Vect2 VectorProjection(Vect2 v1, Vect2 v2)
         {
-            var dotProduct = DotProduct(v1, v2);
-            var magnitude = Magnitude(v2);
-            var multiplier = dotProduct / magnitude;
+            /* Resource Links
+             * Calculator and math step breakdown
+             * https://www.symbolab.com/solver/vector-projection-calculator/projection%20%5Cleft(5%2C5%5Cright)%2C%5Cleft(10%2C0%5Cright
+             * 
+             * Simple calculation explanation of scalar and vector projections as well as dot product
+             * https://math.oregonstate.edu/home/programs/undergrad/CalculusQuestStudyGuides/vcalc/dotprod/dotprod.html
+             */
 
-            var scalarResult = ScalarProjection(v1, v2);
+            var dotProduct = DotProduct(v1, v2);
+            var magnitude = (float)Math.Pow(Magnitude(v2), 2);
+            var scalarResult = dotProduct / magnitude;
 
             return new Vect2(v2.X * scalarResult, v2.Y * scalarResult);
         }
