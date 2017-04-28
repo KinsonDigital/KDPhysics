@@ -194,13 +194,11 @@ namespace KDPhysicsTest
         public void Normalize_Valid_Result()
         {
             //Arrange
-            var vector = new Vect2(1, 1);
-            var expected = new Vect2(6, -2);
+            var vector = new Vect2(3, 1);
+            var expected = new Vect2(0.948683262f, 0.316227764f);
 
             //Act
             var actual = PMath.Normalize(vector);
-
-            var actualLen = actual.Length;
 
             Assert.AreEqual(expected.X, actual.X);
             Assert.AreEqual(expected.Y, actual.Y);
