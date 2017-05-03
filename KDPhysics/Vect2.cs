@@ -107,6 +107,17 @@ namespace KDPhysics
         }
 
         /// <summary>
+        /// Returns the vector divided by the given scalar.
+        /// </summary>
+        /// <param name="vector">The vector being divided.</param>
+        /// <param name="scalar">The scalar used to divide into the vector.</param>
+        /// <returns></returns>
+        public static Vect2 operator /(Vect2 vector, float scalar)
+        {
+            return new Vect2(vector.X / scalar, vector.Y / scalar);
+        }
+
+        /// <summary>
         /// Returns the string representation of the Vect2.
         /// </summary>
         /// <returns></returns>
