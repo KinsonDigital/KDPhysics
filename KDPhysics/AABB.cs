@@ -18,28 +18,11 @@ namespace KDPhysics
             _origin = origin;
             Width = width;
             Height = height;
-            var halfWidth = width / 2;
-            var halfHeight = height / 2;
 
-            Vertices = new Vect2[4];
+            SetupVertices(width, height, origin, out Vect2[] vertices, out Vect2[] edges);
 
-            Vertices[0] = new Vect2(origin.X - halfWidth, origin.Y - halfHeight) {Name = "V1"};
-            Vertices[1] = new Vect2(origin.X + halfWidth, origin.Y - halfHeight) { Name = "V2" };
-            Vertices[2] = new Vect2(origin.X + halfWidth, origin.Y + halfHeight) { Name = "V3" };
-            Vertices[3] = new Vect2(origin.X - halfWidth, origin.Y + halfHeight) { Name = "V4" };
-
-            var edges = new List<Vect2>();
-
-            for (var i = 0; i < Vertices.Length; i++)
-            {
-                var p1 = Vertices[i];
-
-                var p2 = i + 1 >= Vertices.Length ? Vertices[0] : Vertices[i + 1];
-
-                edges.Add(p2 - p1);
-            }
-
-            Edges = edges.ToArray();
+            Vertices = vertices;
+            Edges = edges;
         }
 
         /// <summary>
@@ -61,6 +44,10 @@ namespace KDPhysics
             set
             {
                 _origin = value;
+
+                SetupVertices(Width, Height, Origin, out Vect2[] vertices, out Vect2[] edges);
+                Vertices = vertices;
+                Edges = edges;
 
                 UpdateVertices();
             }
@@ -132,6 +119,38 @@ namespace KDPhysics
 
                 _angle = value;
                 UpdateVertices();
+            }
+        }
+
+        /// <summary>
+        /// Sets up the given vertices and edges based on the given width, height, and origin.
+        /// </summary>
+        /// <param name="width">The width of the AABB.</param>
+        /// <param name="height">The height of the AABB.</param>
+        /// <param name="origin">The origin of the AABB.</param>
+        /// <param name="vertices">The vertices variable to save the new vertice values to.</param>
+        /// <param name="edges">The edges variable to save the new edge values to.</param>
+        private static void SetupVertices(float width, float height, Vect2 origin, out Vect2[] vertices, out Vect2[] edges)
+        {
+            var halfWidth = width / 2;
+            var halfHeight = height / 2;
+
+            vertices = new Vect2[4];
+
+            vertices[0] = new Vect2(origin.X - halfWidth, origin.Y - halfHeight) { Name = "V1" };
+            vertices[1] = new Vect2(origin.X + halfWidth, origin.Y - halfHeight) { Name = "V2" };
+            vertices[2] = new Vect2(origin.X + halfWidth, origin.Y + halfHeight) { Name = "V3" };
+            vertices[3] = new Vect2(origin.X - halfWidth, origin.Y + halfHeight) { Name = "V4" };
+
+            edges = new Vect2[vertices.Length];
+
+            for (var i = 0; i < vertices.Length; i++)
+            {
+                var p1 = vertices[i];
+
+                var p2 = i + 1 >= vertices.Length ? vertices[0] : vertices[i + 1];
+
+                edges[i] = p2 - p1;
             }
         }
 
