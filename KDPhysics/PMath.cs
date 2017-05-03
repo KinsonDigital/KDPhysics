@@ -164,6 +164,11 @@ namespace KDPhysics
             return new Vect2(vector.Y, vector.X * -1);
         }
 
+        /// <summary>
+        /// Normalizes the given vector.
+        /// </summary>
+        /// <param name="vector">The vector to normalize.</param>
+        /// <returns></returns>
         public static Vect2 Normalize(Vect2 vector)
         {
             var mag = Magnitude(vector);
