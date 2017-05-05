@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 
 namespace KDPhysics
 {
@@ -115,6 +116,29 @@ namespace KDPhysics
         public static Vect2 operator /(Vect2 vector, float scalar)
         {
             return new Vect2(vector.X / scalar, vector.Y / scalar);
+        }
+
+        /// <summary>
+        /// Returns a value indicating if the 2 given vectors are equal.
+        /// </summary>
+        /// <param name="v1">The first vector to compare.</param>
+        /// <param name="v2">The second vector to compare.</param>
+        /// <returns></returns>
+        [SuppressMessage("ReSharper", "CompareOfFloatsByEqualityOperator")]
+        public static bool operator ==(Vect2 v1, Vect2 v2)
+        {
+            return v1.X == v2.X && v1.Y == v2.Y;
+        }
+
+        /// <summary>
+        /// Returns a value indicating if the 2 given vectors are not equal.
+        /// </summary>
+        /// <param name="v1">The first vector to compare.</param>
+        /// <param name="v2">The second vector to compare.</param>
+        /// <returns></returns>
+        public static bool operator !=(Vect2 v1, Vect2 v2)
+        {
+            return ! (v1 == v2);
         }
 
         /// <summary>
