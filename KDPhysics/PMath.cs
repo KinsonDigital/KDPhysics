@@ -90,14 +90,37 @@ namespace KDPhysics
         }
 
         /// <summary>
-        /// Projects the vector v1 onto vector v2.
+        /// Returns the scalar projection of vector v1 onto vector v2.
         /// </summary>
         /// <param name="v1">The vector to project.</param>
         /// <param name="v2">The vector to project v1 onto.</param>
         /// <returns></returns>
-        public static Vect2 ProjectVector(Vect2 v1, Vect2 v2)
+        public static float ScalarProjection(Vect2 v1, Vect2 v2)
         {
-            return new Vect2(v2 * (DotProduct(v1, v2) / (float)Math.Pow(Magnitude(v2), 2)));
+            return DotProduct(v1, v2) / Magnitude(v1);
+        }
+
+        /// <summary>
+        /// Returns the vector projection of vector v1 onto vector v2.
+        /// </summary>
+        /// <param name="v1">The vector to project.</param>
+        /// <param name="v2">The vector to project v1 onto.</param>
+        /// <returns></returns>
+        public static Vect2 VectorProjection(Vect2 v1, Vect2 v2)
+        {
+            /* Resource Links
+             * Calculator and math step breakdown
+             * https://www.symbolab.com/solver/vector-projection-calculator/projection%20%5Cleft(5%2C5%5Cright)%2C%5Cleft(10%2C0%5Cright
+             * 
+             * Simple calculation explanation of scalar and vector projections as well as dot product
+             * https://math.oregonstate.edu/home/programs/undergrad/CalculusQuestStudyGuides/vcalc/dotprod/dotprod.html
+             */
+
+            var dotProduct = DotProduct(v1, v2);
+            var magnitude = (float)Math.Pow(Magnitude(v2), 2);
+            var scalarResult = dotProduct / magnitude;
+
+            return new Vect2(v2.X * scalarResult, v2.Y * scalarResult);
         }
 
         /// <summary>
@@ -112,23 +135,23 @@ namespace KDPhysics
         }
 
         /// <summary>
-        /// Rotates vector v1 around the given origin v2.
+        /// Rotates vector v1 around the given origin.
         /// </summary>
-        /// <param name="v1">The vector to rotate around v2.</param>
-        /// <param name="v2">The origin vector for v1 to rotate around.</param>
-        /// <param name="radians">The degrees to rotate v1 from its current location to its new location around v2.
+        /// <param name="v1">The vector to rotate around origin.</param>
+        /// <param name="origin">The origin vector for v1 to rotate around.</param>
+        /// <param name="radians">The degrees to rotate v1 from its current location to its new location around origin.
         /// Use positive number to rotate clockwise and negative number to rotate counter clockwise.</param>
         /// <returns></returns>
-        public static Vect2 RotateVectorAround(Vect2 v1, Vect2 v2, double radians)
+        public static Vect2 RotateVectorAround(Vect2 v1, Vect2 origin, double radians)
         {
-            var translatedVector = TranslateToOrigin(v1, v2);
+            var translatedVector = TranslateToOrigin(v1, origin);
 
             //Apply rotation
             var rotatedX = translatedVector.X * (float)Math.Cos(radians) - translatedVector.Y * (float)Math.Sin(radians);
             var rotatedY = translatedVector.X * (float)Math.Sin(radians) + translatedVector.Y * (float)Math.Cos(radians);
 
             //Tanslate v1 back
-            return new Vect2(rotatedX + v2.X, rotatedY + v2.Y);
+            return new Vect2(rotatedX + origin.X, rotatedY + origin.Y);
         }
 
         /// <summary>
@@ -142,9 +165,9 @@ namespace KDPhysics
         }
 
         /// <summary>
-        /// Returns the vector normalized.
+        /// Normalizes the given vector.
         /// </summary>
-        /// <param name="vector">The vector to convert.</param>
+        /// <param name="vector">The vector to normalize.</param>
         /// <returns></returns>
         public static Vect2 Normalize(Vect2 vector)
         {

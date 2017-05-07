@@ -107,16 +107,32 @@ namespace KDPhysicsTest
         }
 
         [TestMethod]
-        public void ProjectVector_Valid_Result()
+        public void ScalarProjection_Valid_Result()
         {
             //Arrange
-            var v1 = new Vect2(4, 4);
+            var v1 = new Vect2(5, 5);
             var v2 = new Vect2(10,0);
-            var expected = new Vect2(4, 0);
+            const float expected = 7.071068f;
 
             //Act
-            var actual = PMath.ProjectVector(v1, v2);
+            var actual = PMath.ScalarProjection(v1, v2);
 
+            //Assert
+            Assert.AreEqual(expected, actual);
+        }
+
+
+        [TestMethod]
+        public void VectorProjection_Valid_Result()
+        {
+            //Arrange
+            var v1 = new Vect2(5, 5);
+            var v2 = new Vect2(10, 0);
+            var expected = new Vect2(5, 0);
+
+            //Act
+            var actual = PMath.VectorProjection(v1, v2);
+            
             //Assert
             Assert.AreEqual(expected.X, actual.X);
             Assert.AreEqual(expected.Y, actual.Y);
@@ -170,13 +186,11 @@ namespace KDPhysicsTest
         public void Normalize_Valid_Result()
         {
             //Arrange
-            var vector = new Vect2(1, 1);
-            var expected = new Vect2(6, -2);
+            var vector = new Vect2(3, 4);
+            var expected = new Vect2(0.6f, 0.8f);
 
             //Act
             var actual = PMath.Normalize(vector);
-
-            var actualLen = actual.Length;
 
             Assert.AreEqual(expected.X, actual.X);
             Assert.AreEqual(expected.Y, actual.Y);
