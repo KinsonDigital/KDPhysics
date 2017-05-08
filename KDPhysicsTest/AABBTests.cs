@@ -107,10 +107,17 @@ namespace KDPhysicsTest
             var actual = aabb.Vertices;
 
             //Assert
-            Assert.AreEqual(expected[0], actual[0]);
-            Assert.AreEqual(expected[1], actual[1]);
-            Assert.AreEqual(expected[2], actual[2]);
-            Assert.AreEqual(expected[3], actual[3]);
+            Assert.AreEqual(expected[0].X, actual[0].X);
+            Assert.AreEqual(expected[0].Y, actual[0].Y);
+
+            Assert.AreEqual(expected[1].X, actual[1].X);
+            Assert.AreEqual(expected[1].Y, actual[1].Y);
+
+            Assert.AreEqual(expected[2].X, actual[2].X);
+            Assert.AreEqual(expected[2].Y, actual[2].Y);
+
+            Assert.AreEqual(expected[3].X, actual[3].X);
+            Assert.AreEqual(expected[3].Y, actual[3].Y);
         }
 
         [TestMethod]

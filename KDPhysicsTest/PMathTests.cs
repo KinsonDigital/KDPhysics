@@ -194,8 +194,8 @@ namespace KDPhysicsTest
         public void Normalize_Valid_Result()
         {
             //Arrange
-            var vector = new Vect2(3, 1);
-            var expected = new Vect2(0.948683262f, 0.316227764f);
+            var vector = new Vect2(3, 4);
+            var expected = new Vect2(0.6f, 0.8f);
 
             //Act
             var actual = PMath.Normalize(vector);
