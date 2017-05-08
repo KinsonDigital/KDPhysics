@@ -52,6 +52,20 @@ namespace KDPhysicsTestGame
         }
 
         /// <summary>
+        /// Offsets all of the vertices by the given vector amount.
+        /// </summary>
+        /// <param name="vertices">The vertices to offset.</param>
+        /// <param name="offsetVector">The vector amount to offset the vertices.</param>
+        public static void Offset(this List<Vect2> vertices, Vect2 offsetVector)
+        {
+            for (var i = 0; i < vertices.Count; i++)
+            {
+                var p = vertices[i];
+                vertices[i] = new Vect2(p.X + offsetVector.X, p.Y + offsetVector.Y);
+            }
+        }
+
+        /// <summary>
         /// Renders the string to the screen using the given sprite batch, font, position, and color.
         /// </summary>
         /// <param name="thisString">The string being rendered.</param>

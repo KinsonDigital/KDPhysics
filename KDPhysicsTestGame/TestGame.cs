@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using KDPhysics;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -22,6 +23,8 @@ namespace KDPhysicsTestGame
         private KeyboardState _prevKeyboardState;
         private SpriteFont _font;
         private Stats _objStats;
+
+        private PolyObject _orangePoly;
 
         public TestGame()
         {
@@ -64,13 +67,33 @@ namespace KDPhysicsTestGame
             _refBox = new Texture2D(_graphics.GraphicsDevice, 100, 100);
             _refBox.SetAsSolid(100, 100, Color.Red);
 
-            _boxA = new PhysObj(_graphics.GraphicsDevice, 150, 50, new Vector2(200, 200), Color.Gray)
+            _boxA = new PhysObj(_graphics.GraphicsDevice, 150, 50, new Vector2(400, 400), Color.Gray)
             {
                 Name = "Box-A"
             };
 
             _xAxis = new Axis(_graphics.GraphicsDevice, Content, AxisType.XAxis, new Vector2(60, _graphics.PreferredBackBufferHeight - 40), _graphics.PreferredBackBufferWidth - 70, "X Axis", Color.Black, Color.Black);
             _yAxis = new Axis(_graphics.GraphicsDevice, Content, AxisType.YAxis, new Vector2(60, 20), _graphics.PreferredBackBufferHeight - 60, "Y Axis", Color.Black, Color.Black);
+
+            //var vertices = new List<Vect2>
+            //{
+            //    new Vect2(-50, -50),
+            //    new Vect2(50, -50),
+            //    new Vect2(50, 50),
+            //    new Vect2(-50, 50)
+            //};
+
+            var worldVerts = new List<Vect2>
+            {
+                new Vect2(53, 0),
+                new Vect2(99, 11),
+                new Vect2(66, 99),
+                new Vect2(0, 44)
+            };
+
+            var position = PMath.CalcPolyCenter(worldVerts);
+
+            _orangePoly = new PolyObject(Content, worldVerts);
         }
 
         /// <summary>
@@ -94,27 +117,32 @@ namespace KDPhysicsTestGame
             //If the left key has been pressed
             if (_currentKeyboardState.IsKeyDown(Keys.Left))
             {
-                _boxA.Position = new Vect2(_boxA.Position.X - 5, _boxA.Position.Y).ToVector2();
+                _orangePoly.Position = new Vect2(_orangePoly.Position.X - 5, _orangePoly.Position.Y);
             }
 
             if (_currentKeyboardState.IsKeyDown(Keys.Right))
             {
-                _boxA.Position = new Vect2(_boxA.Position.X + 5, _boxA.Position.Y).ToVector2();
+                _orangePoly.Position = new Vect2(_orangePoly.Position.X + 5, _orangePoly.Position.Y);
             }
 
             if (_currentKeyboardState.IsKeyDown(Keys.Up))
             {
-                _boxA.Position = new Vect2(_boxA.Position.X, _boxA.Position.Y - 5).ToVector2();
+                _orangePoly.Position = new Vect2(_orangePoly.Position.X, _orangePoly.Position.Y - 5);
             }
 
             if (_currentKeyboardState.IsKeyDown(Keys.Down))
             {
-                _boxA.Position = new Vect2(_boxA.Position.X, _boxA.Position.Y + 5).ToVector2();
+                _orangePoly.Position = new Vect2(_orangePoly.Position.X, _orangePoly.Position.Y + 5);
             }
 
-            if (_currentKeyboardState.IsKeyDown(Keys.Space))
+            if (_currentKeyboardState.IsKeyDown(Keys.D))
             {
-                _boxA.Angle += 1;
+                _orangePoly.Angle += 10f;
+            }
+
+            if (_currentKeyboardState.IsKeyDown(Keys.A))
+            {
+                _orangePoly.Angle -= 10f;
             }
 
             _prevKeyboardState = _currentKeyboardState;
@@ -133,15 +161,22 @@ namespace KDPhysicsTestGame
             _spriteBatch.Begin();
             
             //Draw reference box
-            _spriteBatch.Draw(_refBox, _refBoxLocation, Color.White);
+            //_spriteBatch.Draw(_refBox, _refBoxLocation, Color.White);
 
             //Draw the axis lines
             _xAxis.Render(_spriteBatch);
             _yAxis.Render(_spriteBatch);
 
-            _boxA.Render(_spriteBatch);
+            //_boxA.Render(_spriteBatch);
+            //_objStats.Render(_spriteBatch, new [] {_boxA}, new []{Color.Black});
 
-            _objStats.Render(_spriteBatch, new [] {_boxA}, new []{Color.Black});
+            _orangePoly.Render(_spriteBatch);
+
+            //Render position
+            _spriteBatch.DrawString(_font, $"Pos: {_orangePoly.Position.X} : {_orangePoly.Position.Y}", new Vector2(800, 100), Color.Black);
+
+            //Render the angle
+            _spriteBatch.DrawString(_font, $"Angle: {_orangePoly.Angle}", new Vector2(800, 125), Color.Black);
 
             _spriteBatch.End();
 

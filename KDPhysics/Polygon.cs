@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace KDPhysics
 {
@@ -7,15 +8,34 @@ namespace KDPhysics
     /// </summary>
     public class Polygon
     {
+        private float _angle;
+        private Vect2 _position;
+
         /// <summary>
         /// Creates a new instance of Polygon.
         /// </summary>
-        /// <param name="vertices">The vertices of the polygon that makes up its shape.</param>
+        /// <param name="vertices">The directional vertices of the polygon that makes up its shape. These are positive/negative values relative to the postion/center of the polygon.</param>
         public Polygon(List<Vect2> vertices)
         {
-            Vertices = vertices;
+            _position = PMath.CalcPolyCenter(vertices);
+
+            BuildVertices(vertices);
 
             BuildEdges();
+        }
+
+        /// <summary>
+        /// Builds the vertices based off of the center.
+        /// </summary>
+        /// <param name="directionalVertices">The directional vertices to use to build the new vertices.</param>
+        public void BuildVertices(List<Vect2> directionalVertices)
+        {
+            Vertices = new List<Vect2>();
+
+            foreach (var vert in directionalVertices)
+            {
+                Vertices.Add(new Vect2(Position.X + vert.X, Position.Y + vert.Y));
+            }
         }
 
         /// <summary>
@@ -43,25 +63,25 @@ namespace KDPhysics
         /// <summary>
         /// The vertices of the polygon.
         /// </summary>
-        public List<Vect2> Vertices { get; } = new List<Vect2>();
+        public List<Vect2> Vertices { get; private set; }
 
         /// <summary>
         /// The center of the polygon.
         /// </summary>
-        public Vect2 Center
+        public Vect2 Position
         {
-            get
+            get => _position;
+            set
             {
-                float totalX = 0;
-                float totalY = 0;
+                var delta = value - _position;
 
-                foreach (var p in Vertices)
+                //Offset all of the vertices
+                for (var i = 0; i < Vertices.Count; i++)
                 {
-                    totalX += p.X;
-                    totalY += p.Y;
+                    Vertices[i] += delta;
                 }
 
-                return new Vect2(totalX / Vertices.Count, totalY / Vertices.Count);
+                _position = value;
             }
         }
 
@@ -86,6 +106,35 @@ namespace KDPhysics
                 var p = Vertices[i];
 
                 Vertices[i] = new Vect2(p.X + x, p.Y + y);
+            }
+        }
+
+        /// <summary>
+        /// The angle of the polygon in radians.
+        /// </summary>
+        public float Angle
+        {
+            get => _angle;
+            set
+            {
+                var angleDelta = Math.Abs(_angle - value);
+
+                _angle = value;
+                RotateVertices(angleDelta);
+            }
+        }
+
+        /// <summary>
+        /// Rotates the vertices by the given angle amount in radians.
+        /// </summary>
+        /// <param name="angle">The angle amount in radians.</param>
+        private void RotateVertices(float angle)
+        {
+            for (var i = 0; i < Vertices.Count; i++)
+            {
+                var vert = Vertices[i];
+
+                Vertices[i] = PMath.RotateVectorAround(vert, Position, angle);
             }
         }
 

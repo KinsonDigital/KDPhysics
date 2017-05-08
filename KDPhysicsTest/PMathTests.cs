@@ -1,5 +1,4 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using KDPhysics;
 // ReSharper disable InconsistentNaming
 
@@ -141,6 +140,17 @@ namespace KDPhysicsTest
         [TestMethod]
         public void RotateVectorAround_Valid_Result()
         {
+            var v1 = new Vect2(2, 0);
+            var v2 = new Vect2(2, 3);
+            var v3 = new Vect2(4, 0);
+
+            var org = new Vect2(2, -2);
+
+            var result1 = PMath.RotateVectorAround(v1, org, PMath.DegreeToRadian(90));
+            var result2 = PMath.RotateVectorAround(v2, org, PMath.DegreeToRadian(90));
+            var result3 = PMath.RotateVectorAround(v3, org, PMath.DegreeToRadian(90));
+
+            ///////////////
             //Arrange
             var vector = new Vect2(3, 4);
             var origin = new Vect2(0, 0);
