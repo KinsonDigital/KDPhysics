@@ -89,11 +89,15 @@ namespace KDPhysicsTestGame
                 new Vect2(99, 11),
                 new Vect2(66, 99),
                 new Vect2(0, 44)
+                //new Vect2(5, 0),
+                //new Vect2(9, 1),
+                //new Vect2(6, 9),
+                //new Vect2(0, 4)
             };
 
             var position = PMath.CalcPolyCenter(worldVerts);
 
-            _orangePoly = new PolyObject(Content, worldVerts);
+            _orangePoly = new PolyObject(Content, worldVerts, new Vect2(0, 0));
         }
 
         /// <summary>

@@ -14,28 +14,29 @@ namespace KDPhysics
         /// <summary>
         /// Creates a new instance of Polygon.
         /// </summary>
-        /// <param name="vertices">The directional vertices of the polygon that makes up its shape. These are positive/negative values relative to the postion/center of the polygon.</param>
-        public Polygon(List<Vect2> vertices)
+        /// <param name="worldVertices">The world vertice locations of the polygon that makes up its shape. These are locations relative to the world top left corner origin.</param>
+        /// <param name="worldPosition">The position of the center</param>
+        public Polygon(List<Vect2> worldVertices, Vect2 worldPosition)
         {
-            _position = PMath.CalcPolyCenter(vertices);
+            var startPosition = PMath.CalcPolyCenter(worldVertices);
 
-            BuildVertices(vertices);
+            //Get the delta of the starting polygon center and the disired position.
+            //This is the amount you want to move the vertices so the center world position
+            //of the new polygon position lands on the given worldPosition param
+            var deltaPosition = worldPosition - startPosition;
 
-            BuildEdges();
-        }
-
-        /// <summary>
-        /// Builds the vertices based off of the center.
-        /// </summary>
-        /// <param name="directionalVertices">The directional vertices to use to build the new vertices.</param>
-        public void BuildVertices(List<Vect2> directionalVertices)
-        {
             Vertices = new List<Vect2>();
 
-            foreach (var vert in directionalVertices)
+            //Adjust the incoming vertices that are relative to the world origin of 0,0
+            //to end up with vertices where the polygon center lands on the worldPosition param
+            foreach (var worldVert in worldVertices)
             {
-                Vertices.Add(new Vect2(Position.X + vert.X, Position.Y + vert.Y));
+                Vertices.Add(new Vect2(worldVert.X + deltaPosition.X, worldVert.Y + deltaPosition.Y));
             }
+
+            _position = PMath.CalcPolyCenter(Vertices);
+
+            BuildEdges();
         }
 
         /// <summary>
