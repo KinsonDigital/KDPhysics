@@ -1,4 +1,5 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using System.Collections.Generic;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using KDPhysics;
 // ReSharper disable InconsistentNaming
 
@@ -204,6 +205,28 @@ namespace KDPhysicsTest
 
             Assert.AreEqual(expected.X, actual.X);
             Assert.AreEqual(expected.Y, actual.Y);
+        }
+
+        [TestMethod]
+        public void CalcPolyCenter_Valid_Result()
+        {
+            //Arrange
+            var vertices = new List<Vect2>
+            {
+                new Vect2(0, 0),
+                new Vect2(10, 0),
+                new Vect2(10, 10),
+                new Vect2(0, 10)
+            };
+
+            var poly = new Polygon(vertices, new Vect2(10, 10));
+            var expected = new Vect2(10f, 10f);
+
+            //Act
+            var actual = poly.Position;
+
+            //Assert
+            Assert.AreEqual(expected, actual);
         }
     }
 }
