@@ -117,7 +117,7 @@ namespace KDPhysics
             get => _angle;
             set
             {
-                var angleDelta = Math.Abs(_angle - value);
+                var angleDelta = value - _angle;
 
                 _angle = value;
                 RotateVertices(angleDelta);
