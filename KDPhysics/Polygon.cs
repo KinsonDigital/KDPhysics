@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace KDPhysics
 {
@@ -65,6 +66,31 @@ namespace KDPhysics
         /// The vertices of the polygon.
         /// </summary>
         public List<Vect2> Vertices { get; private set; }
+
+        /// <summary>
+        /// Gets the top left corner of the polygon based off of the minimum vertice x and y.
+        /// </summary>
+        public Vect2 TopLeftCorner => new Vect2(Vertices.Min(v => v.X), Vertices.Min(v => v.Y));
+
+        /// <summary>
+        /// Gets the location of the left side of the polygon.
+        /// </summary>
+        public float Left => Vertices.Min(v => v.X);
+
+        /// <summary>
+        /// Gets the location of the right side of the polygon.
+        /// </summary>
+        public float Right => Vertices.Max(v => v.X);
+
+        /// <summary>
+        /// Gets the location of the top of the polygon.
+        /// </summary>
+        public float Top => Vertices.Min(v => v.Y);
+
+        /// <summary>
+        /// Gets the location of the bottom of the polygon.
+        /// </summary>
+        public float Bottom => Vertices.Max(v => v.Y);
 
         /// <summary>
         /// The center of the polygon.
@@ -137,6 +163,8 @@ namespace KDPhysics
 
                 Vertices[i] = PMath.RotateVectorAround(vert, Position, angle);
             }
+
+            BuildEdges();
         }
 
         /// <summary>
