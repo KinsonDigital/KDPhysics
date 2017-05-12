@@ -195,8 +195,6 @@ namespace KDPhysics
             return new Vect2(totalX / vertices.Count, totalY / vertices.Count);
         }
 
-
-
         /// <summary>
         /// Calculates the center of the polygon described by the given vertices.
         /// </summary>
