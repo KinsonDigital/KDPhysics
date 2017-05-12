@@ -137,12 +137,12 @@ namespace KDPhysicsTestGame
 
             if (_currentKeyboardState.IsKeyDown(Keys.D))
             {
-                _orangePoly.Angle += 10f;
+                _orangePoly.Angle += 1f;
             }
 
             if (_currentKeyboardState.IsKeyDown(Keys.A))
             {
-                _orangePoly.Angle -= 10f;
+                _orangePoly.Angle -= 1f;
             }
 
             _prevKeyboardState = _currentKeyboardState;
