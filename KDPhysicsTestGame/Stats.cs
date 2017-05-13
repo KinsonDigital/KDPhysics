@@ -66,8 +66,8 @@ namespace KDPhysicsTestGame
             _lines.Add(new Line(physObj.GetVerticeToString(2), Color.White));
             _lines.Add(new Line(physObj.GetVerticeToString(3), Color.Yellow));
 
-            _lines.Add(new Line($"Far Left Vertice: {physObj.FarthestLeftVertice.ConvertToString()}", Color.Black));
-            _lines.Add(new Line($"Far Right Vertice: {physObj.FarthestRightVertice.ConvertToString()}", Color.Black));
+            _lines.Add(new Line($"Far BoundingBoxLeft Vertice: {physObj.FarthestLeftVertice.ConvertToString()}", Color.Black));
+            _lines.Add(new Line($"Far BoundingBoxRight Vertice: {physObj.FarthestRightVertice.ConvertToString()}", Color.Black));
 
             RenderLines(spriteBatch);
         }

@@ -28,8 +28,8 @@ namespace KDPhysicsTestGame
             //Create the origin offset
             _originOffset = new Vector2()
             {
-                X = Math.Abs((_poly.Right - Position.X) - (Position.X - _poly.Left)) / 2f,
-                Y = Math.Abs((_poly.Bottom - Position.Y) - (Position.Y - _poly.Top)) / 2f
+                X = Math.Abs((_poly.BoundingBoxRight - Position.X) - (Position.X - _poly.BoundingBoxLeft)) / 2f,
+                Y = Math.Abs((_poly.BoundingBoxBottom - Position.Y) - (Position.Y - _poly.BoundingBoxTop)) / 2f
             };
         }
 
