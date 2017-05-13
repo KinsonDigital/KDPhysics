@@ -13,7 +13,7 @@ namespace KDPhysics
         {
             var result = new CollisionResult
             {
-                Intersect = true,
+                Intersects = true,
                 WillIntersect = true
             };
 
@@ -39,7 +39,7 @@ namespace KDPhysics
                 ProjectPolygon(axis, polygonB, ref minB, ref maxB);
 
                 // Check if the polygon projections are currentlty intersecting
-                if (IntervalDistance(minA, maxA, minB, maxB) > 0) result.Intersect = false;
+                if (IntervalDistance(minA, maxA, minB, maxB) > 0) result.Intersects = false;
 
                 // ===== 2. Now find if the polygons *will* intersect =====
 
@@ -61,7 +61,7 @@ namespace KDPhysics
                 if (intervalDistance > 0) result.WillIntersect = false;
 
                 // If the polygons are not intersecting and won't intersect, exit the loop
-                if (!result.Intersect && !result.WillIntersect) break;
+                if (!result.Intersects && !result.WillIntersect) break;
 
                 // Check if the current interval distance is the minimum one. If so store
                 // the interval distance and the current distance.
@@ -79,8 +79,8 @@ namespace KDPhysics
 
             // The minimum translation vector can be used to push the polygons appart.
             // First moves the polygons by their velocity
-            // then move polygonA by MinimumTranslationVector.
-            if (result.WillIntersect) result.MinimumTranslationVector = translationAxis * minIntervalDistance;
+            // then move polygonA by MinTranslationVector.
+            if (result.WillIntersect) result.MinTranslationVector = translationAxis * minIntervalDistance;
 
             return result;
         }

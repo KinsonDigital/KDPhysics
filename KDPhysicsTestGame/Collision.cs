@@ -90,7 +90,7 @@ namespace KDPhysicsTestGame
 
             // The minimum translation vector can be used to push the polygons appart.
             // First moves the polygons by their velocity
-            // then move polyA by MinimumTranslationVector.
+            // then move polyA by MinTranslationVector.
             if (result.WillIntersect) result.MinimumTranslationVector = translationAxis * minIntervalDistance;
 
             return result;
