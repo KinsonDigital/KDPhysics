@@ -73,7 +73,10 @@ namespace KDPhysicsTestGame
                 new Vect2(66, 99),
                 new Vect2(0, 44)
             };
-            _orangePoly = new PolyObject(Content, orangePolyVerts, new Vect2(0, 0), "OrangePoly");
+            _orangePoly = new PolyObject(Content, orangePolyVerts, new Vect2(0, 0), "OrangePoly")
+            {
+                MovementLocked = false
+            };
 
             var purplePolyVerts = new List<Vect2>
             {
@@ -83,10 +86,13 @@ namespace KDPhysicsTestGame
                 new Vect2(88, 68),
                 new Vect2(70, 95),
                 new Vect2(12, 99),
-                new Vect2(0, 33),
+                new Vect2(0, 33)
             };
             //Create the purple poly verts
-            _purplePoly = new PolyObject(Content, purplePolyVerts, new Vect2(0, 0), "PurplePoly");
+            _purplePoly = new PolyObject(Content, purplePolyVerts, new Vect2(0, 0), "PurplePoly")
+            {
+                MovementLocked = true
+            };
         }
 
         /// <summary>
@@ -108,38 +114,16 @@ namespace KDPhysicsTestGame
             _currentKeyboardState = Keyboard.GetState();
 
             //If the left key has been pressed
-            if (_currentKeyboardState.IsKeyDown(Keys.Left))
+            if (_currentKeyboardState.IsKeyDown(Keys.M) && _prevKeyboardState.IsKeyUp(Keys.M))
             {
-                _orangePoly.Position = new Vect2(_orangePoly.Position.X - 5, _orangePoly.Position.Y);
-            }
-
-            if (_currentKeyboardState.IsKeyDown(Keys.Right))
-            {
-                _orangePoly.Position = new Vect2(_orangePoly.Position.X + 5, _orangePoly.Position.Y);
-            }
-
-            if (_currentKeyboardState.IsKeyDown(Keys.Up))
-            {
-                _orangePoly.Position = new Vect2(_orangePoly.Position.X, _orangePoly.Position.Y - 5);
-            }
-
-            if (_currentKeyboardState.IsKeyDown(Keys.Down))
-            {
-                _orangePoly.Position = new Vect2(_orangePoly.Position.X, _orangePoly.Position.Y + 5);
-            }
-
-            if (_currentKeyboardState.IsKeyDown(Keys.D))
-            {
-                _orangePoly.Angle += 1f;
-            }
-
-            if (_currentKeyboardState.IsKeyDown(Keys.A))
-            {
-                _orangePoly.Angle -= 1f;
+                _orangePoly.MovementLocked = ! _orangePoly.MovementLocked;
+                _purplePoly.MovementLocked = ! _purplePoly.MovementLocked;
             }
 
             _prevKeyboardState = _currentKeyboardState;
 
+            _orangePoly.Update();
+            _purplePoly.Update();
             base.Update(gameTime);
         }
 
