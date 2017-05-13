@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using KDPhysics;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -14,14 +15,16 @@ namespace KDPhysicsTestGame
         private readonly GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
         private Texture2D _refBox;
-        private PhysObj _boxA;
         private Axis _xAxis;
         private Axis _yAxis;
-        private Vector2 _refBoxLocation;
         private KeyboardState _currentKeyboardState;
         private KeyboardState _prevKeyboardState;
         private SpriteFont _font;
-        private Stats _objStats;
+
+        private PolyObject _orangePoly;
+        private PolyObject _purplePoly;
+
+        private CollisionResult _collisionResult;
 
         public TestGame()
         {
@@ -44,8 +47,6 @@ namespace KDPhysicsTestGame
         {
             IsMouseVisible = true;
 
-            _refBoxLocation = new Vector2(400, 400);
-
             base.Initialize();
         }
 
@@ -56,7 +57,6 @@ namespace KDPhysicsTestGame
         protected override void LoadContent()
         {
             _font = Content.Load<SpriteFont>("Font/arial-36");
-            _objStats = new Stats(Content, new Vector2(_graphics.PreferredBackBufferWidth - 300,50));
 
             // Create a new SpriteBatch, which can be used to draw textures.
             _spriteBatch = new SpriteBatch(GraphicsDevice);
@@ -64,13 +64,37 @@ namespace KDPhysicsTestGame
             _refBox = new Texture2D(_graphics.GraphicsDevice, 100, 100);
             _refBox.SetAsSolid(100, 100, Color.Red);
 
-            _boxA = new PhysObj(_graphics.GraphicsDevice, 150, 50, new Vector2(200, 200), Color.Gray)
-            {
-                Name = "Box-A"
-            };
-
             _xAxis = new Axis(_graphics.GraphicsDevice, Content, AxisType.XAxis, new Vector2(60, _graphics.PreferredBackBufferHeight - 40), _graphics.PreferredBackBufferWidth - 70, "X Axis", Color.Black, Color.Black);
             _yAxis = new Axis(_graphics.GraphicsDevice, Content, AxisType.YAxis, new Vector2(60, 20), _graphics.PreferredBackBufferHeight - 60, "Y Axis", Color.Black, Color.Black);
+
+            //Create the orange poly verts
+            var orangePolyVerts = new List<Vect2>
+            {
+                new Vect2(53, 0),
+                new Vect2(99, 11),
+                new Vect2(66, 99),
+                new Vect2(0, 44)
+            };
+            _orangePoly = new PolyObject(Content, orangePolyVerts, new Vect2(100, 100), "OrangePoly")
+            {
+                MovementLocked = false
+            };
+
+            var purplePolyVerts = new List<Vect2>
+            {
+                new Vect2(25, 0),
+                new Vect2(54, 3),
+                new Vect2(84, 22),
+                new Vect2(88, 68),
+                new Vect2(70, 95),
+                new Vect2(12, 99),
+                new Vect2(0, 33)
+            };
+            //Create the purple poly verts
+            _purplePoly = new PolyObject(Content, purplePolyVerts, new Vect2(600, 600), "PurplePoly")
+            {
+                MovementLocked = true
+            };
         }
 
         /// <summary>
@@ -92,32 +116,26 @@ namespace KDPhysicsTestGame
             _currentKeyboardState = Keyboard.GetState();
 
             //If the left key has been pressed
-            if (_currentKeyboardState.IsKeyDown(Keys.Left))
+            if (_currentKeyboardState.IsKeyDown(Keys.L) && _prevKeyboardState.IsKeyUp(Keys.L))
             {
-                _boxA.Position = new Vect2(_boxA.Position.X - 5, _boxA.Position.Y).ToVector2();
-            }
-
-            if (_currentKeyboardState.IsKeyDown(Keys.Right))
-            {
-                _boxA.Position = new Vect2(_boxA.Position.X + 5, _boxA.Position.Y).ToVector2();
-            }
-
-            if (_currentKeyboardState.IsKeyDown(Keys.Up))
-            {
-                _boxA.Position = new Vect2(_boxA.Position.X, _boxA.Position.Y - 5).ToVector2();
-            }
-
-            if (_currentKeyboardState.IsKeyDown(Keys.Down))
-            {
-                _boxA.Position = new Vect2(_boxA.Position.X, _boxA.Position.Y + 5).ToVector2();
-            }
-
-            if (_currentKeyboardState.IsKeyDown(Keys.Space))
-            {
-                _boxA.Angle += 1;
+                _orangePoly.MovementLocked = ! _orangePoly.MovementLocked;
+                _purplePoly.MovementLocked = ! _purplePoly.MovementLocked;
             }
 
             _prevKeyboardState = _currentKeyboardState;
+
+            _orangePoly.Update();
+            _purplePoly.Update();
+
+            //Check for collision
+            _collisionResult = CollisionChecker.PolygonCollision(_orangePoly.PhysicsPoly, _purplePoly.PhysicsPoly, new Vect2(0, 0));
+
+            //If the polygons are colliding
+            if (_collisionResult.Intersect)
+            {
+                //Separate the first(orange) polygon from the second(purple) polygon
+                _orangePoly.Position += _collisionResult.MinimumTranslationVector;
+            }
 
             base.Update(gameTime);
         }
@@ -132,16 +150,33 @@ namespace KDPhysicsTestGame
 
             _spriteBatch.Begin();
             
-            //Draw reference box
-            _spriteBatch.Draw(_refBox, _refBoxLocation, Color.White);
-
             //Draw the axis lines
             _xAxis.Render(_spriteBatch);
             _yAxis.Render(_spriteBatch);
 
-            _boxA.Render(_spriteBatch);
+            //Render the orange poly and related info
+            _orangePoly.Render(_spriteBatch);
 
-            _objStats.Render(_spriteBatch, new [] {_boxA}, new []{Color.Black});
+            //Render position
+            _spriteBatch.DrawString(_font, $"Orange Pos: {_orangePoly.Position.X} : {_orangePoly.Position.Y}", new Vector2(800, 100), Color.Black);
+
+            //Render the angle
+            _spriteBatch.DrawString(_font, $"Orange Angle: {_orangePoly.Angle}", new Vector2(800, 125), Color.Black);
+
+            //Render the purple poly and related info
+            _purplePoly.Render(_spriteBatch);
+
+            //Render position
+            _spriteBatch.DrawString(_font, $"Purple Pos: {_purplePoly.Position.X} : {_purplePoly.Position.Y}", new Vector2(800, 200), Color.Black);
+
+            //Render the angle
+            _spriteBatch.DrawString(_font, $"Purple Angle: {_purplePoly.Angle}", new Vector2(800, 225), Color.Black);
+
+            //Render if the polygons are colliding
+            _spriteBatch.DrawString(_font, _collisionResult.Intersect ? "COLLISION!!" : "NOTHING!!", new Vector2(800, 300), _collisionResult.Intersect ? Color.SpringGreen : Color.Black);
+
+            //Render the minumum translation vector
+            _spriteBatch.DrawString(_font, $"Min Trans. Vector: {_collisionResult.MinimumTranslationVector}", new Vector2(800, 325), Color.Black);
 
             _spriteBatch.End();
 

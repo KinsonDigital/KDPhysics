@@ -1,4 +1,4 @@
-﻿using System;
+﻿using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using KDPhysics;
 // ReSharper disable InconsistentNaming
@@ -141,6 +141,17 @@ namespace KDPhysicsTest
         [TestMethod]
         public void RotateVectorAround_Valid_Result()
         {
+            var v1 = new Vect2(2, 0);
+            var v2 = new Vect2(2, 3);
+            var v3 = new Vect2(4, 0);
+
+            var org = new Vect2(2, -2);
+
+            var result1 = PMath.RotateVectorAround(v1, org, PMath.DegreeToRadian(90));
+            var result2 = PMath.RotateVectorAround(v2, org, PMath.DegreeToRadian(90));
+            var result3 = PMath.RotateVectorAround(v3, org, PMath.DegreeToRadian(90));
+
+            ///////////////
             //Arrange
             var vector = new Vect2(3, 4);
             var origin = new Vect2(0, 0);
@@ -194,6 +205,28 @@ namespace KDPhysicsTest
 
             Assert.AreEqual(expected.X, actual.X);
             Assert.AreEqual(expected.Y, actual.Y);
+        }
+
+        [TestMethod]
+        public void CalcPolyCenter_Valid_Result()
+        {
+            //Arrange
+            var vertices = new List<Vect2>
+            {
+                new Vect2(0, 0),
+                new Vect2(10, 0),
+                new Vect2(10, 10),
+                new Vect2(0, 10)
+            };
+
+            var poly = new Polygon(vertices, new Vect2(10, 10));
+            var expected = new Vect2(10f, 10f);
+
+            //Act
+            var actual = poly.Position;
+
+            //Assert
+            Assert.AreEqual(expected, actual);
         }
     }
 }

@@ -47,6 +47,7 @@
     <Compile Include="Enums.cs" />
     <Compile Include="ExtensionMethods.cs" />
     <Compile Include="PhysObj.cs" />
+    <Compile Include="PolyObject.cs" />
     <Compile Include="Primitives2D.cs" />
     <Compile Include="Stats.cs" />
     <Compile Include="TestGame.cs" />
@@ -62,6 +63,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\Graphics\OrangePoly.png" />
+    <Content Include="Content\Graphics\PurplePoly.png" />
     <Content Include="Icon.ico" />
   </ItemGroup>
   <ItemGroup>

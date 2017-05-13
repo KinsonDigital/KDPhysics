@@ -97,6 +97,17 @@ namespace KDPhysics
         }
 
         /// <summary>
+        /// Returns a vector with the given scalar amount subtracted.
+        /// </summary>
+        /// <param name="vector">The vector to subtract the scalar from.</param>
+        /// <param name="scalar">The scalar to subtract from each component.</param>
+        /// <returns></returns>
+        public static Vect2 operator -(Vect2 vector, float scalar)
+        {
+            return new Vect2(vector.X - scalar, vector.Y - scalar);
+        }
+
+        /// <summary>
         /// Adds the left and right vector operands.
         /// </summary>
         /// <param name="v1">The first vector to add.</param>
@@ -105,6 +116,17 @@ namespace KDPhysics
         public static Vect2 operator +(Vect2 v1, Vect2 v2)
         {
             return new Vect2(v1.X + v2.X, v1.Y + v2.Y);
+        }
+
+        /// <summary>
+        /// Returns a vector with the given scalar amount added.
+        /// </summary>
+        /// <param name="vector">The vector to add the scalar to.</param>
+        /// <param name="scalar">The scalar to add to each component.</param>
+        /// <returns></returns>
+        public static Vect2 operator +(Vect2 vector, float scalar)
+        {
+            return new Vect2(vector.X - scalar, vector.Y - scalar);
         }
 
         /// <summary>
@@ -150,7 +172,7 @@ namespace KDPhysics
             const char LEFT_BRACE = '{';
             const char RIGHT_BRACE = '}';
 
-            return $"{Name}{(string.IsNullOrEmpty(Name) ? "" : ":")} {LEFT_BRACE} X: {Math.Round(X, 1)} : Y: {Math.Round(Y, 1)} {RIGHT_BRACE}";
+            return $"{Name}{(string.IsNullOrEmpty(Name) ? "" : ":")} {LEFT_BRACE} X: {Math.Round(X, 2)} : Y: {Math.Round(Y, 2)} {RIGHT_BRACE}";
         }
     }
 }

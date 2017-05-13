@@ -1,9 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.Specialized;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace KDPhysics
 {
@@ -142,16 +138,20 @@ namespace KDPhysics
         /// <param name="radians">The degrees to rotate v1 from its current location to its new location around origin.
         /// Use positive number to rotate clockwise and negative number to rotate counter clockwise.</param>
         /// <returns></returns>
-        public static Vect2 RotateVectorAround(Vect2 v1, Vect2 origin, double radians)
+        public static Vect2 RotateVectorAround(Vect2 v1, Vect2 origin, float radians)
         {
-            var translatedVector = TranslateToOrigin(v1, origin);
+            var cos = (float)Math.Cos(radians);
+            var sin = (float)Math.Sin(radians);
+            var dx = v1.X - origin.X;
+            var dy = v1.Y - origin.Y;
 
-            //Apply rotation
-            var rotatedX = translatedVector.X * (float)Math.Cos(radians) - translatedVector.Y * (float)Math.Sin(radians);
-            var rotatedY = translatedVector.X * (float)Math.Sin(radians) + translatedVector.Y * (float)Math.Cos(radians);
+            var tempX = dx * cos - dy * sin;
+            var tempY = dx * sin + dy * cos;
 
-            //Tanslate v1 back
-            return new Vect2(rotatedX + origin.X, rotatedY + origin.Y);
+            var x = tempX + origin.X;
+            var y = tempY + origin.Y;
+
+            return new Vect2(x, y);
         }
 
         /// <summary>
@@ -174,6 +174,43 @@ namespace KDPhysics
             var mag = Magnitude(vector);
 
             return new Vect2(vector.X / mag, vector.Y / mag);
+        }
+
+        /// <summary>
+        /// Calculates the center of the polygon described by the given directionalVertices.
+        /// </summary>
+        /// <param name="vertices">The directionalVertices that describe the polygon's shape.</param>
+        /// <returns></returns>
+        public static Vect2 CalcPolyCenter(List<Vect2> vertices)
+        {
+            float totalX = 0;
+            float totalY = 0;
+
+            foreach (var p in vertices)
+            {
+                totalX += p.X;
+                totalY += p.Y;
+            }
+
+            return new Vect2(totalX / vertices.Count, totalY / vertices.Count);
+        }
+
+        /// <summary>
+        /// Calculates the center of the polygon described by the given vertices.
+        /// </summary>
+        /// <param name="directionalVertices">The vertices that describe the polygon's shape.</param>
+        /// <param name="worldPosition">The position in 2D world space.</param>
+        /// <returns></returns>
+        public static List<Vect2> CalcWorldVertices(List<Vect2> directionalVertices, Vect2 worldPosition)
+        {
+            var result = new List<Vect2>();
+
+            foreach (var vert in directionalVertices)
+            {
+                result.Add(new Vect2(vert.X + worldPosition.X, vert.Y + worldPosition.Y));
+            }
+
+            return result;
         }
     }
 }
