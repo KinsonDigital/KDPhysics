@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 
 namespace KDPhysics
@@ -9,8 +8,8 @@ namespace KDPhysics
     /// </summary>
     public class Polygon
     {
-        private float _angle;
-        private Vect2 _position;
+        private float _angle;//The angle of the polygon in radians
+        private Vect2 _position;//The position of the polygon. This is the center of the polygon and origin of rotation
 
         /// <summary>
         /// Creates a new instance of Polygon.
@@ -40,23 +39,7 @@ namespace KDPhysics
             BuildEdges();
         }
 
-        /// <summary>
-        /// Builds the edges of the polygon using its vertices.
-        /// </summary>
-        public void BuildEdges()
-        {
-            Edges.Clear();
-
-            for (var i = 0; i < Vertices.Count; i++)
-            {
-                var p1 = Vertices[i];
-
-                var p2 = i + 1 >= Vertices.Count ? Vertices[0] : Vertices[i + 1];
-
-                Edges.Add(p2 - p1);
-            }
-        }
-
+        #region Props
         /// <summary>
         /// The edges of the polygon.
         /// </summary>
@@ -65,35 +48,30 @@ namespace KDPhysics
         /// <summary>
         /// The vertices of the polygon.
         /// </summary>
-        public List<Vect2> Vertices { get; private set; }
+        public List<Vect2> Vertices { get; }
 
         /// <summary>
-        /// Gets the top left corner of the polygon based off of the minimum vertice x and y.
+        /// Gets left side X location of the polygon bounding box.
         /// </summary>
-        public Vect2 TopLeftCorner => new Vect2(Vertices.Min(v => v.X), Vertices.Min(v => v.Y));
+        public float BoundingBoxLeft => Vertices.Min(v => v.X);
 
         /// <summary>
-        /// Gets the location of the left side of the polygon.
+        /// Gets right side X location of the polygon bounding box.
         /// </summary>
-        public float Left => Vertices.Min(v => v.X);
+        public float BoundingBoxRight => Vertices.Max(v => v.X);
 
         /// <summary>
-        /// Gets the location of the right side of the polygon.
+        /// Gets top Y location of the polygon bounding box.
         /// </summary>
-        public float Right => Vertices.Max(v => v.X);
+        public float BoundingBoxTop => Vertices.Min(v => v.Y);
 
         /// <summary>
-        /// Gets the location of the top of the polygon.
+        /// Gets bottom Y location of the polygon bounding box.
         /// </summary>
-        public float Top => Vertices.Min(v => v.Y);
+        public float BoundingBoxBottom => Vertices.Max(v => v.Y);
 
         /// <summary>
-        /// Gets the location of the bottom of the polygon.
-        /// </summary>
-        public float Bottom => Vertices.Max(v => v.Y);
-
-        /// <summary>
-        /// The center of the polygon.
+        /// The position of the polygon.  This is also the center of the polygon and the center of rotation.
         /// </summary>
         public Vect2 Position
         {
@@ -113,30 +91,6 @@ namespace KDPhysics
         }
 
         /// <summary>
-        /// Offsets the polygon by the given vector amount.
-        /// </summary>
-        /// <param name="vector">The vector to offset the polygon with.</param>
-        public void Offset(Vect2 vector)
-        {
-            Offset(vector.X, vector.Y);
-        }
-
-        /// <summary>
-        /// Offsets the polygon by the amount of the given X and Y.
-        /// </summary>
-        /// <param name="x">The x amount to offset.</param>
-        /// <param name="y">The y amount to offset.</param>
-        public void Offset(float x, float y)
-        {
-            for (var i = 0; i < Vertices.Count; i++)
-            {
-                var p = Vertices[i];
-
-                Vertices[i] = new Vect2(p.X + x, p.Y + y);
-            }
-        }
-
-        /// <summary>
         /// The angle of the polygon in radians.
         /// </summary>
         public float Angle
@@ -150,21 +104,24 @@ namespace KDPhysics
                 RotateVertices(angleDelta);
             }
         }
+        #endregion
 
+        #region Public Methods
         /// <summary>
-        /// Rotates the vertices by the given angle amount in radians.
+        /// Builds the edges of the polygon using its vertices.
         /// </summary>
-        /// <param name="angle">The angle amount in radians.</param>
-        private void RotateVertices(float angle)
+        public void BuildEdges()
         {
+            Edges.Clear();
+
             for (var i = 0; i < Vertices.Count; i++)
             {
-                var vert = Vertices[i];
+                var p1 = Vertices[i];
 
-                Vertices[i] = PMath.RotateVectorAround(vert, Position, angle);
+                var p2 = i + 1 >= Vertices.Count ? Vertices[0] : Vertices[i + 1];
+
+                Edges.Add(p2 - p1);
             }
-
-            BuildEdges();
         }
 
         /// <summary>
@@ -183,6 +140,23 @@ namespace KDPhysics
             }
 
             return result;
+        }
+        #endregion
+
+        /// <summary>
+        /// Rotates the vertices by the given angle in radians.
+        /// </summary>
+        /// <param name="angle">The angle amount in radians.</param>
+        private void RotateVertices(float angle)
+        {
+            for (var i = 0; i < Vertices.Count; i++)
+            {
+                var vert = Vertices[i];
+
+                Vertices[i] = PMath.RotateVectorAround(vert, Position, angle);
+            }
+
+            BuildEdges();
         }
     }
 }
