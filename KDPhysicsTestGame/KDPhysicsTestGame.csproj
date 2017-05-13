@@ -64,6 +64,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\Graphics\OrangePoly.png" />
+    <Content Include="Content\Graphics\PurplePoly.png" />
     <Content Include="Icon.ico" />
   </ItemGroup>
   <ItemGroup>
