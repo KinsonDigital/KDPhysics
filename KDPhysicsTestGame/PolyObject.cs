@@ -7,6 +7,7 @@ using KDPhysics;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 
 namespace KDPhysicsTestGame
 {
@@ -15,6 +16,8 @@ namespace KDPhysicsTestGame
         private readonly Polygon _poly;
         private readonly Texture2D _texture;
         private readonly Vector2 _originOffset;
+        private KeyboardState _currentKeyboardState;
+        private KeyboardState _prevKeyboardState;
 
         public PolyObject(ContentManager contentMgr, List<Vect2> vertices, Vect2 worldPosition, string graphicName)
         {
@@ -53,6 +56,20 @@ namespace KDPhysicsTestGame
             set => _poly.Position = value;
         }
 
+
+        /// <summary>
+        /// Gets or sets a value indicating if the movement of the poly is locked.
+        /// </summary>
+        public bool MovementLocked { get; set; }
+
+        /// <summary>
+        /// Updates the polygon.
+        /// </summary>
+        public void Update()
+        {
+            MovePoly();
+        }
+
         /// <summary>
         /// Renders the polygon object.
         /// </summary>
@@ -72,11 +89,56 @@ namespace KDPhysicsTestGame
             //Render border to see where the physics polygon is in relation to the texture
             for (var i = 0; i < _poly.Vertices.Count; i++)
             {
-                spriteBatch.DrawLine(_poly.Vertices[i].ToVector2(), _poly.Vertices[i < _poly.Vertices.Count - 1 ? i + 1 : 0].ToVector2(), Color.Green, 2f);
+                spriteBatch.DrawLine(_poly.Vertices[i].ToVector2(), _poly.Vertices[i < _poly.Vertices.Count - 1 ? i + 1 : 0].ToVector2(), Color.Yellow, 2f);
             }
 
             //Render the center
-            spriteBatch.FillRectangle(new Rectangle((int)(_poly.Position.X - 2.5f), (int)(_poly.Position.Y - 2.5f), 5, 5), Color.Black);
+            spriteBatch.FillRectangle(new Rectangle((int)(_poly.Position.X - 2.5f), (int)(_poly.Position.Y - 2.5f), 5, 5), MovementLocked ? Color.Red : Color.Green);
+        }
+
+        /// <summary>
+        /// Moves the poly.
+        /// </summary>
+        private void MovePoly()
+        {
+            //If the movement is locked, exit
+            if (MovementLocked)
+                return;
+
+            _currentKeyboardState = Keyboard.GetState();
+
+            //If the left key has been pressed
+            if (_currentKeyboardState.IsKeyDown(Keys.Left))
+            {
+                _poly.Position = new Vect2(_poly.Position.X - 5, _poly.Position.Y);
+            }
+
+            if (_currentKeyboardState.IsKeyDown(Keys.Right))
+            {
+                _poly.Position = new Vect2(_poly.Position.X + 5, _poly.Position.Y);
+            }
+
+            if (_currentKeyboardState.IsKeyDown(Keys.Up))
+            {
+                _poly.Position = new Vect2(_poly.Position.X, _poly.Position.Y - 5);
+            }
+
+            if (_currentKeyboardState.IsKeyDown(Keys.Down))
+            {
+                _poly.Position = new Vect2(_poly.Position.X, _poly.Position.Y + 5);
+            }
+
+            if (_currentKeyboardState.IsKeyDown(Keys.D))
+            {
+                Angle += 1f;
+            }
+
+            if (_currentKeyboardState.IsKeyDown(Keys.A))
+            {
+                Angle -= 1f;
+            }
+
+            _prevKeyboardState = _currentKeyboardState;
         }
     }
 }
