@@ -128,7 +128,7 @@ namespace KDPhysicsTestGame
             _purplePoly.Update();
 
             //Check for collision
-            _collisionResult = CollisionChecker.PolygonCollision(_orangePoly.PhysicsPoly, _purplePoly.PhysicsPoly, new Vect2(0, 0));
+            _collisionResult = CollisionChecker.CheckCollision(_orangePoly.PhysicsPoly, _purplePoly.PhysicsPoly);
 
             //If the polygons are colliding
             if (_collisionResult.Intersects)
