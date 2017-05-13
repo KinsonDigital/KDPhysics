@@ -92,6 +92,7 @@ namespace KDPhysics
                 // the interval distance and the current distance.
                 // This will be used to calculate the minimum translation vector
                 intervalDistance = Math.Abs(intervalDistance);
+
                 if (! (intervalDistance < minIntervalDistance))
                     continue;
 
@@ -105,9 +106,11 @@ namespace KDPhysics
             }
 
             // The minimum translation vector can be used to push the polygons appart.
-            // First moves the polygons by their velocity
-            // then move polygonA by MinTranslationVector.
-            if (result.WillIntersect) result.MinTranslationVector = translationAxis * minIntervalDistance;
+            // If the polygons will intersect, the min translation vector should represent
+            // the amount not only how much the polygons are penetrating/intersecting by the 
+            // amount that the polygon will move next iteration.
+            if (result.WillIntersect)
+                result.MinTranslationVector = translationAxis * minIntervalDistance;
 
             return result;
         }
@@ -155,9 +158,9 @@ namespace KDPhysics
             min = d;
             max = d;
 
-            for (var i = 0; i < polygon.Vertices.Count; i++)
+            foreach (var vert in polygon.Vertices)
             {
-                d = PMath.DotProduct(polygon.Vertices[i], axis);
+                d = PMath.DotProduct(vert, axis);
 
                 if (d < min)
                 {
