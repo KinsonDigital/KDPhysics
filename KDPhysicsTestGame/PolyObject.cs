@@ -16,9 +16,9 @@ namespace KDPhysicsTestGame
         private readonly Texture2D _texture;
         private readonly Vector2 _originOffset;
 
-        public PolyObject(ContentManager contentMgr, List<Vect2> vertices, Vect2 worldPosition)
+        public PolyObject(ContentManager contentMgr, List<Vect2> vertices, Vect2 worldPosition, string graphicName)
         {
-            _texture = contentMgr.Load<Texture2D>("Graphics/Polygon");
+            _texture = contentMgr.Load<Texture2D>($@"Graphics/{graphicName}");
 
             _poly = new Polygon(vertices, worldPosition);
 

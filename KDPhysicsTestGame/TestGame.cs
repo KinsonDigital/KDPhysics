@@ -75,29 +75,17 @@ namespace KDPhysicsTestGame
             _xAxis = new Axis(_graphics.GraphicsDevice, Content, AxisType.XAxis, new Vector2(60, _graphics.PreferredBackBufferHeight - 40), _graphics.PreferredBackBufferWidth - 70, "X Axis", Color.Black, Color.Black);
             _yAxis = new Axis(_graphics.GraphicsDevice, Content, AxisType.YAxis, new Vector2(60, 20), _graphics.PreferredBackBufferHeight - 60, "Y Axis", Color.Black, Color.Black);
 
-            //var vertices = new List<Vect2>
-            //{
-            //    new Vect2(-50, -50),
-            //    new Vect2(50, -50),
-            //    new Vect2(50, 50),
-            //    new Vect2(-50, 50)
-            //};
-
+            //Create the orange poly verts
             var worldVerts = new List<Vect2>
             {
                 new Vect2(53, 0),
                 new Vect2(99, 11),
                 new Vect2(66, 99),
                 new Vect2(0, 44)
-                //new Vect2(5, 0),
-                //new Vect2(9, 1),
-                //new Vect2(6, 9),
-                //new Vect2(0, 4)
             };
+            _orangePoly = new PolyObject(Content, worldVerts, new Vect2(0, 0), "OrangePoly");
 
-            var position = PMath.CalcPolyCenter(worldVerts);
 
-            _orangePoly = new PolyObject(Content, worldVerts, new Vect2(0, 0));
         }
 
         /// <summary>
