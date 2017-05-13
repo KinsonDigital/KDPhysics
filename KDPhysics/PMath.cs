@@ -9,7 +9,11 @@ namespace KDPhysics
     public static class PMath
     {
         // ReSharper disable once InconsistentNaming
-        public static float PI = 3.1415926535897931f;
+
+        /// <summary>
+        /// Represents the ratio of the circumference of a circle to its diameter, specified by the contant, π.
+        /// </summary>
+        public static float PI => 3.1415926535897931f;
 
         /// <summary>
         /// Calculates the dot product of the 2 given vectors.
@@ -20,7 +24,6 @@ namespace KDPhysics
         public static float DotProduct(Vect2 v1, Vect2 v2)
         {
             //Dot Product Ref: https://www.mathsisfun.com/algebra/vectors-dot-product.html
-
             return (v1.X * v2.X) + (v1.Y * v2.Y);
         }
 
@@ -120,10 +123,10 @@ namespace KDPhysics
         }
 
         /// <summary>
-        /// Translate vector v1 to the vector origin.
+        /// Translate the given vector to the given origin vector.
         /// </summary>
-        /// <param name="vector">The vector to translate to the origin.</param>
-        /// <param name="origin">The origin vector to translate v1 to.</param>
+        /// <param name="vector">The vector to translate to the given origin.</param>
+        /// <param name="origin">The origin vector that the given vector will translate to.</param>
         /// <returns></returns>
         public static Vect2 TranslateToOrigin(Vect2 vector, Vect2 origin)
         {
@@ -131,19 +134,19 @@ namespace KDPhysics
         }
 
         /// <summary>
-        /// Rotates vector v1 around the given origin.
+        /// Rotates the given vector around the given origin by the given angle in radians.
         /// </summary>
-        /// <param name="v1">The vector to rotate around origin.</param>
-        /// <param name="origin">The origin vector for v1 to rotate around.</param>
-        /// <param name="radians">The degrees to rotate v1 from its current location to its new location around origin.
+        /// <param name="vector">The vector to rotate around the origin.</param>
+        /// <param name="origin">The origin vector that vector rotates around.</param>
+        /// <param name="radians">The degrees in radians to rotate vector from its current location to its new location around the origin vector.
         /// Use positive number to rotate clockwise and negative number to rotate counter clockwise.</param>
         /// <returns></returns>
-        public static Vect2 RotateVectorAround(Vect2 v1, Vect2 origin, float radians)
+        public static Vect2 RotateVectorAround(Vect2 vector, Vect2 origin, float radians)
         {
             var cos = (float)Math.Cos(radians);
             var sin = (float)Math.Sin(radians);
-            var dx = v1.X - origin.X;
-            var dy = v1.Y - origin.Y;
+            var dx = vector.X - origin.X;//The delta x
+            var dy = vector.Y - origin.Y;//The delta y
 
             var tempX = dx * cos - dy * sin;
             var tempY = dx * sin + dy * cos;
@@ -177,7 +180,9 @@ namespace KDPhysics
         }
 
         /// <summary>
-        /// Calculates the center of the polygon described by the given directionalVertices.
+        /// Calculates the center of the polygon described by the given directional vertices.
+        /// Directional vertices are vectors whos components represent the direction amount relative to another point.
+        /// Example: Vector (50,-10) would represent 50 to the right and 10 up.
         /// </summary>
         /// <param name="vertices">The directionalVertices that describe the polygon's shape.</param>
         /// <returns></returns>
