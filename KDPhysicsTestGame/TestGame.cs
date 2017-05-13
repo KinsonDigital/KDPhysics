@@ -24,6 +24,8 @@ namespace KDPhysicsTestGame
         private PolyObject _orangePoly;
         private PolyObject _purplePoly;
 
+        private CollisionResult _collisionResult;
+
         public TestGame()
         {
             _graphics = new GraphicsDeviceManager(this)
@@ -73,7 +75,7 @@ namespace KDPhysicsTestGame
                 new Vect2(66, 99),
                 new Vect2(0, 44)
             };
-            _orangePoly = new PolyObject(Content, orangePolyVerts, new Vect2(0, 0), "OrangePoly")
+            _orangePoly = new PolyObject(Content, orangePolyVerts, new Vect2(100, 100), "OrangePoly")
             {
                 MovementLocked = false
             };
@@ -89,7 +91,7 @@ namespace KDPhysicsTestGame
                 new Vect2(0, 33)
             };
             //Create the purple poly verts
-            _purplePoly = new PolyObject(Content, purplePolyVerts, new Vect2(0, 0), "PurplePoly")
+            _purplePoly = new PolyObject(Content, purplePolyVerts, new Vect2(600, 600), "PurplePoly")
             {
                 MovementLocked = true
             };
@@ -114,7 +116,7 @@ namespace KDPhysicsTestGame
             _currentKeyboardState = Keyboard.GetState();
 
             //If the left key has been pressed
-            if (_currentKeyboardState.IsKeyDown(Keys.M) && _prevKeyboardState.IsKeyUp(Keys.M))
+            if (_currentKeyboardState.IsKeyDown(Keys.L) && _prevKeyboardState.IsKeyUp(Keys.L))
             {
                 _orangePoly.MovementLocked = ! _orangePoly.MovementLocked;
                 _purplePoly.MovementLocked = ! _purplePoly.MovementLocked;
@@ -124,6 +126,17 @@ namespace KDPhysicsTestGame
 
             _orangePoly.Update();
             _purplePoly.Update();
+
+            //Check for collision
+            _collisionResult = CollisionChecker.PolygonCollision(_orangePoly.PhysicsPoly, _purplePoly.PhysicsPoly, new Vect2(0, 0));
+
+            //If the polygons are colliding
+            if (_collisionResult.Intersect)
+            {
+                //Separate the first(orange) polygon from the second(purple) polygon
+                _orangePoly.Position += _collisionResult.MinimumTranslationVector;
+            }
+
             base.Update(gameTime);
         }
 
@@ -158,6 +171,12 @@ namespace KDPhysicsTestGame
 
             //Render the angle
             _spriteBatch.DrawString(_font, $"Purple Angle: {_purplePoly.Angle}", new Vector2(800, 225), Color.Black);
+
+            //Render if the polygons are colliding
+            _spriteBatch.DrawString(_font, _collisionResult.Intersect ? "COLLISION!!" : "NOTHING!!", new Vector2(800, 300), _collisionResult.Intersect ? Color.SpringGreen : Color.Black);
+
+            //Render the minumum translation vector
+            _spriteBatch.DrawString(_font, $"Min Trans. Vector: {_collisionResult.MinimumTranslationVector}", new Vector2(800, 325), Color.Black);
 
             _spriteBatch.End();
 

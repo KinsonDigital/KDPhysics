@@ -50,6 +50,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AABB.cs" />
+    <Compile Include="CollisionChecker.cs" />
+    <Compile Include="CollisionResult.cs" />
     <Compile Include="PMath.cs" />
     <Compile Include="Polygon.cs" />
     <Compile Include="Vect2.cs" />
