@@ -136,7 +136,7 @@ namespace KDPhysics
             {
                 if (result != "") result += " ";
 
-                result += "{" + p + "}";
+                result += $"({p.X}, {p.Y})";
             }
 
             return result;
