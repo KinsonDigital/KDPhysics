@@ -48,11 +48,11 @@ namespace KDPhysicsTest
             var actualVectorLeftHand = vector * 2;
             var actualVectorRightHand = 2 *vector;
 
-            //Left Hand Assert
+            //BoundingBoxLeft Hand Assert
             Assert.AreEqual(expected.X, actualVectorLeftHand.X);//Assert x component
             Assert.AreEqual(expected.Y, actualVectorLeftHand.Y);//Assert x component
 
-            //Right Hand Assert
+            //BoundingBoxRight Hand Assert
             Assert.AreEqual(expected.X, actualVectorRightHand.X);//Assert x component
             Assert.AreEqual(expected.Y, actualVectorRightHand.Y);//Assert x component
         }

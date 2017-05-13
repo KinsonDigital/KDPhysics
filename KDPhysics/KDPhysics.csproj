@@ -49,7 +49,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AABB.cs" />
     <Compile Include="CollisionChecker.cs" />
     <Compile Include="CollisionResult.cs" />
     <Compile Include="PMath.cs" />

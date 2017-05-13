@@ -1,16 +1,24 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace KDPhysics
+﻿namespace KDPhysics
 {
-    // Structure that stores the results of the PolygonCollision function
+    /// <summary>
+    /// Holds information about a collision between 2 polygons.
+    /// </summary>
     public struct CollisionResult
     {
-        public bool WillIntersect; // Are the polygons going to intersect forward in time?
-        public bool Intersect; // Are the polygons currently intersecting
-        public Vect2 MinimumTranslationVector; // The translation to apply to polygon A to push the polygons appart.
+        /// <summary>
+        /// Gets or sets a value indicating if 2 polygons are going to collide in the next frame.
+        /// </summary>
+        public bool WillIntersect { get; set; }
+
+        /// <summary>
+        /// Represents a value indicating if 2 polygons are colliding.
+        /// </summary>
+        public bool Intersects { get; set; }
+
+        /// <summary>
+        /// The translation vector of 2 polygons that are colliding.  This represents the total amount that
+        /// a polygon is penetrating another polygon.
+        /// </summary>
+        public Vect2 MinTranslationVector { get; set; }
     }
 }

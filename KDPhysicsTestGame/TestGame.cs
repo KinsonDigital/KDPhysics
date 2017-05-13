@@ -128,13 +128,13 @@ namespace KDPhysicsTestGame
             _purplePoly.Update();
 
             //Check for collision
-            _collisionResult = CollisionChecker.PolygonCollision(_orangePoly.PhysicsPoly, _purplePoly.PhysicsPoly, new Vect2(0, 0));
+            _collisionResult = CollisionChecker.CheckCollision(_orangePoly.PhysicsPoly, _purplePoly.PhysicsPoly);
 
             //If the polygons are colliding
-            if (_collisionResult.Intersect)
+            if (_collisionResult.Intersects)
             {
                 //Separate the first(orange) polygon from the second(purple) polygon
-                _orangePoly.Position += _collisionResult.MinimumTranslationVector;
+                _orangePoly.Position += _collisionResult.MinTranslationVector;
             }
 
             base.Update(gameTime);
@@ -173,10 +173,10 @@ namespace KDPhysicsTestGame
             _spriteBatch.DrawString(_font, $"Purple Angle: {_purplePoly.Angle}", new Vector2(800, 225), Color.Black);
 
             //Render if the polygons are colliding
-            _spriteBatch.DrawString(_font, _collisionResult.Intersect ? "COLLISION!!" : "NOTHING!!", new Vector2(800, 300), _collisionResult.Intersect ? Color.SpringGreen : Color.Black);
+            _spriteBatch.DrawString(_font, _collisionResult.Intersects ? "COLLISION!!" : "NOTHING!!", new Vector2(800, 300), _collisionResult.Intersects ? Color.SpringGreen : Color.Black);
 
             //Render the minumum translation vector
-            _spriteBatch.DrawString(_font, $"Min Trans. Vector: {_collisionResult.MinimumTranslationVector}", new Vector2(800, 325), Color.Black);
+            _spriteBatch.DrawString(_font, $"Min Trans. Vector: {_collisionResult.MinTranslationVector}", new Vector2(800, 325), Color.Black);
 
             _spriteBatch.End();
 
