@@ -56,11 +56,15 @@ namespace KDPhysicsTestGame
             set => _poly.Position = value;
         }
 
-
         /// <summary>
         /// Gets or sets a value indicating if the movement of the poly is locked.
         /// </summary>
         public bool MovementLocked { get; set; }
+
+        /// <summary>
+        /// Gets the original physics Polygon object.
+        /// </summary>
+        public Polygon PhysicsPoly => _poly;
 
         /// <summary>
         /// Updates the polygon.
