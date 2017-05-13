@@ -34,7 +34,7 @@ namespace KDPhysics
         }
 
         /// <summary>
-        /// Gets or sets a name to the vector.
+        /// Gets or sets the name of the vector.
         /// </summary>
         public string Name { get; set; }
 
@@ -49,10 +49,11 @@ namespace KDPhysics
         public float Y { get; set; }
 
         /// <summary>
-        /// Gets the length or magnitude of the vector.
+        /// Gets the (magnitude length) of the vector.
         /// </summary>
         public float Length => PMath.Magnitude(this);
-        
+
+        #region Operators
         /// <summary>
         /// Multiplies a vector by a scalar.
         /// </summary>
@@ -76,10 +77,10 @@ namespace KDPhysics
         }
 
         /// <summary>
-        /// Subtracts the left and right vector operands.
+        /// Subtracts the left vector by the right vector.
         /// </summary>
-        /// <param name="v1">The first vector to subtract.</param>
-        /// <param name="v2">The second vector to subtract.</param>
+        /// <param name="v1">The left operand.</param>
+        /// <param name="v2">The right operand.</param>
         /// <returns></returns>
         public static Vect2 operator -(Vect2 v1, Vect2 v2)
         {
@@ -87,9 +88,9 @@ namespace KDPhysics
         }
 
         /// <summary>
-        /// Returns the vector as a negative of both components.
+        /// Returns this vector negated.
         /// </summary>
-        /// <param name="vector">The first vector to subtract.</param>
+        /// <param name="vector">The vector to negate.</param>
         /// <returns></returns>
         public static Vect2 operator -(Vect2 vector)
         {
@@ -99,8 +100,8 @@ namespace KDPhysics
         /// <summary>
         /// Returns a vector with the given scalar amount subtracted.
         /// </summary>
-        /// <param name="vector">The vector to subtract the scalar from.</param>
-        /// <param name="scalar">The scalar to subtract from each component.</param>
+        /// <param name="vector">The left operand.</param>
+        /// <param name="scalar">The right operand.</param>
         /// <returns></returns>
         public static Vect2 operator -(Vect2 vector, float scalar)
         {
@@ -110,8 +111,8 @@ namespace KDPhysics
         /// <summary>
         /// Adds the left and right vector operands.
         /// </summary>
-        /// <param name="v1">The first vector to add.</param>
-        /// <param name="v2">The second vector to add.</param>
+        /// <param name="v1">The left operand.</param>
+        /// <param name="v2">The right operand.</param>
         /// <returns></returns>
         public static Vect2 operator +(Vect2 v1, Vect2 v2)
         {
@@ -121,8 +122,8 @@ namespace KDPhysics
         /// <summary>
         /// Returns a vector with the given scalar amount added.
         /// </summary>
-        /// <param name="vector">The vector to add the scalar to.</param>
-        /// <param name="scalar">The scalar to add to each component.</param>
+        /// <param name="vector">The left operand.</param>
+        /// <param name="scalar">The right operand.</param>
         /// <returns></returns>
         public static Vect2 operator +(Vect2 vector, float scalar)
         {
@@ -132,8 +133,8 @@ namespace KDPhysics
         /// <summary>
         /// Returns the vector divided by the given scalar.
         /// </summary>
-        /// <param name="vector">The vector being divided.</param>
-        /// <param name="scalar">The scalar used to divide into the vector.</param>
+        /// <param name="vector">The left operand.</param>
+        /// <param name="scalar">The right operand.</param>
         /// <returns></returns>
         public static Vect2 operator /(Vect2 vector, float scalar)
         {
@@ -141,7 +142,7 @@ namespace KDPhysics
         }
 
         /// <summary>
-        /// Returns a value indicating if the 2 given vectors are equal.
+        /// Returns a value indicating if the 2 given vectors numerically equal.
         /// </summary>
         /// <param name="v1">The first vector to compare.</param>
         /// <param name="v2">The second vector to compare.</param>
@@ -153,7 +154,7 @@ namespace KDPhysics
         }
 
         /// <summary>
-        /// Returns a value indicating if the 2 given vectors are not equal.
+        /// Returns a value indicating if the 2 given vectors are not numerically equal.
         /// </summary>
         /// <param name="v1">The first vector to compare.</param>
         /// <param name="v2">The second vector to compare.</param>
@@ -161,6 +162,45 @@ namespace KDPhysics
         public static bool operator !=(Vect2 v1, Vect2 v2)
         {
             return ! (v1 == v2);
+        }
+        #endregion
+
+        #region Methods
+        /// <summary>
+        /// Checks if the this vector and the given vector are equal.
+        /// </summary>
+        /// <param name="other">The other vector to check.</param>
+        /// <returns></returns>
+        public bool Equals(Vect2 other)
+        {
+            return string.Equals(Name, other.Name) && X.Equals(other.X) && Y.Equals(other.Y);
+        }
+
+        /// <summary>
+        /// Indicates whether this instance and a specified object are equal.
+        /// </summary>
+        /// <param name="obj">The object to check against this object.</param>
+        /// <returns></returns>
+        public override bool Equals(object obj)
+        {
+            if (ReferenceEquals(null, obj)) return false;
+
+            return obj is Vect2 && Equals((Vect2)obj);
+        }
+
+        /// <summary>
+        /// Returns the hash code for this instance.
+        /// </summary>
+        /// <returns></returns>
+        public override int GetHashCode()
+        {
+            unchecked
+            {
+                var hashCode = (Name != null ? Name.GetHashCode() : 0);
+                hashCode = (hashCode * 397) ^ X.GetHashCode();
+                hashCode = (hashCode * 397) ^ Y.GetHashCode();
+                return hashCode;
+            }
         }
 
         /// <summary>
@@ -174,5 +214,6 @@ namespace KDPhysics
 
             return $"{Name}{(string.IsNullOrEmpty(Name) ? "" : ":")} {LEFT_BRACE} X: {Math.Round(X, 2)} : Y: {Math.Round(Y, 2)} {RIGHT_BRACE}";
         }
+        #endregion
     }
 }
