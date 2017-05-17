@@ -23,6 +23,8 @@ namespace KDPhysicsTestGame
 
         private PolyObject _orangePoly;
         private PolyObject _purplePoly;
+        private PolyObject _greenPoly;
+        private PolyObject _grayPoly;
 
         private CollisionResult _collisionResult;
 
@@ -67,7 +69,7 @@ namespace KDPhysicsTestGame
             _xAxis = new Axis(_graphics.GraphicsDevice, Content, AxisType.XAxis, new Vector2(60, _graphics.PreferredBackBufferHeight - 40), _graphics.PreferredBackBufferWidth - 70, "X Axis", Color.Black, Color.Black);
             _yAxis = new Axis(_graphics.GraphicsDevice, Content, AxisType.YAxis, new Vector2(60, 20), _graphics.PreferredBackBufferHeight - 60, "Y Axis", Color.Black, Color.Black);
 
-            //Create the orange poly verts
+            //Create the orange poly verts and polygon
             var orangePolyVerts = new List<Vect2>
             {
                 new Vect2(53, 0),
@@ -80,6 +82,7 @@ namespace KDPhysicsTestGame
                 MovementLocked = false
             };
 
+            //Create the purple poly verts and polygon
             var purplePolyVerts = new List<Vect2>
             {
                 new Vect2(25, 0),
@@ -90,10 +93,39 @@ namespace KDPhysicsTestGame
                 new Vect2(12, 99),
                 new Vect2(0, 33)
             };
-            //Create the purple poly verts
             _purplePoly = new PolyObject(Content, purplePolyVerts, new Vect2(600, 600), "PurplePoly")
             {
                 MovementLocked = true
+            };
+
+            //Create the green poly verts and polygon
+            var greenPolyVerts = new List<Vect2>
+            {
+                new Vect2(0,0),
+                new Vect2(99,0),
+                new Vect2(99,99),
+                new Vect2(0,99)
+            };
+            _greenPoly = new PolyObject(Content, greenPolyVerts, new Vect2(300, 200), "GreenPoly")
+            {
+                MovementLocked = false
+            };
+
+            //Create the green poly verts and polygon
+            var grayPolyVerts = new List<Vect2>
+            {
+                new Vect2(43,0),
+                new Vect2(57,0),
+                new Vect2(99,42),
+                new Vect2(99,88),
+                new Vect2(88,99),
+                new Vect2(11,99),
+                new Vect2(0,88),
+                new Vect2(0,43)
+            };
+            _grayPoly = new PolyObject(Content, grayPolyVerts, new Vect2(400, 300), "GrayPoly")
+            {
+                MovementLocked = false
             };
         }
 
@@ -166,17 +198,22 @@ namespace KDPhysicsTestGame
             //Render the purple poly and related info
             _purplePoly.Render(_spriteBatch);
 
-            //Render position
-            _spriteBatch.DrawString(_font, $"Purple Pos: {_purplePoly.Position.X} : {_purplePoly.Position.Y}", new Vector2(800, 200), Color.Black);
+            //Render the green polygon
+            _greenPoly.Render(_spriteBatch);
 
-            //Render the angle
-            _spriteBatch.DrawString(_font, $"Purple Angle: {_purplePoly.Angle}", new Vector2(800, 225), Color.Black);
+            //Render the gray polygon
+            _grayPoly.Render(_spriteBatch);
+            ////Render position
+            //_spriteBatch.DrawString(_font, $"Purple Pos: {_purplePoly.Position.X} : {_purplePoly.Position.Y}", new Vector2(800, 200), Color.Black);
 
-            //Render if the polygons are colliding
-            _spriteBatch.DrawString(_font, _collisionResult.Intersects ? "COLLISION!!" : "NOTHING!!", new Vector2(800, 300), _collisionResult.Intersects ? Color.SpringGreen : Color.Black);
+            ////Render the angle
+            //_spriteBatch.DrawString(_font, $"Purple Angle: {_purplePoly.Angle}", new Vector2(800, 225), Color.Black);
 
-            //Render the minumum translation vector
-            _spriteBatch.DrawString(_font, $"Min Trans. Vector: {_collisionResult.MinTranslationVector}", new Vector2(800, 325), Color.Black);
+            ////Render if the polygons are colliding
+            //_spriteBatch.DrawString(_font, _collisionResult.Intersects ? "COLLISION!!" : "NOTHING!!", new Vector2(800, 300), _collisionResult.Intersects ? Color.SpringGreen : Color.Black);
+
+            ////Render the minumum translation vector
+            //_spriteBatch.DrawString(_font, $"Min Trans. Vector: {_collisionResult.MinTranslationVector}", new Vector2(800, 325), Color.Black);
 
             _spriteBatch.End();
 
