@@ -121,7 +121,6 @@ namespace KDPhysicsTest
             Assert.AreEqual(expected, actual);
         }
 
-
         [TestMethod]
         public void VectorProjection_Valid_Result()
         {
@@ -211,22 +210,51 @@ namespace KDPhysicsTest
         public void CalcPolyCenter_Valid_Result()
         {
             //Arrange
-            var vertices = new List<Vect2>
+            var vertices = new List<Vect2>()
             {
-                new Vect2(0, 0),
-                new Vect2(10, 0),
-                new Vect2(10, 10),
-                new Vect2(0, 10)
+                new Vect2(53, 0),
+                new Vect2(99, 11),
+                new Vect2(66, 99),
+                new Vect2(0, 44)
             };
-
-            var poly = new Polygon(vertices, new Vect2(10, 10));
-            var expected = new Vect2(10f, 10f);
+            var expected = new Vect2(54.5f, 38.5f);
 
             //Act
-            var actual = poly.Position;
+            var actual = PMath.CalcPolyCenter(vertices);
 
             //Assert
             Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void CalcWorldVertices_Valid_Result()
+        {
+            //Arrange
+            var vertices = new List<Vect2>
+            {
+                new Vect2(-5, -5),
+                new Vect2(5, -5),
+                new Vect2(5, 5),
+                new Vect2(-5, 5)
+            };
+
+            var worldPosition = new Vect2(100, 100);
+            var expected = new List<Vect2>
+            {
+                new Vect2(95, 95),
+                new Vect2(105, 95),
+                new Vect2(105, 105),
+                new Vect2(95, 105)
+            };
+
+            //Act
+            var actual = PMath.CalcWorldVertices(vertices, worldPosition);
+
+            //Assert
+            for (var i = 0; i < actual.Count; i++)
+            {
+                Assert.AreEqual(expected[i], actual[i]);
+            }
         }
     }
 }

@@ -127,7 +127,7 @@ namespace KDPhysics
         /// <returns></returns>
         public static Vect2 operator +(Vect2 vector, float scalar)
         {
-            return new Vect2(vector.X - scalar, vector.Y - scalar);
+            return new Vect2(vector.X + scalar, vector.Y + scalar);
         }
 
         /// <summary>
@@ -212,7 +212,7 @@ namespace KDPhysics
             const char LEFT_BRACE = '{';
             const char RIGHT_BRACE = '}';
 
-            return $"{Name}{(string.IsNullOrEmpty(Name) ? "" : ":")} {LEFT_BRACE} X: {Math.Round(X, 2)} : Y: {Math.Round(Y, 2)} {RIGHT_BRACE}";
+            return $"{Name}{(string.IsNullOrEmpty(Name) ? "" : ": ")}({X}, {Y})";
         }
         #endregion
     }

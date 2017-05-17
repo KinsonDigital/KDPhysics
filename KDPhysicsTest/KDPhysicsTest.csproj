@@ -57,6 +57,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="PMathTests.cs" />
+    <Compile Include="PolygonTests.cs" />
+    <Compile Include="CollisionResultTests.cs" />
+    <Compile Include="CollisionCheckerTests.cs" />
     <Compile Include="Vect2Tests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
