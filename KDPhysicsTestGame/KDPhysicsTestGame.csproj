@@ -59,6 +59,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\Graphics\GrayPoly.png" />
+    <Content Include="Content\Graphics\GreenPoly.png" />
     <Content Include="Content\Graphics\OrangePoly.png" />
     <Content Include="Content\Graphics\PurplePoly.png" />
     <Content Include="Icon.ico" />
