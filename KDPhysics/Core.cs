@@ -9,7 +9,7 @@ namespace KDPhysics
 {
     public class Core
     {
-        private List<Polygon> _polygons = new List<Polygon>();
+        private readonly List<Polygon> _polygons = new List<Polygon>();
 
         /// <summary>
         /// Gets or sets a polygon in the engine to process.
