@@ -94,3 +94,6 @@ UpgradeLog*.htm
 # Paket dependency manager
 .paket/paket.exe
 paket-files/
+
+# Custom
+/GraphicsPlayground
