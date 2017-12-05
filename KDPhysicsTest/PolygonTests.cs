@@ -2,17 +2,17 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using KDPhysics;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 // ReSharper disable InconsistentNaming
 
 namespace KDPhysicsTest
 {
-    [TestClass]
+    [TestFixture]
     public class PolygonTests
     {
         private Polygon _polygon;
 
-        [TestInitialize]
+        [SetUp]
         public void Initialize()
         {
             //Based off of a position/center of 0,0
@@ -27,13 +27,13 @@ namespace KDPhysicsTest
             _polygon = new Polygon(worldVertices, new Vect2(100, 100));
         }
 
-        [TestCleanup]
+        [TearDown]
         public void Cleanup()
         {
             _polygon = null;
         }
 
-        [TestMethod]
+        [Test]
         public void Polygon_Constructor_Valid_Creation()
         {
             //Arrange
@@ -56,7 +56,7 @@ namespace KDPhysicsTest
             Assert.AreEqual(expectedWorldPosition, _polygon.Position);
         }
 
-        [TestMethod]
+        [Test]
         public void CalcPolyCenter_Valid_Result()
         {
             //Arrange
@@ -69,7 +69,7 @@ namespace KDPhysicsTest
             Assert.AreEqual(expected, actual);
         }
 
-        [TestMethod]
+        [Test]
         public void Position_Prop_Set_Valid_Result()
         {
             //Arrange
@@ -82,7 +82,7 @@ namespace KDPhysicsTest
             Assert.AreEqual(expected, _polygon.Position);
         }
 
-        [TestMethod]
+        [Test]
         public void ToString_Valid_Result()
         {
             //Arrange
@@ -95,7 +95,7 @@ namespace KDPhysicsTest
             Assert.AreEqual(expected, actual);
         }
 
-        [TestMethod]
+        [Test]
         public void Angle_Prop_GetSet_Valid_Result()
         {
             //Arrange
@@ -110,7 +110,7 @@ namespace KDPhysicsTest
             Assert.AreEqual(expected, actual);
         }
 
-        [TestMethod]
+        [Test]
         public void BoundingBoxLeft_Valid_Result()
         {
             //Arrange
@@ -123,7 +123,7 @@ namespace KDPhysicsTest
             Assert.AreEqual(expected, actual);
         }
 
-        [TestMethod]
+        [Test]
         public void BoundingBoxRight_Valid_Result()
         {
             //Arrange
@@ -136,7 +136,7 @@ namespace KDPhysicsTest
             Assert.AreEqual(expected, actual);
         }
 
-        [TestMethod]
+        [Test]
         public void BoundingBoxTop_Valid_Result()
         {
             //Arrange
@@ -149,7 +149,7 @@ namespace KDPhysicsTest
             Assert.AreEqual(expected, actual);
         }
 
-        [TestMethod]
+        [Test]
         public void BoundingBoxBottom_Valid_Result()
         {
             //Arrange

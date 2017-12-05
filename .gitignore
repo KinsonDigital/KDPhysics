@@ -96,4 +96,5 @@ UpgradeLog*.htm
 paket-files/
 
 # Custom
+/.vs
 /GraphicsPlayground

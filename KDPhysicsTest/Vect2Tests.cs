@@ -1,15 +1,15 @@
 ﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using KDPhysics;
+using NUnit.Framework;
 // ReSharper disable InconsistentNaming
 // ReSharper disable EqualExpressionComparison
 
 namespace KDPhysicsTest
 {
-    [TestClass]
+    [TestFixture]
     public class Vect2Tests
     {
-        [TestMethod]
+        [Test]
         public void Length_Valid_Result()
         {
             //Arrange
@@ -23,7 +23,7 @@ namespace KDPhysicsTest
             Assert.AreEqual(expected, actual);
         }
 
-        [TestMethod]
+        [Test]
         public void CalcLength_Valid_Result()
         {
             //Arrange
@@ -37,7 +37,7 @@ namespace KDPhysicsTest
             Assert.AreEqual(expected, actual);
         }
 
-        [TestMethod]
+        [Test]
         public void Constructor_Valid_Result()
         {
             //Arrange
@@ -52,7 +52,7 @@ namespace KDPhysicsTest
             Assert.AreEqual(expected2, vector2);
         }
 
-        [TestMethod]
+        [Test]
         public void Mult_Operator_Valid_Result()
         {
             //Arrange
@@ -72,7 +72,7 @@ namespace KDPhysicsTest
             Assert.AreEqual(expected.Y, actualVectorRightHand.Y);//Assert x component
         }
 
-        [TestMethod]
+        [Test]
         public void Subtract_VectorFromVector_Operator_Valid_Result()
         {
             //Arrange
@@ -88,7 +88,7 @@ namespace KDPhysicsTest
             Assert.AreEqual(expected.Y, actual.Y);//Assert y component
         }
 
-        [TestMethod]
+        [Test]
         public void Subract_ScalarFromVector_Operator_Valid_Result()
         {
             //Arrange
@@ -101,7 +101,7 @@ namespace KDPhysicsTest
             Assert.AreEqual(expected, actual);
         }
 
-        [TestMethod]
+        [Test]
         public void Negate_Operator_Valid_Result()
         {
             //Arrange
@@ -114,7 +114,7 @@ namespace KDPhysicsTest
             Assert.AreEqual(expected, actual);
         }
 
-        [TestMethod]
+        [Test]
         public void Add_VectorToVector_Operator_Valid_Result()
         {
             //Arrange
@@ -130,7 +130,7 @@ namespace KDPhysicsTest
             Assert.AreEqual(expected.Y, actual.Y);//Assert y component
         }
 
-        [TestMethod]
+        [Test]
         public void Add_VectorToScalar_Operator_Valid_Result()
         {
             //Arrange
@@ -146,7 +146,7 @@ namespace KDPhysicsTest
             Assert.AreEqual(expected, actual);//Assert x component
         }
 
-        [TestMethod]
+        [Test]
         public void Divide_VectorByScalar_Operator_Valid_Result()
         {
             //Arrange
@@ -159,7 +159,7 @@ namespace KDPhysicsTest
             Assert.AreEqual(expected, actual);
         }
 
-        [TestMethod]
+        [Test]
         public void Equal_Operator_Validd_Result()
         {
             //Arrange
@@ -174,7 +174,7 @@ namespace KDPhysicsTest
             Assert.AreEqual(false, actualFalse);
         }
 
-        [TestMethod]
+        [Test]
         public void NotEqual_Operator_Valid_Result()
         {
             //Arrange
@@ -189,7 +189,7 @@ namespace KDPhysicsTest
             Assert.AreEqual(false, actualFalse);
         }
 
-        [TestMethod]
+        [Test]
         public void GetHashCode_Valid_Result()
         {
             //Arrange
@@ -203,7 +203,7 @@ namespace KDPhysicsTest
             Assert.AreEqual(expected, actual);
         }
 
-        [TestMethod]
+        [Test]
         public void Equals_Valid_True_Result()
         {
             //Arrange
@@ -217,7 +217,7 @@ namespace KDPhysicsTest
             Assert.AreEqual(expected, actual);
         }
 
-        [TestMethod]
+        [Test]
         public void Equals_Valid_False_Result()
         {
             //Arrange
@@ -233,7 +233,7 @@ namespace KDPhysicsTest
             Assert.AreEqual(expected, actualWithoutNull);
         }
 
-        [TestMethod]
+        [Test]
         public void ToString_Valid_Result()
         {
             //Arrange

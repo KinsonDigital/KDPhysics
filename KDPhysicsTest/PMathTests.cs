@@ -1,14 +1,14 @@
 ﻿using System.Collections.Generic;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using KDPhysics;
+using NUnit.Framework;
 // ReSharper disable InconsistentNaming
 
 namespace KDPhysicsTest
 {
-    [TestClass]
+    [TestFixture]
     public class PMathTests
     {
-        [TestMethod]
+        [Test]
         public void DotProduct_Valid_Result()
         {
             //Arrange
@@ -23,7 +23,7 @@ namespace KDPhysicsTest
             Assert.AreEqual(expected, actual);
         }
 
-        [TestMethod]
+        [Test]
         public void Magnitude_Valid_Result()
         {
             //Arrange
@@ -37,7 +37,7 @@ namespace KDPhysicsTest
             Assert.AreEqual(expected, actual);
         }
 
-        [TestMethod]
+        [Test]
         public void Sqrt_Valid_Result()
         {
             //Arrange
@@ -51,7 +51,7 @@ namespace KDPhysicsTest
             Assert.AreEqual(expected, actual);
         }
 
-        [TestMethod]
+        [Test]
         public void Square_Valid_Result()
         {
             //Arrange
@@ -65,7 +65,7 @@ namespace KDPhysicsTest
             Assert.AreEqual(expected, actual);
         }
 
-        [TestMethod]
+        [Test]
         public void DegreeToRadian_Valid_Result()
         {
             //Arrange
@@ -78,7 +78,7 @@ namespace KDPhysicsTest
             Assert.AreEqual(expected, actual);
         }
 
-        [TestMethod]
+        [Test]
         public void RadianToDegree_Valid_Result()
         {
             //Arrange
@@ -91,7 +91,7 @@ namespace KDPhysicsTest
             Assert.AreEqual(expected, actual);
         }
 
-        [TestMethod]
+        [Test]
         public void CalcAngle_Valid_Result()
         {
             //Arrange
@@ -106,7 +106,7 @@ namespace KDPhysicsTest
             Assert.AreEqual(expected, actual);
         }
 
-        [TestMethod]
+        [Test]
         public void ScalarProjection_Valid_Result()
         {
             //Arrange
@@ -121,7 +121,7 @@ namespace KDPhysicsTest
             Assert.AreEqual(expected, actual);
         }
 
-        [TestMethod]
+        [Test]
         public void VectorProjection_Valid_Result()
         {
             //Arrange
@@ -137,7 +137,7 @@ namespace KDPhysicsTest
             Assert.AreEqual(expected.Y, actual.Y);
         }
 
-        [TestMethod]
+        [Test]
         public void RotateVectorAround_Valid_Result()
         {
             var v1 = new Vect2(2, 0);
@@ -163,7 +163,7 @@ namespace KDPhysicsTest
             Assert.AreEqual(expected.Y, actual.Y);
         }
 
-        [TestMethod]
+        [Test]
         public void TranslateToOrigin_Valid_Result()
         {
             //Arrange
@@ -178,7 +178,7 @@ namespace KDPhysicsTest
             Assert.AreEqual(expected.Y, actual.Y);
         }
 
-        [TestMethod]
+        [Test]
         public void CalcNormal_Valid_Result()
         {
             //Arrange
@@ -192,7 +192,7 @@ namespace KDPhysicsTest
             Assert.AreEqual(expected.Y, actual.Y);
         }
 
-        [TestMethod]
+        [Test]
         public void Normalize_Valid_Result()
         {
             //Arrange
@@ -206,7 +206,7 @@ namespace KDPhysicsTest
             Assert.AreEqual(expected.Y, actual.Y);
         }
 
-        [TestMethod]
+        [Test]
         public void CalcPolyCenter_Valid_Result()
         {
             //Arrange
@@ -226,7 +226,7 @@ namespace KDPhysicsTest
             Assert.AreEqual(expected, actual);
         }
 
-        [TestMethod]
+        [Test]
         public void CalcWorldVertices_Valid_Result()
         {
             //Arrange

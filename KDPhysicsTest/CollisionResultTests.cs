@@ -1,15 +1,15 @@
 ﻿using System;
 using System.CodeDom;
 using KDPhysics;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 // ReSharper disable UseObjectOrCollectionInitializer
 
 namespace KDPhysicsTest
 {
-    [TestClass]
+    [TestFixture]
     public class CollisionResultTests
     {
-        [TestMethod]
+        [Test]
         public void WillIntersect_Prop_Set_Valid()
         {
             //Arrange
@@ -22,7 +22,7 @@ namespace KDPhysicsTest
             Assert.AreEqual(true, collisionResult.WillIntersect);
         }
 
-        [TestMethod]
+        [Test]
         public void Intersects_Prop_Set_Valid()
         {
             //Arrange
@@ -35,7 +35,7 @@ namespace KDPhysicsTest
             Assert.AreEqual(true, collisionResult.Intersects);
         }
 
-        [TestMethod]
+        [Test]
         public void MinTranslationVector_Prop_Set_Valid()
         {
             //Arrange

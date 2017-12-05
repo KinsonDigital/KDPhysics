@@ -1,17 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
 using KDPhysics;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Diagnostics;
+using NUnit.Framework;
 
 namespace KDPhysicsTest
 {
-    [TestClass]
+    [TestFixture]
     public class CollisionCheckerTests
     {
         private Polygon _polyA;
         private Polygon _polyB;
 
-        [TestInitialize]
+        [SetUp]
         public void Initialize()
         {
             //Create the polygons and set the positions so they are colliding
@@ -41,14 +42,14 @@ namespace KDPhysicsTest
             _polyB = new Polygon(polyBVerts, new Vect2(150, 100));
         }
 
-        [TestCleanup]
+        [TearDown]
         public void Cleanup()
         {
             _polyA = null;
             _polyB = null;
         }
 
-        [TestMethod]
+        [Test]
         public void CheckCollision_Valid_Result_Does_Intersect_True()
         {
             //Arrange
@@ -64,7 +65,7 @@ namespace KDPhysicsTest
             Assert.AreEqual(expected.Intersects, actual.Intersects);
         }
 
-        [TestMethod]
+        [Test]
         public void CheckCollision_Valid_Result_Does_Intersect_False()
         {
             //Arrange
@@ -83,7 +84,7 @@ namespace KDPhysicsTest
             Assert.AreEqual(expected.Intersects, actual.Intersects);
         }
 
-        [TestMethod]
+        [Test]
         public void CheckCollision_Valid_Result_Does_WillIntersect()
         {
             //Arrange
